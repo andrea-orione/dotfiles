@@ -13,7 +13,7 @@
 call plug#begin('~/.vim/plugged')
 
 	Plug 'preservim/nerdtree'	" For browsing the filesystem
-
+	Plug 'dense-analysis/ale'	" For checking spell
 
 call plug#end()
 
@@ -26,6 +26,8 @@ call plug#end()
 " TODO check syntax languages
 set nocompatible	" Disable compatibility with vi that can cause issues
 set number			" Show linenumber. Add relative to make so
+"set noswapfile		" Disable the creation of swap files
+"set nobackup		" Disable the creation of backup files
 filetype on			" Enable file type detection
 filetype plugin on	" Enable and load plugins for the specific filetype
 filetype indent on	" Not shure what it does. I think is smart indentation
@@ -38,6 +40,8 @@ set linebreak		" Wraps (new line) without breaking the words
 set cursorline		" See cursor line
 "set cursorcolumn	" See cursor column
 set showcmd			" Show partial command in the las line
+set clipboard=unnamedplus
+					" Copy/paste between vim and other applications
 set showmode		" Show the mode on the last line
 set history=1000	" Increase the history of commands (default=20)
 set mouse=a			" Enable mouse when use in terminal emulator
@@ -52,7 +56,7 @@ set wildignore=*.docs,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
 " SEARCH SETTINGS -------------------------------------------------------- {{{
 
-set incsearch		" Highlight words while searching
+set incsearch		" Use incremental search
 set ignorecase		" Ignore capital during search
 set smartcase		" Ovverrides previous to consider capital only if used
 set showmatch		" Highlights all the matches
