@@ -13,7 +13,7 @@ ABSENT=();
 
 echo "Checking installed packages";
 for i in ${REQUIRED[@]}; do
-	if ! [[ $(pacman -Qi $i &>/dev/null) ]]; then
+	if ! pacman -Qs $i > /dev/null; then
 		ABSENT+=($i);
 	fi
 done
@@ -26,8 +26,8 @@ done
 
 echo "Coping config file"
 echo "Coping .vimrc"
-$(cp .vimrc $USER_HOME)
+cp .vimrc $USER_HOME
 echo "Coping neofetch config"
-$(mkdir $USER_HOME/.config/neofetch)
-$(cp ./config/neofetch/config.config $USER_HOME/.config/neofetch)
+mkdir -p $USER_HOME/.config/neofetch
+cp ./config/neofetch/config.conf $USER_HOME/.config/neofetch
 
