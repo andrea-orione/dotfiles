@@ -29,5 +29,5 @@ echo "Coping .vimrc"
 cp .vimrc $USER_HOME
 echo "Coping neofetch config"
 mkdir -p $USER_HOME/.config/neofetch
-cp ./config/neofetch/config.conf $USER_HOME/.config/neofetch
+cp .config/neofetch/config.conf $USER_HOME/.config/neofetch
 
