@@ -1,7 +1,11 @@
 #!/bin/bash
 
-cd ~/dotfiles;
+DOTFILES=$PWD;
+cd $DOTFILES;
+cd ..
+USER_HOME=$PWD;
 $(pacman -Sy);
+cd $DOTFILES;
 
 # should add htop
 REQUIRED=('neofetch' 'vim');
@@ -9,7 +13,7 @@ ABSENT=();
 
 echo "Checking installed packages";
 for i in ${REQUIRED[@]}; do
-	if $(pacman -Qi $i &>/dev/null); then
+	if ! [[ $(pacman -Qi $i &>/dev/null) ]]; then
 		ABSENT+=($i);
 	fi
 done
@@ -22,9 +26,8 @@ done
 
 echo "Coping config file"
 echo "Coping .vimrc"
-$(cp .vimrc $HOME)
+$(cp .vimrc $USER_HOME)
 echo "Coping neofetch config"
-$(mkdir $HOME/.config/neofetch)
-$(cp ./config/neofetch/config.config $HOME/.config/neofetch)
-
+$(mkdir $USER_HOME/.config/neofetch)
+$(cp ./config/neofetch/config.config $USER_HOME/.config/neofetch)
 
