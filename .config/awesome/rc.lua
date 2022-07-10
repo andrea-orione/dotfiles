@@ -1,24 +1,34 @@
+-- LIBRARY IMPORTATION {{{
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
 -- Standard awesome library
-local gears = require("gears")
-local awful = require("awful")
+local gears = require("gears") --Utilities such as color parsing and objects
+local awful = require("awful") --Everything related to window parsing
 require("awful.autofocus")
+
 -- Widget and layout library
 local wibox = require("wibox")
+
 -- Theme handling library
 local beautiful = require("beautiful")
+
 -- Notification library
 local naughty = require("naughty")
-local menubar = require("menubar")
-local hotkeys_popup = require("awful.hotkeys_popup")
--- Enable hotkeys help widget for VIM and other apps
--- when client with a matching name is opened:
-require("awful.hotkeys_popup.keys")
 
--- {{{ Error handling
+-- Menubar
+local menubar = require("menubar")
+
+-- Hotkeys widjet
+local hotkeys_popup = require("awful.hotkeys_popup").widget
+-- Enable hotkeys help widget for VIM and other apps when client with a matching name is opened:
+require("awful.hotkeys_popup.keys")
+local my_table = awful.util.table or gears.table -- don't know what it does (see dt)
+-- }}}
+
+
+-- ERROR HANDLING {{{
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
@@ -43,36 +53,57 @@ do
 end
 -- }}}
 
--- {{{ Variable definitions
--- Themes define colours, icons, font and wallpapers.
+
+-- THEME OPENING {{{
+local theme_list = {
+	"powerarrow-blue",
+	"powerarrow",
+	"multicolor",
+}
+
+-- choose your theme here
+local chosen_theme = theme_list[1]
+local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
+
+-- Uncomment this line when the themes are ready
+-- beautiful.init(theme_path)
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+-- }}}
 
--- This is used later as the default terminal and editor to run.
-terminal = "alacritty"
-editor = os.getenv("EDITOR") or "vim"
-editor_cmd = terminal .. " -e " .. editor
 
--- Default modkey.
--- Usually, Mod4 is the key with a logo between Control and Alt.
--- If you do not like this or do not have such a key,
--- I suggest you to remap Mod4 to another key using xmodmap or other tools.
--- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = "Mod4"
+-- VARIABLE DEFINITION {{{
+-- Application variables
+local terminal = "alacritty"
+local browser = "firefox"
+local editor = os.getenv("EDITOR") or "vim"
+local editor_cmd = terminal .. " -e " .. editor
+-- local emacs = "emacsclient -c -a 'emacs' "
+-- local mediaplayer = some media player
+-- loca soundplayer = some sound player
 
--- Table of layouts to cover with awful.layout.inc, order matters.
+-- Key variables
+local modkey = "Mod4" --Window key
+local altkey = "Mod1" --Alt
+local ctrlkey = "Control"
+
+-- Naming labels
+awful.util.terminal = terminal
+awful.util.tagnames = {"DEV", "TEX", "WWW", "DOC", "MUS", "SET", "TER", "OT1", "OT2", "OT3"} -- Workspaces names 
+
+-- Table of layouts (used by awful.layout.inc)
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.floating,
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
+    -- awful.layout.suit.tile.top,
+    -- awful.layout.suit.fair,
+    -- awful.layout.suit.fair.horizontal,
+    -- awful.layout.suit.spiral,
+    -- awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     -- awful.layout.suit.max.fullscreen,
-    -- awful.layout.suit.magnifier,
+     awful.layout.suit.magnifier,
     -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
@@ -80,23 +111,72 @@ awful.layout.layouts = {
 }
 -- }}}
 
--- {{{ Menu
+
+-- TAGLIST AND TASKLIST {{{
+awful.util.taglist_buttons = my_table.join(
+    awful.button({ }, 1, function(t) t:view_only() end),
+    awful.button({ modkey }, 1, function(t)
+        if client.focus then
+            client.focus:move_to_tag(t)
+        end
+    end),
+    awful.button({ }, 3, awful.tag.viewtoggle),
+    awful.button({ modkey }, 3, function(t)
+        if client.focus then
+            client.focus:toggle_tag(t)
+        end
+    end),
+    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
+    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+)
+
+awful.util.tasklist_buttons = my_table.join(
+    awful.button({ }, 1, function(c)
+        if c == client.focus then
+            c.minimized = true
+        else
+            c:emit_signal("request::activate", "tasklist", {raise = true})
+        end
+    end),
+    awful.button({ }, 3, function()
+        local instance = nil
+		return function()
+			if instance and instance.wibox.visible then
+				instance:hide()
+				instance = nil
+			else
+				instance = awful.menu.clients({theme = {width = 250}})
+			end
+		end
+	end),
+    awful.button({ }, 4, function() awful.client.focus.byidx(1) end),
+    awful.button({ }, 5, function() awful.client.focus.byidx(-1) end)
+)
+-- }}}
+
+
+-- MENU {{{
 -- Create a launcher widget and a main menu
 myawesomemenu = {
-   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end },
+   { "Hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+   { "Manual", terminal .. " -e man awesome" },
+   { "Edit config", editor_cmd .. " " .. awesome.conffile },
+   { "Restart", awesome.restart },
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
-                                  }
-                        })
+awful.util.mymainmenu = awful.menu({
+	items = { 
+		{ "Awesome", myawesomemenu, beautiful.awesome_icon },
+        { "Terminal", terminal },
+		{ "Log out", function() awesome.quit() end },
+		{ "Sleep", "systemctl suspend" },
+		{ "Restart", "systemctl reboot" },
+		{ "Exit", "systemctl poweroff" }
+    }
+})
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
+                                     menu = awful.util.mymainmenu })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
@@ -109,45 +189,6 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 
--- Create a wibox for each screen and add it
-local taglist_buttons = gears.table.join(
-                    awful.button({ }, 1, function(t) t:view_only() end),
-                    awful.button({ modkey }, 1, function(t)
-                                              if client.focus then
-                                                  client.focus:move_to_tag(t)
-                                              end
-                                          end),
-                    awful.button({ }, 3, awful.tag.viewtoggle),
-                    awful.button({ modkey }, 3, function(t)
-                                              if client.focus then
-                                                  client.focus:toggle_tag(t)
-                                              end
-                                          end),
-                    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-                    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
-                )
-
-local tasklist_buttons = gears.table.join(
-                     awful.button({ }, 1, function (c)
-                                              if c == client.focus then
-                                                  c.minimized = true
-                                              else
-                                                  c:emit_signal(
-                                                      "request::activate",
-                                                      "tasklist",
-                                                      {raise = true}
-                                                  )
-                                              end
-                                          end),
-                     awful.button({ }, 3, function()
-                                              awful.menu.client_list({ theme = { width = 250 } })
-                                          end),
-                     awful.button({ }, 4, function ()
-                                              awful.client.focus.byidx(1)
-                                          end),
-                     awful.button({ }, 5, function ()
-                                              awful.client.focus.byidx(-1)
-                                          end))
 
 local function scanDir(directory)
     local i, fileList, popen = 0, {}, io.popen
@@ -195,20 +236,15 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(wallpaperList[math.random(0, #wallpaperList)], s)
     -- apply a random changing wallpaper every changingTime seconds
     changingTime = 900
-    wallpaperTimer = timer{timeout = changingTime}
-    wallpaperTimer:connect_signal("timeout", function()
-	-- TODO insert a transition between two wallpapers
-	set_wallpaper(wallpaperList[math.random(0, #wallpaperList)], s)
-        -- stop the timer
-	wallpaperTimer:stop()
-	-- restart the timer
-	wallpaperTimer.timeout = changingTime
-	wallpaperTimer:start()
-    end)
-    --initialize timer first time
-    wallpaperTimer:start()
-    --
-    --end of the new code
+    wallpaperTimer = gears.timer{
+		timeout = changingTime,
+        call_now = true,
+		autostart = true,
+		callback = function()
+	        set_wallpaper(wallpaperList[math.random(0, #wallpaperList)], s)
+	        -- TODO insert a transition between two wallpapers
+		end
+	}
 
     -- Each screen has its own tag table.
     awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
@@ -263,7 +299,7 @@ end)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
+    awful.button({ }, 3, function () awful.util.mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
