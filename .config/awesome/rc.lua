@@ -26,7 +26,7 @@ local menubar = require("menubar")
 -- Enable hotkeys help widget for VIM and other apps when client with a matching name is opened:
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 require("awful.hotkeys_popup.keys")
-local my_table = awful.util.table or gears.table -- don't know what it does (see dt) 4.{0,1} compatibility
+local my_table = awful.util.table or gears.table -- bindings table 4.{0,1} compatibility
 -- }}}
 
 
