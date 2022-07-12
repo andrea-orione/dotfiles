@@ -8,26 +8,23 @@
 --
 -- Orion blue theme for awesome wm
 
--- LIBRARY IMPORTATION {{{
-local gears = require("gears") --Utilities such as color parsing and objects
-local awful = require("awful") --Everything related to window parsing
-local wibox = require("wibox") --Widget and layout library
-local lain = require("lain") --Layout, asyncronous widgets and utilities
--- }}}
+local gears = require("gears")
+local lain  = require("lain")
+local awful = require("awful")
+local wibox = require("wibox")
 
 local os = os
-local my_table = awful.util.table or gears.table --bindings table 4.{0,1} compatibility
+local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
--- VARIABLE DEFINITION {{{
 local theme                                     = {}
-theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/orion-blue"
-theme.wallpaper_folder                          = os.getenv("HOME") .. ".wallpapers"
--- TODO change to ubuntu font
+theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/multicolor"
+theme.wallpaper                                 = theme.confdir .. "/wall.jpg"
 theme.font                                      = "Noto Sans Regular 11"
 theme.taglist_font                              = "Noto Sans Regular 13"
 theme.menu_bg_normal                            = "#000000"
 theme.menu_bg_focus                             = "#000000"
 theme.bg_normal                                 = "#000000"
+theme.bg_focus                                  = "#000000"
 theme.bg_urgent                                 = "#000000"
 theme.fg_normal                                 = "#aaaaaa"
 theme.fg_focus                                  = "#ff8c00"
@@ -39,7 +36,7 @@ theme.border_focus                              = "#606060"
 theme.border_marked                             = "#3ca4d8"
 theme.menu_border_width                         = 0
 theme.menu_width                                = 140
-theme.menu_submenu_icon                         = theme.confdir .. "/icon/submenu.png"
+theme.menu_submenu_icon                         = theme.confdir .. "/icons/submenu.png"
 theme.menu_fg_normal                            = "#aaaaaa"
 theme.menu_fg_focus                             = "#ff8c00"
 theme.menu_bg_normal                            = "#050505dd"
@@ -100,37 +97,33 @@ theme.titlebar_maximized_button_normal_active   = theme.confdir .. "/icons/title
 theme.titlebar_maximized_button_focus_active    = theme.confdir .. "/icons/titlebar/maximized_focus_active.png"
 
 local markup = lain.util.markup
--- }}}
 
--- TEXTCLOCK AND CALENDAR{{{
---os.setlocale(os.getenv("LANG"))
-local clockicon = wibox.widget.image(theme.widget_clock)
-local mytextclock = wibox.widget.textclock(markup("#7788af", "%d %B %A") .. markup("#535f7a", ">") .. markup("#de5e1e", "%H:%M"))
+-- Textclock
+os.setlocale(os.getenv("LANG")) -- to localize the clock
+local clockicon = wibox.widget.imagebox(theme.widget_clock)
+local mytextclock = wibox.widget.textclock(markup("#7788af", "%A %d %B ") .. markup("#535f7a", ">") .. markup("#de5e1e", " %H:%M "))
 mytextclock.font = theme.font
 
+-- Calendar
 theme.cal = lain.widget.cal({
-    attach_to = {mytextclock},
+    attach_to = { mytextclock },
     notification_preset = {
         font = "Noto Sans Mono Medium 10",
-        fg = theme.fg_normal,
-        bg = theme.bg_normal
+        fg   = theme.fg_normal,
+        bg   = theme.bg_normal
     }
 })
--- }}}
 
--- WEATHER {{{
--- The weather information are taken from
--- https://openweathermap.org/
--- To change the city go to this site and lock for the id of the city
+-- Weather
 local weathericon = wibox.widget.imagebox(theme.widget_weather)
 theme.weather = lain.widget.weather({
-    city_id = 3165523, --city id (Torino,IT)
-    notification_preset = { font = "Noto Snas Mono Medium 10", fg = theme.fg_normal },
-    weather_na_markup = markup.fontfg(theme.font, "eca4c4", "N/A "),
+    city_id = 2803138, -- placeholder (Belgium)
+    notification_preset = { font = "Noto Sans Mono Medium 10", fg = theme.fg_normal },
+    weather_na_markup = markup.fontfg(theme.font, "#eca4c4", "N/A "),
     settings = function()
-        descr = weater_now["weather"][1]["description"]:lower()
-        units = math.floor(wether_now["main"]["temp"])
-        widget:set_markup(markup.fontfg(theme.font, "#eca4c4", descr .. " @ " .. units .. "°C"))
+        descr = weather_now["weather"][1]["description"]:lower()
+        units = math.floor(weather_now["main"]["temp"])
+        widget:set_markup(markup.fontfg(theme.font, "#eca4c4", descr .. " @ " .. units .. "°C "))
     end
 })
 
@@ -361,3 +354,4 @@ function theme.at_screen_connect(s)
 end
 
 return theme
+
