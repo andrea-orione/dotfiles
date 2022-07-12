@@ -59,9 +59,7 @@ end
 
 -- THEME OPENING {{{
 local theme_list = {
-	"powerarrow-blue",
-	"powerarrow",
-	"multicolor",
+	"orion-blue",
 }
 
 -- choose your theme here
@@ -69,8 +67,8 @@ local chosen_theme = theme_list[1]
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
 
 -- Uncomment this line when the themes are ready
--- beautiful.init(theme_path)
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.init(theme_path)
+-- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 -- }}}
 
 
@@ -157,6 +155,7 @@ awful.util.tasklist_buttons = my_table.join(
 )
 -- }}}
 
+beautiful.init(string.format(gears.filesystem.get_configuration_dir() .. "/themes/%s/theme.lua", chosen_theme))
 
 -- MENU {{{
 -- Create a launcher widget and a main menu
