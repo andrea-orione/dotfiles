@@ -18,6 +18,7 @@ local naughty = require("naughty")
 naughty.config.defaults['icon_size'] = 100
 
 local freedesktop = require("freedesktop")
+local lain = require("lain")
 
 -- Menubar
 local menubar = require("menubar")

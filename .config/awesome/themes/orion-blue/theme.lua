@@ -12,6 +12,7 @@
 local gears = require("gears") --Utilities such as color parsing and objects
 local awful = require("awful") --Everything related to window parsing
 local wibox = require("wibox") --Widget and layout library
+local lain = require("lain") --Layout, asyncronous widgets and utilities
 -- }}}
 
 local os = os
@@ -97,4 +98,39 @@ theme.titlebar_maximized_button_normal_inactive = theme.confdir .. "/icons/title
 theme.titlebar_maximized_button_focus_inactive  = theme.confdir .. "/icons/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_active   = theme.confdir .. "/icons/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active    = theme.confdir .. "/icons/titlebar/maximized_focus_active.png"
+
+local markup = lain.util.markup
+-- }}}
+
+-- TEXTCLOCK AND CALENDAR{{{
+--os.setlocale(os.getenv("LANG"))
+local clockicon = wibox.widget.image(theme.widget_clock)
+local mytextclock = wibox.widget.textclock(markup("#7788af", "%d %B %A") .. markup("#535f7a", ">") .. markup("#de5e1e", "%H:%M"))
+mytextclock.font = theme.font
+
+theme.cal = lain.widget.cal({
+    attach_to = {mytextclock},
+    notification_preset = {
+        font = "Noto Sans Mono Medium 10",
+        fg = theme.fg_normal,
+        bg = theme.bg_normal
+    }
+})
+-- }}}
+
+-- WEATHER {{{
+-- The weather information are taken from
+-- https://openweathermap.org/
+-- To change the city go to this site and lock for the id of the city
+local weathericon = wibox.widget.imagebox(theme.widget_weather)
+theme.weather = lain.widget.weather({
+    city_id = 3165523, --city id (Torino,IT)
+    notification_preset = { font = "Noto Snas Mono Medium 10", fg = theme.fg_normal },
+    weather_na_markup = markup.fontfg(theme.font, "eca4c4", "N/A "),
+    settings = function()
+        descr = weater_now["weather"][1]["description"]:lower()
+        units = math.floor(wether_now["main"]["temp"])
+        widget:set_markup(markup.fontfg(theme.font, "#eca4c4", descr .. " @ " .. units .. "°C"))
+    end
+})
 
