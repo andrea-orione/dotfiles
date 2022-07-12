@@ -133,6 +133,7 @@ theme.weather = lain.widget.weather({
         widget:set_markup(markup.fontfg(theme.font, "#eca4c4", descr .. " @ " .. units .. "°C"))
     end
 })
+-- }}}
 
 -- / fs
 --local fsicon = wibox.widget.imagebox(theme.widget_fs)
@@ -166,23 +167,25 @@ theme.mail = lain.widget.imap({
 })
 --]]
 
--- CPU
+-- CPU {{{
 local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
 local cpu = lain.widget.cpu({
     settings = function()
         widget:set_markup(markup.fontfg(theme.font, "#e33a6e", cpu_now.usage .. "% "))
     end
 })
+-- }}}
 
--- Coretemp
+-- CORE TEMPERATURE {{{
 local tempicon = wibox.widget.imagebox(theme.widget_temp)
 local temp = lain.widget.temp({
     settings = function()
         widget:set_markup(markup.fontfg(theme.font, "#f1af5f", coretemp_now .. "°C "))
     end
 })
+-- }}}
 
--- Battery
+-- BATTERY {{{
 local baticon = wibox.widget.imagebox(theme.widget_batt)
 local bat = lain.widget.bat({
     settings = function()
@@ -195,8 +198,9 @@ local bat = lain.widget.bat({
         widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, perc .. " "))
     end
 })
+-- }}}
 
--- ALSA volume
+-- ALSA VOLUME {{{
 local volicon = wibox.widget.imagebox(theme.widget_vol)
 theme.volume = lain.widget.alsa({
     settings = function()
@@ -207,8 +211,10 @@ theme.volume = lain.widget.alsa({
         widget:set_markup(markup.fontfg(theme.font, "#7493d2", volume_now.level .. "% "))
     end
 })
+-- }}}
 
--- Net
+
+-- NETWORK {{{
 local netdownicon = wibox.widget.imagebox(theme.widget_netdown)
 local netdowninfo = wibox.widget.textbox()
 local netupicon = wibox.widget.imagebox(theme.widget_netup)
@@ -224,25 +230,29 @@ local netupinfo = lain.widget.net({
         netdowninfo:set_markup(markup.fontfg(theme.font, "#87af5f", net_now.received .. " "))
     end
 })
+-- }}}
 
--- MEM
+-- MEMORY {{{
 local memicon = wibox.widget.imagebox(theme.widget_mem)
 local memory = lain.widget.mem({
     settings = function()
         widget:set_markup(markup.fontfg(theme.font, "#e0da37", mem_now.used .. "M "))
     end
 })
+-- }}}
 
--- MPD
+--[[
+-- MEDIA PALYER {{{
 local musicplr = "urxvt -title Music -g 130x34-320+16 -e ncmpcpp"
 local mpdicon = wibox.widget.imagebox(theme.widget_music)
 mpdicon:buttons(my_table.join(
-    awful.button({ modkey }, 1, function () awful.spawn.with_shell(musicplr) end),
-    --[[awful.button({ }, 1, function ()
-        awful.spawn.with_shell("mpc prev")
-        theme.mpd.update()
-    end),
-    --]]
+    --
+    --awful.button({ modkey }, 1, function () awful.spawn.with_shell(musicplr) end),
+    --awful.button({ }, 1, function ()
+    --    awful.spawn.with_shell("mpc prev")
+    --    theme.mpd.update()
+    --end),
+    --
     awful.button({ }, 2, function ()
         awful.spawn.with_shell("mpc toggle")
         theme.mpd.update()
@@ -268,18 +278,35 @@ theme.mpd = lain.widget.mpd({
         end
     end
 })
+-- }}}
+--]]
+
+-- DISPLAYING {{{
+local function scanDir(directory)
+    local popen = io.popen
+    local fileList = popen([[find "]] .. directory .. [[" -type f]]):lines()
+    return fileList
+end
 
 function theme.at_screen_connect(s)
     -- Quake application
-   -- s.quake = lain.util.quake({ app = awful.util.terminal })
-   s.quake = lain.util.quake({ app = "termite", height = 0.50, argname = "--name %s" })
+    s.quake = lain.util.quake({ app = awful.util.terminal })
+    -- s.quake = lain.util.quake({ app = "termite", height = 0.50, argname = "--name %s" })
 
-    -- If wallpaper is a function, call it with the screen
-    local wallpaper = theme.wallpaper
-    if type(wallpaper) == "function" then
-        wallpaper = wallpaper(s)
-    end
-    gears.wallpaper.maximized(wallpaper, s, true)
+    -- Wallpaper
+    --TODO insert wallpaper transition
+    math.randomseed(os.time())
+    wallpaperList = scanDir(theme.wallaper_folder)
+    gears.wallpaper.maximized(wallpaperList[math.random(0, #wallpaperList)], s, true)
+    changingTime = 5
+    wallpaperTimer = gears.time{
+        timeout = changingTime,
+        call_now = true,
+        autostart = true,
+        callback = function()
+           gears.wallpaper.maximized(wallpaperList[math.random(0, #wallpaperList)], s, true)
+        end
+    }
 
     -- Tags
     awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
@@ -359,5 +386,6 @@ function theme.at_screen_connect(s)
         },
     }
 end
+-- }}}
 
 return theme
