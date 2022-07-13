@@ -13,6 +13,7 @@ local gears = require("gears") --Utilities such as color parsing and objects
 local lain  = require("lain") --Layout, asyncronous widgets and utilities
 local awful = require("awful") --Everything related to window parsing
 local wibox = require("wibox") --Widjet and layout library
+local cairo = require("lgi").cairo --Wallpaper transition
 
 local os = os
 local my_table = awful.util.table or gears.table --Binding tale 4.{0,1} compatibility
@@ -290,32 +291,51 @@ local function scanDir(directory)
     return fileList
 end
 
+local function mix_surfaces(first, second, factor)
+    local result = gears.surface.duplicate_surface(first)
+    local cr = cairo.Context(result)
+    cr:set_source_surface(second, 0, 0)
+    cr:paint_with_alpha(factor)
+    return result
+end
+
+local function fade_to_wallpaper(new_wp, steps, interval, screen)
+    new_wp = gears.surface(new_wp)
+    local old_wp = gears.surface(root.wallpaper())
+    if not old_wp then
+        callback(new_wp)
+        return
+    end
+    old_wp = gears.surface.duplicate_surface(old_wp)
+    local steps_done = 0
+    gears.timer.start_new(interval, function()
+        steps_done = steps_done + 1
+        local mix = mix_surfaces(old_wp, new_wp, steps_done / steps)
+        gears.wallpaper.maximized(mix, screen, true)
+        mix:finish()
+        return steps_done <= steps
+    end)
+end
+
+-- Main function
 function theme.at_screen_connect(s)
     -- Quake application
     s.quake = lain.util.quake({ app = awful.util.terminal })
     -- s.quake = lain.util.quake({ app = "termite", height = 0.50, argname = "--name %s" })
 
     -- Wallpaper
-    -- TODO Insert a transition
     math.randomseed(os.time())
     wallpaperList = scanDir(theme.wallpapers_folder)
     gears.wallpaper.maximized(wallpaperList[math.random(1, #wallpaperList)], s, true)
-    changing_time = 900
+    changing_time = 1800
     wallpaper_timer = gears.timer{
         timeout = changing_time,
         call_now = true,
         autostart = true,
         callback = function()
-            gears.wallpaper.maximized(wallpaperList[math.random(1, #wallpaperList)], s, true)
+            fade_to_wallpaper(wallpaperList[math.random(1, #wallpaperList)], 90, 1/30, s)
         end
     }
-
-    -- If wallpaper is a function, call it with the screen
-    --local wallpaper = theme.wallpaper
-    --if type(wallpaper) == "function" then
-    --    wallpaper = wallpaper(s)
-    --end
-    --gears.wallpaper.maximized(wallpaper, s, true)
 
     -- Tags
     awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
@@ -348,8 +368,12 @@ function theme.at_screen_connect(s)
             s.mytaglist,
             s.mypromptbox,
         },
-        --s.mytasklist, -- Middle widget
-        nil,
+        --s.mytasklist,
+        { -- Middle widgets
+            layout = wibox.layout.fixed.horizontal,
+            clockicon,
+            mytextclock,
+        },
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
@@ -373,9 +397,6 @@ function theme.at_screen_connect(s)
             temp.widget,
             baticon,
             bat.widget,
-            clockicon,
-            mytextclock,
-
         },
     }
 
