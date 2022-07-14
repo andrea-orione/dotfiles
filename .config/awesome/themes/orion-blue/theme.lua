@@ -24,7 +24,7 @@ local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/orion-blue"
 theme.wallpapers_folder                         = os.getenv("HOME") .. "/.wallpapers"
 theme.font                                      = "Ubuntu Regular 11"
-theme.taglist_font                              = "Ubuntu Regular 12"
+theme.taglist_font                              = "Ubuntu Regular 11"
 theme.menu_bg_normal                            = "#000000"
 theme.menu_bg_focus                             = "#000000"
 theme.bg_normal                                 = "#000000"
@@ -38,13 +38,11 @@ theme.border_width                              = 2
 theme.border_normal                             = "#1c2022"
 theme.border_focus                              = "#606060"
 theme.border_marked                             = "#3ca4d8"
-theme.menu_border_width                         = 0
+theme.menu_border_width                         = 2
 theme.menu_width                                = 140
 theme.menu_submenu_icon                         = theme.confdir .. "/icons/submenu.png"
 theme.menu_fg_normal                            = "#aaaaaa"
 theme.menu_fg_focus                             = "#ff8c00"
-theme.menu_bg_normal                            = "#050505dd"
-theme.menu_bg_focus                             = "#050505dd"
 theme.widget_temp                               = theme.confdir .. "/icons/temp.png"
 theme.widget_uptime                             = theme.confdir .. "/icons/ac.png"
 theme.widget_cpu                                = theme.confdir .. "/icons/cpu.png"
@@ -360,18 +358,21 @@ function theme.at_screen_connect(s)
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
+        expand ="none",
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            --s.mylayoutbox,
             s.mytaglist,
-            s.mypromptbox,
+            --s.mypromptbox,
         },
         --s.mytasklist,
-        { -- Middle widgets
-            layout = wibox.layout.fixed.horizontal,
-            clockicon,
-            mytextclock,
-        },
+        --{ -- Middle widgets
+        --    align = "center",
+            -- layout = wibox.layout.flex.horizontal,
+            --{
+        mytextclock,
+            --},
+            -- clockicon,
+        --},
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
@@ -395,7 +396,9 @@ function theme.at_screen_connect(s)
             temp.widget,
             baticon,
             bat.widget,
+            s.mylayoutbox,
         },
+        
     }
 
     -- Create the bottom wibox
