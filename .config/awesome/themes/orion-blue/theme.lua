@@ -22,11 +22,9 @@ local my_table = awful.util.table or gears.table --Binding tale 4.{0,1} compatib
 -- VARIABLE DEFINITION {{{
 local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/orion-blue"
-theme.wallpaper                                 = theme.confdir .. "/wall.jpg"
 theme.wallpapers_folder                         = os.getenv("HOME") .. "/.wallpapers"
---TODO change font to Ubuntu
-theme.font                                      = "Noto Sans Regular 11"
-theme.taglist_font                              = "Noto Sans Regular 13"
+theme.font                                      = "Ubuntu Regular 11"
+theme.taglist_font                              = "Ubuntu Regular 12"
 theme.menu_bg_normal                            = "#000000"
 theme.menu_bg_focus                             = "#000000"
 theme.bg_normal                                 = "#000000"
@@ -57,7 +55,7 @@ theme.widget_netdown                            = theme.confdir .. "/icons/net_d
 theme.widget_netup                              = theme.confdir .. "/icons/net_up.png"
 theme.widget_mail                               = theme.confdir .. "/icons/mail.png"
 theme.widget_batt                               = theme.confdir .. "/icons/bat.png"
-theme.widget_clock                              = theme.confdir .. "/icons/clock.png"
+theme.widget_clock                              = theme.confdir .. "/icons/clock.sgv"
 theme.widget_vol                                = theme.confdir .. "/icons/spkr.png"
 theme.widget_music                              = theme.confdir .. "/icons/note.png"
 theme.widget_music_on                           = theme.confdir .. "/icons/note.png"
