@@ -9,7 +9,7 @@ cd $DOTFILES;
 
 # PACKAGES INSTALLATION {{{
 # should add htop
-REQUIRED=('neofetch' 'vim' 'xorg' 'picom' 'alacritty' 'firefox' 'lightdm' 'lightdm-webkit2-greeter', 'base-devel');
+REQUIRED=('neofetch' 'vim' 'xorg' 'picom' 'alacritty' 'firefox' 'lightdm' 'lightdm-webkit2-greeter', 'base-devel', 'ttf-ubuntu-font-family');
 ABSENT=();
 
 echo "Checking installed packages";
