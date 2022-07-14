@@ -10,24 +10,27 @@
 
 -- LIBRARY IMPORTATION {{{
 local gears = require("gears") --Utilities such as color parsing and objects
+local lain  = require("lain") --Layout, asyncronous widgets and utilities
 local awful = require("awful") --Everything related to window parsing
-local wibox = require("wibox") --Widget and layout library
-local lain = require("lain") --Layout, asyncronous widgets and utilities
--- }}}
+local wibox = require("wibox") --Widjet and layout library
+local cairo = require("lgi").cairo --Wallpaper transition
 
 local os = os
-local my_table = awful.util.table or gears.table --bindings table 4.{0,1} compatibility
+local my_table = awful.util.table or gears.table --Binding tale 4.{0,1} compatibility
+-- }}}
 
 -- VARIABLE DEFINITION {{{
 local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/orion-blue"
-theme.wallpaper_folder                          = os.getenv("HOME") .. ".wallpapers"
--- TODO change to ubuntu font
+theme.wallpaper                                 = theme.confdir .. "/wall.jpg"
+theme.wallpapers_folder                         = os.getenv("HOME") .. "/.wallpapers"
+--TODO change font to Ubuntu
 theme.font                                      = "Noto Sans Regular 11"
 theme.taglist_font                              = "Noto Sans Regular 13"
 theme.menu_bg_normal                            = "#000000"
 theme.menu_bg_focus                             = "#000000"
 theme.bg_normal                                 = "#000000"
+theme.bg_focus                                  = "#000000"
 theme.bg_urgent                                 = "#000000"
 theme.fg_normal                                 = "#aaaaaa"
 theme.fg_focus                                  = "#ff8c00"
@@ -39,7 +42,7 @@ theme.border_focus                              = "#606060"
 theme.border_marked                             = "#3ca4d8"
 theme.menu_border_width                         = 0
 theme.menu_width                                = 140
-theme.menu_submenu_icon                         = theme.confdir .. "/icon/submenu.png"
+theme.menu_submenu_icon                         = theme.confdir .. "/icons/submenu.png"
 theme.menu_fg_normal                            = "#aaaaaa"
 theme.menu_fg_focus                             = "#ff8c00"
 theme.menu_bg_normal                            = "#050505dd"
@@ -102,37 +105,38 @@ theme.titlebar_maximized_button_focus_active    = theme.confdir .. "/icons/title
 local markup = lain.util.markup
 -- }}}
 
--- TEXTCLOCK AND CALENDAR{{{
---os.setlocale(os.getenv("LANG"))
-local clockicon = wibox.widget.image(theme.widget_clock)
-local mytextclock = wibox.widget.textclock(markup("#7788af", "%d %B %A") .. markup("#535f7a", ">") .. markup("#de5e1e", "%H:%M"))
+-- TEXTCLOCK AND CALENDAR {{{
+os.setlocale(os.getenv("LANG")) -- to localize the clock
+local clockicon = wibox.widget.imagebox(theme.widget_clock)
+local mytextclock = wibox.widget.textclock(markup("#7788af", "%A %d %B ") .. markup("#535f7a", ">") .. markup("#de5e1e", " %H:%M "))
 mytextclock.font = theme.font
 
 theme.cal = lain.widget.cal({
-    attach_to = {mytextclock},
+    attach_to = { mytextclock },
     notification_preset = {
         font = "Noto Sans Mono Medium 10",
-        fg = theme.fg_normal,
-        bg = theme.bg_normal
+        fg   = theme.fg_normal,
+        bg   = theme.bg_normal
     }
 })
 -- }}}
 
 -- WEATHER {{{
 -- The weather information are taken from
--- https://openweathermap.org/
--- To change the city go to this site and lock for the id of the city
+-- https://openweathermap.org
+-- To change visit the site above and look for the corresponding id
 local weathericon = wibox.widget.imagebox(theme.widget_weather)
 theme.weather = lain.widget.weather({
-    city_id = 3165523, --city id (Torino,IT)
-    notification_preset = { font = "Noto Snas Mono Medium 10", fg = theme.fg_normal },
-    weather_na_markup = markup.fontfg(theme.font, "eca4c4", "N/A "),
+    city_id = 3165523, -- City id (Torino, IT)
+    notification_preset = { font = "Noto Sans Mono Medium 10", fg = theme.fg_normal },
+    weather_na_markup = markup.fontfg(theme.font, "#eca4c4", "N/A "),
     settings = function()
-        descr = weater_now["weather"][1]["description"]:lower()
-        units = math.floor(wether_now["main"]["temp"])
+        descr = weather_now["weather"][1]["description"]:lower()
+        units = math.floor(weather_now["main"]["temp"])
         widget:set_markup(markup.fontfg(theme.font, "#eca4c4", descr .. " @ " .. units .. "°C"))
     end
 })
+-- }}}
 
 -- / fs
 --local fsicon = wibox.widget.imagebox(theme.widget_fs)
@@ -166,23 +170,25 @@ theme.mail = lain.widget.imap({
 })
 --]]
 
--- CPU
+-- CPU {{{
 local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
 local cpu = lain.widget.cpu({
     settings = function()
         widget:set_markup(markup.fontfg(theme.font, "#e33a6e", cpu_now.usage .. "% "))
     end
 })
+-- }}}
 
--- Coretemp
+-- CORE TEMPERATURE {{{
 local tempicon = wibox.widget.imagebox(theme.widget_temp)
 local temp = lain.widget.temp({
     settings = function()
         widget:set_markup(markup.fontfg(theme.font, "#f1af5f", coretemp_now .. "°C "))
     end
 })
+-- }}}
 
--- Battery
+-- BATTERY {{{
 local baticon = wibox.widget.imagebox(theme.widget_batt)
 local bat = lain.widget.bat({
     settings = function()
@@ -195,8 +201,9 @@ local bat = lain.widget.bat({
         widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, perc .. " "))
     end
 })
+-- }}}
 
--- ALSA volume
+-- ALSA VOLUME {{{
 local volicon = wibox.widget.imagebox(theme.widget_vol)
 theme.volume = lain.widget.alsa({
     settings = function()
@@ -207,8 +214,9 @@ theme.volume = lain.widget.alsa({
         widget:set_markup(markup.fontfg(theme.font, "#7493d2", volume_now.level .. "% "))
     end
 })
+-- }}}
 
--- Net
+-- NETWORK {{{
 local netdownicon = wibox.widget.imagebox(theme.widget_netdown)
 local netdowninfo = wibox.widget.textbox()
 local netupicon = wibox.widget.imagebox(theme.widget_netup)
@@ -224,25 +232,27 @@ local netupinfo = lain.widget.net({
         netdowninfo:set_markup(markup.fontfg(theme.font, "#87af5f", net_now.received .. " "))
     end
 })
+-- }}}
 
--- MEM
+-- MEMORY {{{
 local memicon = wibox.widget.imagebox(theme.widget_mem)
 local memory = lain.widget.mem({
     settings = function()
         widget:set_markup(markup.fontfg(theme.font, "#e0da37", mem_now.used .. "M "))
     end
 })
-
--- MPD
+-- }}}
+--[[
+-- MUSIC PLAYER
 local musicplr = "urxvt -title Music -g 130x34-320+16 -e ncmpcpp"
 local mpdicon = wibox.widget.imagebox(theme.widget_music)
 mpdicon:buttons(my_table.join(
     awful.button({ modkey }, 1, function () awful.spawn.with_shell(musicplr) end),
-    --[[awful.button({ }, 1, function ()
-        awful.spawn.with_shell("mpc prev")
-        theme.mpd.update()
-    end),
-    --]]
+    --awful.button({ }, 1, function ()
+    --    awful.spawn.with_shell("mpc prev")
+    --    theme.mpd.update()
+    --end),
+    --
     awful.button({ }, 2, function ()
         awful.spawn.with_shell("mpc toggle")
         theme.mpd.update()
@@ -268,18 +278,64 @@ theme.mpd = lain.widget.mpd({
         end
     end
 })
+--]]
 
+-- DISPLAYING {{{
+local function scanDir(directory)
+    local c, fileList = 0, {}
+    local pfiles = io.popen([[find "]] .. directory .. [[" -type f]])
+    for fileName in pfiles:lines() do
+        c = c + 1
+        fileList[c] = fileName
+    end
+    return fileList
+end
+
+local function mix_surfaces(first, second, factor)
+    local result = gears.surface.duplicate_surface(first)
+    local cr = cairo.Context(result)
+    cr:set_source_surface(second, 0, 0)
+    cr:paint_with_alpha(factor)
+    return result
+end
+
+local function fade_to_wallpaper(new_wp, steps, interval, screen)
+    new_wp = gears.surface(new_wp)
+    local old_wp = gears.surface(root.wallpaper())
+    if not old_wp then
+        callback(new_wp)
+        return
+    end
+    old_wp = gears.surface.duplicate_surface(old_wp)
+    local steps_done = 0
+    gears.timer.start_new(interval, function()
+        steps_done = steps_done + 1
+        local mix = mix_surfaces(old_wp, new_wp, steps_done / steps)
+        gears.wallpaper.maximized(mix, screen, true)
+        mix:finish()
+        return steps_done <= steps
+    end)
+end
+
+-- Main function
 function theme.at_screen_connect(s)
     -- Quake application
-   -- s.quake = lain.util.quake({ app = awful.util.terminal })
-   s.quake = lain.util.quake({ app = "termite", height = 0.50, argname = "--name %s" })
+    s.quake = lain.util.quake({ app = awful.util.terminal })
+    -- s.quake = lain.util.quake({ app = "termite", height = 0.50, argname = "--name %s" })
 
-    -- If wallpaper is a function, call it with the screen
-    local wallpaper = theme.wallpaper
-    if type(wallpaper) == "function" then
-        wallpaper = wallpaper(s)
-    end
-    gears.wallpaper.maximized(wallpaper, s, true)
+    -- Wallpaper
+    math.randomseed(os.time())
+    wallpaperList = scanDir(theme.wallpapers_folder)
+    gears.wallpaper.maximized(wallpaperList[math.random(1, #wallpaperList)], s, true)
+    changing_time = 1800
+    wallpaper_timer = gears.timer{
+        timeout = changing_time,
+        call_now = true,
+        autostart = true,
+        callback = function()
+            fade_to_wallpaper(wallpaperList[math.random(1, #wallpaperList)], 90, 1/30, s)
+        end
+    }
 
     -- Tags
     awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
@@ -312,15 +368,19 @@ function theme.at_screen_connect(s)
             s.mytaglist,
             s.mypromptbox,
         },
-        --s.mytasklist, -- Middle widget
-        nil,
+        --s.mytasklist,
+        { -- Middle widgets
+            layout = wibox.layout.fixed.horizontal,
+            clockicon,
+            mytextclock,
+        },
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
             --mailicon,
             --mail.widget,
             mpdicon,
-            theme.mpd.widget,
+            --theme.mpd.widget,
             netdownicon,
             netdowninfo,
             netupicon,
@@ -337,9 +397,6 @@ function theme.at_screen_connect(s)
             temp.widget,
             baticon,
             bat.widget,
-            clockicon,
-            mytextclock,
-
         },
     }
 
@@ -359,5 +416,7 @@ function theme.at_screen_connect(s)
         },
     }
 end
+-- }}}
 
 return theme
+
