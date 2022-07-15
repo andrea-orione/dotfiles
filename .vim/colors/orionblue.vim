@@ -12,7 +12,7 @@ endif
 
 let colors_name = "orionblue"
 
-hi Normal		guifg=#ffffff guibg=#001026						ctermfg=white ctermbg=darkblue
+hi Normal		guifg=#ffffff guibg=#001026						ctermfg=white ctermbg=black
 hi ErrorMsg		guifg=#ffffff guibg=#a60000						ctermfg=white ctermbg=darkred
 hi Visual		guifg=#103362 guibg=fg		gui=none			ctermfg=lightblue ctermbg=fg cterm=reverse
 hi VisualNOS	guifg=#103362 guibg=fg		gui=none,underline	ctermfg=lightblue ctermbg=fg cterm=reverse,underline
