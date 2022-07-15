@@ -34,6 +34,10 @@ filetype indent on  " Not shure what it does. I think is smart indentation
 syntax on           " Enable syntax highlighting 
                     " (See /usr/share/vim/vim84/syntax 
                     " to see supported languages)
+"colorscheme orion_blue
+                    " Set the colorscheme
+                    " To see which schemes are available see
+                    " ~/.vim/colors and /usr/share/vim/vim84/colors
 set linebreak       " Wraps (new line) without breaking the words
 "set list           " See non printable characters (quite ugly)
 "set nowrap         " Long lines don't wrap and continue as far as they go
