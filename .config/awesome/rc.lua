@@ -66,9 +66,7 @@ local theme_list = {
 local chosen_theme = theme_list[1]
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
 
--- Uncomment this line when the themes are ready
 beautiful.init(theme_path)
--- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 -- }}}
 
 
@@ -89,13 +87,13 @@ local ctrlkey = "Control"
 
 -- Naming labels
 awful.util.terminal = terminal
-awful.util.tagnames = {"DEV", "TEX", "WWW", "DOC", "MUS", "SET", "TER", "OT1", "OT2", "OT3"} -- Workspaces names 
+awful.util.tagnames = {"Dev", "Tex", "Www", "Doc", "Mus", "Set", "Ter", "Ot1", "Ot2", "Ot3"} -- Workspaces names 
 
 -- Table of layouts (used by awful.layout.inc)
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.floating,
-    awful.layout.suit.tile.left,
+    -- awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
     -- awful.layout.suit.tile.top,
     -- awful.layout.suit.fair,
@@ -104,7 +102,7 @@ awful.layout.layouts = {
     -- awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     -- awful.layout.suit.max.fullscreen,
-     awful.layout.suit.magnifier,
+    -- awful.layout.suit.magnifier,
     -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
@@ -127,8 +125,8 @@ awful.util.taglist_buttons = my_table.join(
             client.focus:toggle_tag(t)
         end
     end),
-    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+    awful.button({ }, 5, function(t) awful.tag.viewnext(t.screen) end),
+    awful.button({ }, 4, function(t) awful.tag.viewprev(t.screen) end)
 )
 
 awful.util.tasklist_buttons = my_table.join(
@@ -150,8 +148,8 @@ awful.util.tasklist_buttons = my_table.join(
 			end
 		end
 	end),
-    awful.button({ }, 4, function() awful.client.focus.byidx(1) end),
-    awful.button({ }, 5, function() awful.client.focus.byidx(-1) end)
+    awful.button({ }, 5, function() awful.client.focus.byidx(1) end),
+    awful.button({ }, 4, function() awful.client.focus.byidx(-1) end)
 )
 -- }}}
 
@@ -195,34 +193,10 @@ awful.util.mymainmenu = freedesktop.menu.build({
 -- Create a textclock widget
 -- mytextclock = wibox.widget.textclock()
 
---TODO put this in beautiful
---local function scanDir(directory)
---    local i, fileList, popen = 0, {}, io.popen
---    for filename in popen([[find "]] ..directory.. [[" -type f]]):lines() do
---        i = i + 1
---	if filename ~= "README.md" then
---	    fileList[i] = filename
---	end
---    end
---    return fileList
---end
 
 local function set_wallpaper(wallpaper, s)
    gears.wallpaper.maximized(wallpaper, s, true)
 end
-
--- Old version of the set wallpaper function
---local function set_wallpaper(s)
-    -- Wallpaper
---    if beautiful.wallpaper then
---        local wallpaper = beautiful.wallpaper
-        -- If wallpaper is a function, call it with the screen
---        if type(wallpaper) == "function" then
---            wallpaper = wallpaper(s)
---        end
---        gears.wallpaper.maximized(wallpaper, s, true)
---    end
---end
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 -- TODO change this to match the modifications
