@@ -28,28 +28,34 @@ theme.wallpapers_folder                         = os.getenv("HOME") .. "/.wallpa
 theme.font                                      = "Ubuntu Regular 11"
 theme.taglist_font                              = "Ubuntu Regular 11"
 -- Menu
-theme.menu_bg_normal                            = "#000000"
-theme.menu_bg_focus                             = "#000000"
+theme.awesome_icon                              = theme.confdir .. "/icons/awesome/awesome32.png"
+theme.icon_size                                 = 16
+theme.menu_bg_normal                            = "#000000a0"
+theme.menu_bg_focus                             = "#7aeeff20"
 theme.menu_border_width                         = 2
 theme.menu_width                                = 140
 theme.menu_submenu_icon                         = theme.confdir .. "/icons/submenu.png"
-theme.menu_fg_normal                            = "#aaaaaa"
-theme.menu_fg_focus                             = "#ff8c00"
+theme.menu_fg_normal                            = "#eeeeee"
+theme.menu_fg_focus                             = "#00e1ff"
 -- Bars
-theme.bg_normal                                 = "#000000"
-theme.bg_focus                                  = "#000000"
-theme.bg_urgent                                 = "#000000"
-theme.fg_normal                                 = "#aaaaaa"
-theme.fg_focus                                  = "#ff8c00"
+theme.bg_normal                                 = "#0000006e"
+theme.bg_focus                                  = "#00000000"
+theme.bg_urgent                                 = "#00000000"
+theme.fg_normal                                 = "#eeeeee"
+theme.fg_focus                                  = "#00e1ff"--"#ff8c00"
 theme.fg_urgent                                 = "#af1d18"
-theme.fg_minimize                               = "#ffffff"
+theme.fg_minimize                               = "#eeeeee"
 -- Clients
 theme.border_width                              = 2
 theme.border_normal                             = "#1c2022"
-theme.border_focus                              = "#606060"
+theme.border_focus                              = "#00e1ff"
 theme.border_marked                             = "#3ca4d8"
-theme.useless_gap                               = 4
--- Icons
+theme.useless_gap                               = 6
+-- Popups
+theme.popup_font                                = "Ubuntu regular 11"
+theme.popup_bg                                  = "#000000dd"
+theme.popup_fg                                  = "#eeeeee"
+-- Topbar icons
 theme.widget_temp                               = theme.confdir .. "/icons/thermometer.svg"
 theme.widget_uptime                             = theme.confdir .. "/icons/ac.png"
 theme.widget_cpu                                = theme.confdir .. "/icons/cpu.svg"
@@ -68,19 +74,21 @@ theme.widget_music_pause                        = theme.confdir .. "/icons/pause
 theme.widget_music_stop                         = theme.confdir .. "/icons/stop.png"
 theme.taglist_squares_sel                       = theme.confdir .. "/icons/square_a.png"
 theme.taglist_squares_unsel                     = theme.confdir .. "/icons/square_b.png"
---theme.layout_tile                               = theme.confdir .. "/icons/tile.png"
+-- Layout icons
+theme.layout_tile                               = theme.confdir .. "/icons/layout/tilew.png"
 --theme.layout_tilegaps                           = theme.confdir .. "/icons/tilegaps.png"
 --theme.layout_tileleft                           = theme.confdir .. "/icons/tileleft.png"
---theme.layout_tilebottom                         = theme.confdir .. "/icons/tilebottom.png"
+theme.layout_tilebottom                         = theme.confdir .. "/icons/layout/tilebottomw.png"
 --theme.layout_tiletop                            = theme.confdir .. "/icons/tiletop.png"
 --theme.layout_fairv                              = theme.confdir .. "/icons/fairv.png"
 --theme.layout_fairh                              = theme.confdir .. "/icons/fairh.png"
 --theme.layout_spiral                             = theme.confdir .. "/icons/spiral.png"
 --theme.layout_dwindle                            = theme.confdir .. "/icons/dwindle.png"
---theme.layout_max                                = theme.confdir .. "/icons/max.png"
+theme.layout_max                                = theme.confdir .. "/icons/layout/maxw.png"
 --theme.layout_fullscreen                         = theme.confdir .. "/icons/fullscreen.png"
 --theme.layout_magnifier                          = theme.confdir .. "/icons/magnifier.png"
---theme.layout_floating                           = theme.confdir .. "/icons/floating.png"
+theme.layout_floating                           = theme.confdir .. "/icons/layout/floatingw.png"
+-- Titlebar icons
 theme.titlebar_close_button_normal              = theme.confdir .. "/icons/titlebar/close_normal.png"
 theme.titlebar_close_button_focus               = theme.confdir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_minimize_button_normal           = theme.confdir .. "/icons/titlebar/minimize_normal.png"
@@ -103,20 +111,21 @@ theme.titlebar_maximized_button_normal_active   = theme.confdir .. "/icons/title
 theme.titlebar_maximized_button_focus_active    = theme.confdir .. "/icons/titlebar/maximized_focus_active.png"
 
 local markup = lain.util.markup
+local separator =lain.util.separators
 -- }}}
 
 -- TEXTCLOCK AND CALENDAR {{{
 os.setlocale(os.getenv("LANG")) -- to localize the clock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
-local mytextclock = wibox.widget.textclock(markup("#7788af", "%A %d %B ") .. markup("#535f7a", ">") .. markup("#de5e1e", " %H:%M "))
+local mytextclock = wibox.widget.textclock(markup("#eeeeee", "%A %d %B ") .. markup("#eeeeee", " %H:%M "))
 mytextclock.font = theme.font
 
 theme.cal = lain.widget.cal({
     attach_to = { mytextclock },
     notification_preset = {
-        font = "Noto Sans Mono Medium 10",
-        fg   = theme.fg_normal,
-        bg   = theme.bg_normal
+        font = theme.popup_font,
+        fg   = theme.popup_fg,
+        bg   = theme.popup_bg
     }
 })
 -- }}}
@@ -128,12 +137,12 @@ theme.cal = lain.widget.cal({
 local weathericon = wibox.widget.imagebox(theme.widget_weather)
 theme.weather = lain.widget.weather({
     city_id = 3165523, -- City id (Torino, IT)
-    notification_preset = { font = "Noto Sans Mono Medium 10", fg = theme.fg_normal },
-    weather_na_markup = markup.fontfg(theme.font, "#eca4c4", "N/A "),
+    notification_preset = { font = theme.popup_font, fg = theme.popup_fg, bg = theme.popup_bg },
+    weather_na_markup = markup.fontfg(theme.font, theme.fg_normal, "N/A "),
     settings = function()
         descr = weather_now["weather"][1]["description"]:lower()
         units = math.floor(weather_now["main"]["temp"])
-        widget:set_markup(markup.fontfg(theme.font, "#eca4c4", descr .. " @ " .. units .. "°C"))
+        widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, descr .. " @ " .. units .. "°C"))
     end
 })
 -- }}}
@@ -141,10 +150,10 @@ theme.weather = lain.widget.weather({
 -- / fs
 --local fsicon = wibox.widget.imagebox(theme.widget_fs)
 --theme.fs = lain.widget.fs({
- --   notification_preset = { font = "Noto Sans Mono Medium 10", fg = theme.fg_normal },
-  --  settings  = function()
-     --   widget:set_markup(markup.fontfg(theme.font, "#80d9d8", fs_now.used .. "% "))
-   -- end
+--    notification_preset = { font = "Noto Sans Mono Medium 10", fg = theme.fg_normal },
+--    settings  = function()
+--        widget:set_markup(markup.fontfg(theme.font, "#80d9d8", fs_now.used .. "% "))
+--    end
 --})
 
 -- Mail IMAP check
@@ -337,24 +346,29 @@ function theme.at_screen_connect(s)
         end
     }
 
+    -- Menu launcher
+    mylauncher = awful.widget.launcher({ image = theme.awesome_icon,
+    menu = awful.util.mymainmenu })
+
     -- Tags
     awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
+
+    -- Keyboard map indicator and switcher
+    s.mykeyboardlayout = awful.widget.keyboardlayout()
+
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
     s.mylayoutbox:buttons(my_table.join(
                            awful.button({ }, 1, function () awful.layout.inc( 1) end),
                            awful.button({ }, 3, function () awful.layout.inc(-1) end),
-                           awful.button({ }, 4, function () awful.layout.inc( 1) end),
-                           awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+                           awful.button({ }, 5, function () awful.layout.inc( 1) end),
+                           awful.button({ }, 4, function () awful.layout.inc(-1) end)))
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
-
-    -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = 20, bg = theme.bg_normal, fg = theme.fg_normal })
@@ -365,20 +379,15 @@ function theme.at_screen_connect(s)
         expand ="none",
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
+            mylauncher,
             s.mytaglist,
             --s.mypromptbox,
         },
-        --s.mytasklist,
-        --{ -- Middle widgets
-        --    align = "center",
-            -- layout = wibox.layout.flex.horizontal,
-            --{
+        -- Middle widgets
         mytextclock,
-            --},
-            -- clockicon,
-        --},
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            s.mykeyboardlayout,
             wibox.widget.systray(),
             --mailicon,
             --mail.widget,
@@ -406,20 +415,61 @@ function theme.at_screen_connect(s)
     }
 
     -- Create the bottom wibox
-    s.mybottomwibox = awful.wibar({ position = "bottom", screen = s, border_width = 0, height = 20, bg = theme.bg_normal, fg = theme.fg_normal })
+    -- s.mybottomwibox = awful.wibar({ position = "bottom", screen = s, border_width = 0, height = 20, bg = theme.bg_normal, fg = theme.fg_normal })
 
     -- Add widgets to the bottom wibox
-    s.mybottomwibox:setup {
-        layout = wibox.layout.align.horizontal,
-        { -- Left widgets
-            layout = wibox.layout.fixed.horizontal,
+    --s.mybottomwibox:setup {
+    --    layout = wibox.layout.align.horizontal,
+    --    { -- Left widgets
+    --        layout = wibox.layout.fixed.horizontal,
+    --    },
+    --    s.mytasklist, -- Middle widget
+    --    { -- Right widgets
+    --        layout = wibox.layout.fixed.horizontal,
+    --        s.mylayoutbox,
+    --    },
+    --}
+
+    -- Create a tasklist popup
+    awful.popup {
+        widget = awful.widget.tasklist {
+            screen = s,
+            filter = awful.widget.tasklist.filter.allscreen,
+            buttons =awful.util.tasklist_buttons,
+            style = {
+                shape = gears.shape.rounded_rect,
+            },
+            layout = {
+                spacing = 5,
+                forced_num_columns = 1,
+                layout = wibox.layout.grid.vertical
+            },
+            widget_template = {
+                {
+                    {
+                        id = 'clienticon',
+                        widget = awful.widget.clienticon,
+                    },
+                    margins = 4,
+                    widget = wibox.container.margin,
+                },
+                id = 'background_role',
+                forced_width =48,
+                forced_height = 48,
+                widget = wibox.container.background,
+                create_callback = function(self, c, index, objects) --luacheck: no unused
+                    self:get_children_by_id('clienticon')[1].client = c
+                end,
+            },
         },
-        s.mytasklist, -- Middle widget
-        { -- Right widgets
-            layout = wibox.layout.fixed.horizontal,
-            s.mylayoutbox,
-        },
+        border_color = '#777777',
+        border_width = 2,
+        ontop = true,
+        placement =awful.placement.left,
+        shape = gears.shape.rounded_rect
     }
+
+
 end
 -- }}}
 

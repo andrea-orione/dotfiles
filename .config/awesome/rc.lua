@@ -15,7 +15,7 @@ local beautiful = require("beautiful")
 
 -- Notification library
 local naughty = require("naughty")
-naughty.config.defaults['icon_size'] = 100
+naughty.config.defaults['icon_size'] = 50
 
 local freedesktop = require("freedesktop")
 local lain = require("lain")
@@ -165,7 +165,7 @@ myawesomemenu = {
 }
 
 awful.util.mymainmenu = freedesktop.menu.build({
-	icon_size = beautiful.meu_height or 16,
+	icon_size = beautiful.menu_height or 16,
 	before = { 
 		{ "Awesome", myawesomemenu, beautiful.awesome_icon },
 	},
@@ -178,20 +178,9 @@ awful.util.mymainmenu = freedesktop.menu.build({
     }
 })
 
---TODO fix this part
--- mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
---                                     menu = awful.util.mymainmenu })
-
 -- Menubar configuration
--- menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
-
--- Keyboard map indicator and switcher
--- mykeyboardlayout = awful.widget.keyboardlayout()
-
--- {{{ Wibar
--- Create a textclock widget
--- mytextclock = wibox.widget.textclock()
 
 
 local function set_wallpaper(wallpaper, s)
@@ -203,60 +192,6 @@ end
 screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)
-
---awful.screen.connect_for_each_screen(function(s)
-   
-    --Old version of the wallpaper setter
-    -- Wallpaper
-    --set_wallpaper(s)
-    
-    --Inserted new code for changing wallpaper
-    --
-    --math.randomseed(os.time())
-    --wallpaperList = scanDir("/home/andrea/.wallpapers")
-    -- apply a random wallpaper at startup
-    --set_wallpaper(wallpaperList[math.random(0, #wallpaperList)], s)
-    -- apply a random changing wallpaper every changingTime seconds
-    --changingTime = 900
-    --wallpaperTimer = gears.timer{
-	--	timeout = changingTime,
-    --    call_now = true,
-	--	autostart = true,
-	--	callback = function()
-	--        set_wallpaper(wallpaperList[math.random(0, #wallpaperList)], s)
-	        -- TODO insert a transition between two wallpapers
-	--	end
-	--}
-
-		-- Each screen has its own tag table.
---    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
-
-    -- Create a promptbox for each screen
-    --s.mypromptbox = awful.widget.prompt()
-    -- Create an imagebox widget which will contain an icon indicating which layout we're using.
-    -- We need one layoutbox per screen.
-    --s.mylayoutbox = awful.widget.layoutbox(s)
-    --s.mylayoutbox:buttons(gears.table.join(
-    --                       awful.button({ }, 1, function () awful.layout.inc( 1) end),
-    --                       awful.button({ }, 3, function () awful.layout.inc(-1) end),
-    --                       awful.button({ }, 4, function () awful.layout.inc( 1) end),
-    --                       awful.button({ }, 5, function () awful.layout.inc(-1) end)))
-    -- Create a taglist widget
-    --s.mytaglist = awful.widget.taglist {
-    --    screen  = s,
-    --    filter  = awful.widget.taglist.filter.all,
-    --    buttons = taglist_buttons
-    --}
-
-    -- Create a tasklist widget
-    --s.mytasklist = awful.widget.tasklist {
-    --    screen  = s,
-    --    filter  = awful.widget.tasklist.filter.currenttags,
-    --    buttons = tasklist_buttons
-    --}
-
-    -- Create the wibox
-    --s.mywibox = awful.wibar({ position = "top", screen = s })
 
     -- Add widgets to the wibox
     --s.mywibox:setup {
@@ -293,7 +228,7 @@ root.buttons(my_table.join(
 
 -- KEY BINDINGS {{{
 globalkeys = my_table.join(
--- Awesome keybaindings
+-- Awesome keybindings
     awful.key({modkey, }, "s", hotkeys_popup.show_help, {description="show help", group="awesome"}),
     awful.key({modkey, }, "w", function() awful.util.mymainmenu:show() end, {description = "show main menu", group = "awesome"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart, {description = "reload awesome", group = "awesome"}),
@@ -535,7 +470,7 @@ awful.rules.rules = {
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = true }
+      }, properties = { titlebars_enabled = false }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
