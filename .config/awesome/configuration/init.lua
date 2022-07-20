@@ -21,7 +21,6 @@ awful.util.tagnames = {"Dev", "Tex", "Www", "Doc", "Mus", "Set", "Ter", "Ot1", "
 
 require "configuration.layout"
 require "configuration.bindings"
-require "configuration.rules"
 require "configuration.client"
 
 -- THEME OPENING {{{
