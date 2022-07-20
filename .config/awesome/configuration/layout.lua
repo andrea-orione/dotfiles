@@ -1,5 +1,5 @@
 local awful = require("awful")
-+
+
 -- Table of layouts (used by awful.layout.inc)
 awful.layout.layouts = {
     awful.layout.suit.tile,

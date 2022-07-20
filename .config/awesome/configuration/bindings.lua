@@ -36,7 +36,7 @@ globalkeys = my_table.join(
     awful.key({ modkey }, "Return", function() awful.spawn(terminal) end, {description = "Open a terminal", group = "Launcher"}),
     awful.key({ modkey }, "b", function() awful.spawn(browser) end, {description = "Open a browser", group = "Launcher"}),
     awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end, {description = "Run prompt", group = "Launcher"}),
-    awful.key({ modkey }, "p", function() menubar.show() end, {description = "Show the menubar", group = "Launcher"})
+    awful.key({ modkey }, "p", function() menubar.show() end, {description = "Show the menubar", group = "Launcher"}),
 
 -- Tag browsing
     awful.key({ modkey }, "Left",   awful.tag.viewprev, {description = "View previous", group = "Tag"}),
@@ -92,16 +92,16 @@ globalkeys = my_table.join(
     awful.key({ modkey,           }, "space", function() awful.layout.inc( 1)                end,
               {description = "Select next", group = "Layout"}),
     awful.key({ modkey, "Shift"   }, "space", function() awful.layout.inc(-1)                end,
-              {description = "Select previous", group = "Layout"}),
+              {description = "Select previous", group = "Layout"})
 
 -- Volume
-    awful.key({ }, "XF86AudioRaiseVolume", function() awful.spawn.with_shell("pamixer -i 3") end, {description = "Raise volume", group = "Volume"}),
-    awful.key({ }, "XF86AudioLowerVolume", function() awful.spawn.with_shell("pamixer -d 3") end, {description = "Lower volume", group = "Volume"}),
-    awful.key({ }, "XF86AudioMute", function() awful.spawn.with_shell("pamixer -t") end , {description = "Mute", group = "Volume"}),
+    -- awful.key({ }, "XF86AudioRaiseVolume", function() awful.spawn.with_shell("pamixer -i 3") end, {description = "Raise volume", group = "Volume"}),
+    -- awful.key({ }, "XF86AudioLowerVolume", function() awful.spawn.with_shell("pamixer -d 3") end, {description = "Lower volume", group = "Volume"}),
+    -- awful.key({ }, "XF86AudioMute", function() awful.spawn.with_shell("pamixer -t") end , {description = "Mute", group = "Volume"}),
 
 -- Brightness
-    awful.key({ }, "XF86MonBrightnessUp", function() awful.spawn.with_shell("brightnessctl set 3%+") end, {description = "Increase brightness", group = "Brightness"}),
-    awful.key({ }, "XF86MonBrightnessDown", function() awful.spawn.with_shell("brightnessctl set 3%-") end, {description = "Decrease brightness", group = "Brightness"}),
+    -- awful.key({ }, "XF86MonBrightnessUp", function() awful.spawn.with_shell("brightnessctl set 3%+") end, {description = "Increase brightness", group = "Brightness"}),
+    -- awful.key({ }, "XF86MonBrightnessDown", function() awful.spawn.with_shell("brightnessctl set 3%-") end, {description = "Decrease brightness", group = "Brightness"}),
 
 -- Toggle spaces
     --awful.key({altkey}, "c", function() awesome.emit_signal("sidebar::toogle") end, {description = "Toggle sidebar", group = "Spaces"})
@@ -109,29 +109,29 @@ globalkeys = my_table.join(
     --awful.key({altkey}, "z", function() awesome.emit_signal("dashboard::toogle") end, {description = "Toggle dashboard", group = "Spaces"})
 
 -- Emacs (Super + e followed by KEY)
-    awful.key( {modkey}, "e", function()
-        local grabber
-        grabber =
-          awful.keygrabber.run(
-            function(_, key, event)
-              if event == "release" then return end
+    -- awful.key( {modkey}, "e", function()
+    --     local grabber
+    --     grabber =
+    --       awful.keygrabber.run(
+    --         function(_, key, event)
+    --           if event == "release" then return end
   
-              if     key == "e" then awful.spawn.with_shell(emacs .. "--eval '(dashboard-refresh-buffer)'")
-              elseif key == "a" then awful.spawn.with_shell(emacs .. "--eval '(emms)' --eval '(emms-play-directory-tree \"~/Music/\")'")
-              elseif key == "b" then awful.spawn.with_shell(emacs .. "--eval '(ibuffer)'")
-              elseif key == "d" then awful.spawn.with_shell(emacs .. "--eval '(dired nil)'")
-              elseif key == "i" then awful.spawn.with_shell(emacs .. "--eval '(erc)'")
-              elseif key == "n" then awful.spawn.with_shell(emacs .. "--eval '(elfeed)'")
-              elseif key == "s" then awful.spawn.with_shell(emacs .. "--eval '(eshell)'")
-              elseif key == "v" then awful.spawn.with_shell(emacs .. "--eval '(+vterm/here nil)'")
-              elseif key == "w" then awful.spawn.with_shell(emacs .. "--eval '(doom/window-maximize-buffer(eww \"distro.tube\"))'")
-              end
-              awful.keygrabber.stop(grabber)
-              end
-            )
-          end,
-          {description = "Followed by KEY", group = "Emacs"}
-          ),   
+    --           if     key == "e" then awful.spawn.with_shell(emacs .. "--eval '(dashboard-refresh-buffer)'")
+    --           elseif key == "a" then awful.spawn.with_shell(emacs .. "--eval '(emms)' --eval '(emms-play-directory-tree \"~/Music/\")'")
+    --           elseif key == "b" then awful.spawn.with_shell(emacs .. "--eval '(ibuffer)'")
+    --           elseif key == "d" then awful.spawn.with_shell(emacs .. "--eval '(dired nil)'")
+    --           elseif key == "i" then awful.spawn.with_shell(emacs .. "--eval '(erc)'")
+    --           elseif key == "n" then awful.spawn.with_shell(emacs .. "--eval '(elfeed)'")
+    --           elseif key == "s" then awful.spawn.with_shell(emacs .. "--eval '(eshell)'")
+    --           elseif key == "v" then awful.spawn.with_shell(emacs .. "--eval '(+vterm/here nil)'")
+    --           elseif key == "w" then awful.spawn.with_shell(emacs .. "--eval '(doom/window-maximize-buffer(eww \"distro.tube\"))'")
+    --           end
+    --           awful.keygrabber.stop(grabber)
+    --           end
+    --         )
+    --       end,
+    --       {description = "Followed by KEY", group = "Emacs"}
+    --       ),   
 )
 
 -- Bind all key numbers to tags.
@@ -188,7 +188,7 @@ end
 root.keys(globalkeys)
 
 -- Client
-awful.utils.client_keys = gears.table.join(
+client_keys = gears.table.join(
     awful.key({ modkey,           }, "f",
         function (c)
             c.fullscreen = not c.fullscreen
