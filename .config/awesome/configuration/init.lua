@@ -1,7 +1,12 @@
 -- LIBRARY IMPORTATION {{{
+local awesome = awesome
 local beautiful = require("beautiful")
 local gfs = require("gears.filesystem")
 local awful = require("awful")
+local freedesktop = require("freedesktop")
+local hotkeys_popup = require("awful.hotkeys_popup").widget
+require("awful.hotkeys_popup.keys")
+local menubar = require("menubar")
 -- }}}
 
 -- VARIABLE DEFINITION {{{
@@ -17,6 +22,33 @@ editor_cmd = terminal .. " -e " .. editor
 
 awful.util.terminal = terminal
 awful.util.tagnames = {"Dev", "Tex", "Www", "Doc", "Mus", "Set", "Ter", "Ot1", "Ot2", "Ot3"} -- Workspaces names 
+-- }}}
+
+-- MENU {{{
+-- Create a launcher widget and a main menu
+myawesomemenu = {
+    { "Hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+    { "Manual", terminal .. " -e man awesome" },
+    { "Edit config", editor_cmd .. " " .. awesome.conffile },
+    { "Restart", awesome.restart },
+}
+ 
+awful.util.mymainmenu = freedesktop.menu.build({
+    icon_size = beautiful.menu_height or 16,
+    before = { 
+        { "Awesome", myawesomemenu, beautiful.awesome_icon },
+    },
+    after = {
+        { "Terminal", terminal },
+        { "Log out", function() awesome.quit() end },
+        { "Sleep", "systemctl suspend" },
+        { "Reboot", "systemctl reboot" },
+        { "Shutdown", "systemctl poweroff" }
+    }
+})
+ 
+-- Menubar configuration
+menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- THEME OPENING {{{
