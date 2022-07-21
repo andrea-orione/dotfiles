@@ -150,7 +150,7 @@ for i = 1, 9 do
             tag:view_only()
         end
     end,
-    {description = "view tag #"..i, group = "Tag"}),
+    {description = "View tag #"..i, group = "Tag"}),
     -- Toggle tag display.
     awful.key({ modkey, "Control" }, "#" .. i + 9,
     function ()
@@ -160,7 +160,7 @@ for i = 1, 9 do
             awful.tag.viewtoggle(tag)
         end
     end,
-    {description = "toggle tag #" .. i, group = "Tag"}),
+    {description = "Toggle tag #" .. i, group = "Tag"}),
     -- Move client to tag.
     awful.key({ modkey, "Shift" }, "#" .. i + 9,
     function ()
@@ -171,7 +171,7 @@ for i = 1, 9 do
             end
         end
     end,
-    {description = "move focused client to tag #"..i, group = "Tag"}),
+    {description = "Move focused client to tag #"..i, group = "Tag"}),
     -- Toggle tag on focused client.
     awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
     function ()
@@ -182,7 +182,7 @@ for i = 1, 9 do
             end
         end
     end,
-    {description = "toggle focused client on tag #" .. i, group = "Tag"})
+    {description = "Toggle focused client on tag #" .. i, group = "Tag"})
 )
 end
 
@@ -196,17 +196,17 @@ client_keys = gears.table.join(
             c.fullscreen = not c.fullscreen
             c:raise()
         end,
-        {description = "toggle fullscreen", group = "client"}),
+        {description = "Toggle fullscreen", group = "Client"}),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
-              {description = "close", group = "client"}),
+              {description = "Close", group = "Client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
-              {description = "toggle floating", group = "client"}),
+              {description = "Toggle floating", group = "Client"}),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
-              {description = "move to master", group = "client"}),
+              {description = "Move to master", group = "Client"}),
     awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
-              {description = "move to screen", group = "client"}),
+              {description = "Move to screen", group = "Client"}),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
-              {description = "toggle keep on top", group = "client"}),
+              {description = "Toggle keep on top", group = "Client"}),
     awful.key({ modkey,           }, "n",
         function (c)
             -- The client currently has the input focus, so it cannot be
