@@ -41,7 +41,7 @@ local my_table = awful.util.table or gears.table -- bindings table 4.{0,1} compa
 
 --require "signals"
 require "configuration"
---require "ui"
+require "ui"
 -- }}}
 
 
