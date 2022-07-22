@@ -8,25 +8,18 @@
 --
 -- Orion blue theme for awesome wm
 
--- LIBRARY IMPORTATION {{{
-local gears = require("gears") --Utilities such as color parsing and objects
-local lain  = require("lain") --Layout, asyncronous widgets and utilities
-local awful = require("awful") --Everything related to window parsing
-local wibox = require("wibox") --Widjet and layout library
-local cairo = require("lgi").cairo --Wallpaper transition
-
 local os = os
-local my_table = awful.util.table or gears.table --Binding tale 4.{0,1} compatibility
--- }}}
 
--- VARIABLE DEFINITION {{{
 local theme                                     = {}
+
 -- Folders
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/orion-blue"
 theme.wallpapers_folder                         = os.getenv("HOME") .. "/.wallpapers"
+
 -- Fonts
 theme.font                                      = "Ubuntu Regular 11"
 theme.taglist_font                              = "Ubuntu Regular 11"
+
 -- Menu
 theme.awesome_icon                              = theme.confdir .. "/icons/awesome/awesome32.png"
 theme.icon_size                                 = 16
@@ -37,6 +30,7 @@ theme.menu_width                                = 140
 theme.menu_submenu_icon                         = theme.confdir .. "/icons/submenu.png"
 theme.menu_fg_normal                            = "#eeeeee"
 theme.menu_fg_focus                             = "#00e1ff"
+
 -- Bars
 theme.bg_normal                                 = "#0000006e"
 theme.bg_focus                                  = "#00000000"
@@ -45,16 +39,19 @@ theme.fg_normal                                 = "#eeeeee"
 theme.fg_focus                                  = "#00e1ff"--"#ff8c00"
 theme.fg_urgent                                 = "#af1d18"
 theme.fg_minimize                               = "#eeeeee"
+
 -- Clients
 theme.border_width                              = 2
 theme.border_normal                             = "#1c2022"
 theme.border_focus                              = "#00e1ff"
 theme.border_marked                             = "#3ca4d8"
 theme.useless_gap                               = 6
+
 -- Popups
 theme.popup_font                                = "Ubuntu regular 11"
 theme.popup_bg                                  = "#000000dd"
 theme.popup_fg                                  = "#eeeeee"
+
 -- Topbar icons
 theme.widget_temp                               = theme.confdir .. "/icons/thermometer.svg"
 theme.widget_uptime                             = theme.confdir .. "/icons/ac.png"
@@ -74,6 +71,7 @@ theme.widget_music_pause                        = theme.confdir .. "/icons/pause
 theme.widget_music_stop                         = theme.confdir .. "/icons/stop.png"
 theme.taglist_squares_sel                       = theme.confdir .. "/icons/square_a.png"
 theme.taglist_squares_unsel                     = theme.confdir .. "/icons/square_b.png"
+
 -- Layout icons
 theme.layout_tile                               = theme.confdir .. "/icons/layout/tilew.png"
 --theme.layout_tilegaps                           = theme.confdir .. "/icons/tilegaps.png"
@@ -88,6 +86,7 @@ theme.layout_max                                = theme.confdir .. "/icons/layou
 --theme.layout_fullscreen                         = theme.confdir .. "/icons/fullscreen.png"
 --theme.layout_magnifier                          = theme.confdir .. "/icons/magnifier.png"
 theme.layout_floating                           = theme.confdir .. "/icons/layout/floatingw.png"
+
 -- Titlebar icons
 theme.titlebar_close_button_normal              = theme.confdir .. "/icons/titlebar/close_normal.png"
 theme.titlebar_close_button_focus               = theme.confdir .. "/icons/titlebar/close_focus.png"
@@ -109,153 +108,5 @@ theme.titlebar_maximized_button_normal_inactive = theme.confdir .. "/icons/title
 theme.titlebar_maximized_button_focus_inactive  = theme.confdir .. "/icons/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_active   = theme.confdir .. "/icons/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active    = theme.confdir .. "/icons/titlebar/maximized_focus_active.png"
--- }}}
-
-
--- DISPLAYING {{{
-local function scanDir(directory)
-    local c, fileList = 0, {}
-    local pfiles = io.popen([[find "]] .. directory .. [[" -type f]])
-    for fileName in pfiles:lines() do
-        c = c + 1
-        fileList[c] = fileName
-    end
-    return fileList
-end
-
-local function mix_surfaces(first, second, factor)
-    local result = gears.surface.duplicate_surface(first)
-    local cr = cairo.Context(result)
-    cr:set_source_surface(second, 0, 0)
-    cr:paint_with_alpha(factor)
-    return result
-end
-
-local function fade_to_wallpaper(new_wp, steps, interval, screen)
-    new_wp = gears.surface(new_wp)
-    local old_wp = gears.surface(root.wallpaper())
-    if not old_wp then
-        callback(new_wp)
-        return
-    end
-    old_wp = gears.surface.duplicate_surface(old_wp)
-    local steps_done = 0
-    gears.timer.start_new(interval, function()
-        steps_done = steps_done + 1
-        local mix = mix_surfaces(old_wp, new_wp, steps_done / steps)
-        gears.wallpaper.maximized(mix, screen, true)
-        mix:finish()
-        return steps_done <= steps
-    end)
-end
-
--- Main function
-function theme.at_screen_connect(s)
-    -- Quake application
-    s.quake = lain.util.quake({ app = awful.util.terminal })
-    -- s.quake = lain.util.quake({ app = "termite", height = 0.50, argname = "--name %s" })
-
-    -- Wallpaper
-    math.randomseed(os.time())
-    wallpaperList = scanDir(theme.wallpapers_folder)
-    gears.wallpaper.maximized(wallpaperList[math.random(1, #wallpaperList)], s, true)
-    changing_time = 1800
-    wallpaper_timer = gears.timer{
-        timeout = changing_time,
-        call_now = true,
-        autostart = true,
-        callback = function()
-            fade_to_wallpaper(wallpaperList[math.random(1, #wallpaperList)], 90, 1/30, s)
-        end
-    }
-
---    s.mytasklist = awful.widget.tasklist {
---        screen = s,
---        filter = awful.widget.tasklist.filter.allscreen,
---        buttons = awful.util.tasklist_buttons,
---        layout = {
---            spacing_widget = {
---                {
---                    forced_width = 5,
---                    forced_height =24,
---                    thickness = 1,
---                    color = '#777777',
---                    widget = wibox.widget.separator,
---                },
---                valign = 'center',
---                halign = 'center',
---                widget = wibox.container.place,
---            },
---            spacing = 1,
---            layout = wibox.layout.fixed.vertical
---        },
---        widget_template = {
---            {
---                wibox.widget.base.make_widget(),
---                forced_height = 5,
---                id = 'backgroun_role',
---                widget = wibox.container.background,
---            },
---            {
---                {
---                    id = 'clienticon',
---                    widget = awful.widget.clienticon,
---                },
---                margins = 4,
---                widget = wibox.container.margin,
---            },
---            nil,
---            create_callback = function(self, c, index, objects) --luacheck: no unused
---                self:get_children_by_id('clienticon')[1].client = c
---            end,
---            layout = wibox.layout.align.vertical,
---        },
---    }
-
---    s.mytasklist = awful.widget.tasklist {
---        screen = s,
---        filter = awful.widget.tasklist.filter.allscreen,
---        buttons =awful.util.tasklist_buttons,
---        style = {
---            shape = gears.shape.rounded_rect,
---        },
---        layout = {
---            spacing = 2,
---            forced_num_columns = 1,
---            layout = wibox.layout.grid.vertical
---        },
---        widget_template = {
---            {
---                {
---                    id = 'clienticon',
---                    widget = awful.widget.clienticon,
---                },
---                margins = 4,
---                widget = wibox.container.margin,
---            },
---            id = 'background_role',
---            forced_width =48,
---            forced_height = 48,
---            widget = wibox.container.background,
---            create_callback = function(self, c, index, objects) --luacheck: no unused
---                self:get_children_by_id('clienticon')[1].client = c
---            end,
---        },
---    }
-
---    awful.popup {
---        widget = s.mytasklist,
---        border_width = 0,
---        bg = '#000000',
---        opacity = 0, 
---        ontop = true,
---        placement =awful.placement.left,
---        shape = gears.shape.rounded_rect
---    }
-
-
-end
--- }}}
 
 return theme
-

@@ -2,16 +2,14 @@ local awesome = awesome
 local awful = require("awful")
 local gears = require "gears"
 local beautiful = require("beautiful")
-local dpi = beautiful.xresources.apply_dpi
-local wibox = require("wibox")
 
 ----- Client/Windows/Apps/Idk what to say... -----
 
 -- screen[1].padding = {
--- 	top = dpi(0),
--- 	bottom = dpi(0),
--- 	left = dpi(0),
--- 	right = dpi(0)
+-- 	top = beautiful.xresources.apply_dpi(0),
+-- 	bottom = beautiful.xresources.apply_dpi(0),
+-- 	left = beautiful.xresources.apply_dpi(0),
+-- 	right = beautiful.xresources.apply_dpi(0)
 -- }
 
 -- Signal function to execute when a new client appears.

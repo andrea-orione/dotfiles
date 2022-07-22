@@ -1,11 +1,9 @@
 -- LIBRARY IMPORTATION {{{
-local awesome = awesome
+local string = string
+
 local beautiful = require("beautiful")
 local gfs = require("gears.filesystem")
 local awful = require("awful")
-local freedesktop = require("freedesktop")
-local hotkeys_popup = require("awful.hotkeys_popup").widget
-require("awful.hotkeys_popup.keys")
 local menubar = require("menubar")
 -- }}}
 
@@ -43,6 +41,7 @@ require "configuration.client"
     
 -- AUTOSTART APPLICATION {{{
 local picom_startup_script = [[picom --config $HOME/.config/picom/picom.conf]] -- --experimental-backends
+
 awful.spawn.with_shell(picom_startup_script)
 
 -- }}}

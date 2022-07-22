@@ -1,5 +1,4 @@
 -- LIBRARY IMPORTATION {{{
-local screen = screen
 local gears = require("gears") --Utilities such as color parsing and objects
 local lain  = require("lain") --Layout, asyncronous widgets and utilities
 local awful = require("awful") --Everything related to window parsing
@@ -14,19 +13,10 @@ local separator =lain.util.separators
 -- }}}
 
 
--- TEXTCLOCK AND CALENDAR {{{
+-- TEXTCLOCK{{{
 os.setlocale(os.getenv("LANG")) -- to localize the clock
 local mytextclock = wibox.widget.textclock(markup("#eeeeee", "%A %d %B ") .. markup("#eeeeee", " %H:%M "))
 mytextclock.font = beautiful.font
-
--- beautiful.cal = lain.widget.cal({
---     attach_to = { mytextclock },
---     notification_preset = {
---         font = beautiful.popup_font,
---         fg   = beautiful.popup_fg,
---         bg   = beautiful.popup_bg
---     }
--- })
 -- }}}
 
 -- WEATHER {{{
@@ -46,7 +36,7 @@ mytextclock.font = beautiful.font
 -- })
 -- }}}
 
--- / fs
+-- FILESYSTEM INFO {{{
 --local fsicon = wibox.widget.imagebox(beautiful.widget_fs)
 --beautiful.fs = lain.widget.fs({
 --    notification_preset = { font = "Noto Sans Mono Medium 10", fg = beautiful.fg_normal },
@@ -54,8 +44,9 @@ mytextclock.font = beautiful.font
 --        widget:set_markup(markup.fontfg(beautiful.font, "#80d9d8", fs_now.used .. "% "))
 --    end
 --})
+-- }}}
 
--- Mail IMAP check
+-- MAIL IMAP CHECK {{{
 --[[ commented because it needs to be set before use
 local mailicon = wibox.widget.imagebox()
 beautiful.mail = lain.widget.imap({
@@ -77,6 +68,7 @@ beautiful.mail = lain.widget.imap({
     end
 })
 --]]
+-- }}}
 
 -- CPU {{{
 local cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
@@ -240,7 +232,7 @@ function draw_bar_at_the_top(scr)
             -- netupicon,
             -- netupinfo.widget,
             volicon,
-            beautiful.volume.widget,
+            volume.widget,
             memicon,
             memory.widget,
             cpuicon,
@@ -256,3 +248,58 @@ function draw_bar_at_the_top(scr)
         
     }
 end
+
+
+
+
+
+
+
+
+
+
+
+
+-- For a remote future if you want a tasklist
+
+
+--    s.mytasklist = awful.widget.tasklist {
+--        screen = s,
+--        filter = awful.widget.tasklist.filter.allscreen,
+--        buttons =awful.util.tasklist_buttons,
+--        style = {
+--            shape = gears.shape.rounded_rect,
+--        },
+--        layout = {
+--            spacing = 2,
+--            forced_num_columns = 1,
+--            layout = wibox.layout.grid.vertical
+--        },
+--        widget_template = {
+--            {
+--                {
+--                    id = 'clienticon',
+--                    widget = awful.widget.clienticon,
+--                },
+--                margins = 4,
+--                widget = wibox.container.margin,
+--            },
+--            id = 'background_role',
+--            forced_width =48,
+--            forced_height = 48,
+--            widget = wibox.container.background,
+--            create_callback = function(self, c, index, objects) --luacheck: no unused
+--                self:get_children_by_id('clienticon')[1].client = c
+--            end,
+--        },
+--    }
+
+--    awful.popup {
+--        widget = s.mytasklist,
+--        border_width = 0,
+--        bg = '#000000',
+--        opacity = 0, 
+--        ontop = true,
+--        placement =awful.placement.left,
+--        shape = gears.shape.rounded_rect
+--    }
