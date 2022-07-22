@@ -1,4 +1,5 @@
 local awful = require("awful")
+require("awful.autofocus")
 local lain = require("lain")
 
 require("ui.wallpaper")

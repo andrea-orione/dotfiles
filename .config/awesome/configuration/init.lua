@@ -40,7 +40,7 @@ require "configuration.bindings"
 require "configuration.client"
     
 -- AUTOSTART APPLICATION {{{
-local picom_startup_script = [[picom --config $HOME/.config/picom/picom.conf]] -- --experimental-backends
+local picom_startup_script = [[picom]] -- --config $HOME/.config/picom/picom.conf --experimental-backends
 
 awful.spawn.with_shell(picom_startup_script)
 
