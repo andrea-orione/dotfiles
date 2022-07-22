@@ -40,8 +40,8 @@ require("awful.hotkeys_popup.keys")
 local my_table = awful.util.table or gears.table -- bindings table 4.{0,1} compatibility
 
 --require "signals"
-require "configuration"
-require "ui"
+require("configuration")
+require("ui")
 -- }}}
 
 
@@ -79,4 +79,7 @@ end
 -- TODO change this to match the modifications
 screen.connect_signal("property::geometry", set_wallpaper)
 
-awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)
+awful.screen.connect_for_each_screen(function(s) 
+    beautiful.at_screen_connect(s)
+    draw_bar_at_the_top(s)
+end)
