@@ -35,9 +35,9 @@ local chosen_theme = theme_list[1] -- choose your theme here
 beautiful.init(string.format(gfs.get_configuration_dir() .. "/themes/%s/theme.lua", chosen_theme))
 -- }}}
 
-require "configuration.layout"
-require "configuration.bindings"
-require "configuration.client"
+require("configuration.layout")
+require("configuration.bindings")
+require("configuration.client")
     
 -- AUTOSTART APPLICATION {{{
 local picom_startup_script = [[picom]] -- --config $HOME/.config/picom/picom.conf --experimental-backends

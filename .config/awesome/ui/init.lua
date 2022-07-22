@@ -6,12 +6,12 @@ require("ui.wallpaper")
 require("ui.menu")
 require("ui.titlebar")
 require("ui.bar")
--- require "ui.popup"
--- require "ui.powermenu"
--- require "ui.poplayout"
--- require "ui.sidebar"
--- require "ui.ping"
--- require "ui.dashboard"
+-- require("ui.popup")
+-- require("ui.powermenu")
+-- require("ui.poplayout")
+-- require("ui.sidebar")
+-- require("ui.ping")
+-- require("ui.dashboard")
 
 awful.screen.connect_for_each_screen(
     function(s) 

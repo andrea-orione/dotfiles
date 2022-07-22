@@ -17,7 +17,7 @@ local naughty = require("naughty")
 naughty.config.defaults['icon_size'] = 50
 -- }}}
 
---require "signals"
+--require("signals")
 require("configuration")
 require("ui")
 

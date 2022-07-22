@@ -1,6 +1,6 @@
 local awesome = awesome
 local awful = require("awful")
-local gears = require "gears"
+local gears = require("gears")
 local beautiful = require("beautiful")
 
 ----- Client/Windows/Apps/Idk what to say... -----
