@@ -10,10 +10,15 @@ local cairo = require("lgi").cairo --Wallpaper transition
 local function set_wallpaper(wallpaper, s)
     gears.wallpaper.maximized(wallpaper, s, true)
 end
- 
+
+local function reset_current_wallpaper(s)
+    local old_wp = gears.surface(root.wallpaper())
+    set_wallpaper(old_wp, s)
+end
+
  -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
  -- TODO change this to match the modifications
-screen.connect_signal("property::geometry", set_wallpaper)
+screen.connect_signal("property::geometry", reset_current_wallpaper)
 
 local function scanDir(directory)
     local c, fileList = 0, {}

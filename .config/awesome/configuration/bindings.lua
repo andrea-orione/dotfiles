@@ -95,7 +95,7 @@ globalkeys = my_table.join(
     awful.key({ modkey,           }, "space", function() awful.layout.inc( 1)                end,
               {description = "Select next", group = "Layout"}),
     awful.key({ modkey, "Shift"   }, "space", function() awful.layout.inc(-1)                end,
-              {description = "Select previous", group = "Layout"})
+              {description = "Select previous", group = "Layout"}),
 
 -- Volume
     -- awful.key({ }, "XF86AudioRaiseVolume", function() awful.spawn.with_shell("pamixer -i 3") end, {description = "Raise volume", group = "Volume"}),
@@ -108,7 +108,7 @@ globalkeys = my_table.join(
 
 -- Toggle spaces
     --awful.key({altkey}, "c", function() awesome.emit_signal("sidebar::toogle") end, {description = "Toggle sidebar", group = "Spaces"})
-    --awful.key({altkey}, "x", function() awesome.emit_signal("logout::toogle") end, {description = "Toggle logout", group = "Spaces"})
+    awful.key({altkey}, "x", function() awesome.emit_signal("logout::toogle") end, {description = "Toggle logout", group = "Spaces"})
     --awful.key({altkey}, "z", function() awesome.emit_signal("dashboard::toogle") end, {description = "Toggle dashboard", group = "Spaces"})
 
 -- Emacs (Super + e followed by KEY)

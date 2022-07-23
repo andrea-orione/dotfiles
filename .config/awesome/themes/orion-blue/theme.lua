@@ -17,6 +17,7 @@ theme.confdir                                   = os.getenv("HOME") .. "/.config
 theme.wallpapers_folder                         = os.getenv("HOME") .. "/.wallpapers"
 
 -- Fonts
+theme.font_name                                 = "Ubuntu"
 theme.font                                      = "Ubuntu Regular 11"
 theme.taglist_font                              = "Ubuntu Regular 11"
 
@@ -51,6 +52,14 @@ theme.useless_gap                               = 6
 theme.popup_font                                = "Ubuntu regular 11"
 theme.popup_bg                                  = "#000000dd"
 theme.popup_fg                                  = "#eeeeee"
+
+-- Colors 
+theme.blue = "#84a0c6"
+theme.yellow = "#e2a478"
+theme.green = "#b4be82"
+theme.red = "#e27878"
+theme.magenta = "#B8AED5"
+theme.transparent = "#00000000"
 
 -- Topbar icons
 theme.widget_temp                               = theme.confdir .. "/icons/thermometer.svg"
