@@ -3,6 +3,8 @@ local gears = require("gears")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 
+local my_table = awful.util.table or gears.table -- bindings table 4.{0,1} compatibility
+
 local coloring = function(text, color)
 	return "<span foreground='" .. color .. "'>" .. text .. "</span>"
 end
@@ -11,7 +13,7 @@ end
 local logout = wibox {
 	visible = false,
 	ontop = true,
-	bg = beautiful.bg_normal .. "AA",
+	bg = beautiful.black .. "22",
 	type = 'dock',
 }
 
@@ -36,9 +38,15 @@ local toggle = function()
 	logout.visible = not logout.visible
 end
 
-logout:buttons(gears.table.join(
+logout:buttons(my_table.join(
 	awful.button({ }, 1, function()
 		toggle()
+	end)
+))
+
+logout:keys(my_table.join(
+	awful.key({altkey}, "x", function()
+		toggle() 
 	end)
 ))
 
@@ -135,7 +143,7 @@ local function create_button(text, desc, color, command)
 		layout = wibox.layout.fixed.vertical,
 	}
 
-	widget:buttons(gears.table.join(
+	widget:buttons(my_table.join(
 		awful.button({ }, 1, function()
 			awful.spawn.with_shell(command)
 		end)

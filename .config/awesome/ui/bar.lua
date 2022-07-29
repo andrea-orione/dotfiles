@@ -205,7 +205,7 @@ function draw_bar_at_the_top(scr)
     scr.mytaglist = awful.widget.taglist(scr, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
 
     -- Create the wibox
-    scr.mywibox = awful.wibar({ position = "top", screen = scr, height = 20, bg = beautiful.bg_normal, fg = beautiful.fg_normal })
+    scr.mywibox = awful.wibar({ position = "top", screen = scr, height = 20, bg = beautiful.bar_bg_normal, fg = beautiful.bar_fg_normal })
 
     -- Add widgets to the wibox
     scr.mywibox:setup {

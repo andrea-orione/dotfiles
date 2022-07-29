@@ -107,9 +107,9 @@ globalkeys = my_table.join(
     -- awful.key({ }, "XF86MonBrightnessDown", function() awful.spawn.with_shell("brightnessctl set 3%-") end, {description = "Decrease brightness", group = "Brightness"}),
 
 -- Toggle spaces
-    --awful.key({altkey}, "c", function() awesome.emit_signal("sidebar::toogle") end, {description = "Toggle sidebar", group = "Spaces"})
-    awful.key({altkey}, "x", function() awesome.emit_signal("logout::toogle") end, {description = "Toggle logout", group = "Spaces"})
-    --awful.key({altkey}, "z", function() awesome.emit_signal("dashboard::toogle") end, {description = "Toggle dashboard", group = "Spaces"})
+    --awful.key({altkey}, "c", function() awesome.emit_signal("sidebar::toggle") end, {description = "Toggle sidebar", group = "Spaces"})
+    awful.key({altkey}, "x", function() awesome.emit_signal("logout::toggle") end, {description = "Toggle logout", group = "Spaces"})
+    --awful.key({altkey}, "z", function() awesome.emit_signal("dashboard::toggle") end, {description = "Toggle dashboard", group = "Spaces"})
 
 -- Emacs (Super + e followed by KEY)
     -- awful.key( {modkey}, "e", function()
@@ -141,7 +141,7 @@ globalkeys = my_table.join(
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
-    globalkeys = gears.table.join(globalkeys,
+    globalkeys = my_table.join(globalkeys,
     -- View tag only.
     awful.key({ modkey }, "#" .. i + 9,
     function ()
@@ -191,7 +191,7 @@ end
 root.keys(globalkeys)
 
 -- Client
-client_keys = gears.table.join(
+client_keys = my_table.join(
     awful.key({ modkey,           }, "f",
         function (c)
             c.fullscreen = not c.fullscreen
@@ -292,7 +292,7 @@ awful.util.tasklist_buttons = my_table.join(
 )
 
 -- Clients
-client_buttons = gears.table.join(
+client_buttons = my_table.join(
     awful.button({ }, 1, function (c)
         c:emit_signal("request::activate", "mouse_click", {raise = true})
     end),

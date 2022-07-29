@@ -2,10 +2,12 @@ local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
 
+local my_table = awful.util.table or gears.table -- bindings table 4.{0,1} compatibility
+
 -- Add a titlebar if titlebars_enabled is set to true in the rules. (Should not be needed)
 client.connect_signal("request::titlebars", function(c)
     -- buttons for the titlebar
-    local buttons = gears.table.join(
+    local buttons = my_table.join(
         awful.button({ }, 1, function()
             c:emit_signal("request::activate", "titlebar", {raise = true})
             awful.mouse.client.move(c)

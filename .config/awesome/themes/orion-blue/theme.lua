@@ -21,45 +21,48 @@ theme.font_name                                 = "Ubuntu"
 theme.font                                      = "Ubuntu Regular 11"
 theme.taglist_font                              = "Ubuntu Regular 11"
 
+-- Colors 
+theme.white                                     = "#eeeeee"
+theme.black                                     = "#000000"
+theme.light_blue                                = "#00e1ff"
+theme.blue                                      = "#84a0c6"
+theme.yellow                                    = "#e2a478"
+theme.green                                     = "#b4be82"
+theme.red                                       = "#e27878"
+theme.magenta                                   = "#B8AED5"
+theme.transparent                               = "#00000000"
+
 -- Menu
 theme.awesome_icon                              = theme.confdir .. "/icons/awesome/awesome32.png"
 theme.icon_size                                 = 16
-theme.menu_bg_normal                            = "#000000a0"
+theme.menu_bg_normal                            = theme.black .. "a0"
 theme.menu_bg_focus                             = "#7aeeff20"
 theme.menu_border_width                         = 2
 theme.menu_width                                = 140
 theme.menu_submenu_icon                         = theme.confdir .. "/icons/submenu.png"
-theme.menu_fg_normal                            = "#eeeeee"
-theme.menu_fg_focus                             = "#00e1ff"
+theme.menu_fg_normal                            = theme.white
+theme.menu_fg_focus                             = theme.light_blue
 
 -- Bars
-theme.bg_normal                                 = "#0000006e"
-theme.bg_focus                                  = "#00000000"
-theme.bg_urgent                                 = "#00000000"
-theme.fg_normal                                 = "#eeeeee"
-theme.fg_focus                                  = "#00e1ff"--"#ff8c00"
-theme.fg_urgent                                 = "#af1d18"
-theme.fg_minimize                               = "#eeeeee"
+theme.bar_bg_normal                             = theme.black .. "6e"
+theme.bar_bg_focus                              = theme.transparent
+theme.bar_bg_urgent                             = theme.transparent
+theme.bar_fg_normal                             = theme.white
+theme.bar_fg_focus                              = theme.light_blue--"#ff8c00"
+theme.bar_fg_urgent                             = "#af1d18"
+theme.bar_fg_minimize                           = theme.white
 
 -- Clients
 theme.border_width                              = 2
 theme.border_normal                             = "#1c2022"
-theme.border_focus                              = "#00e1ff"
+theme.border_focus                              = theme.light_blue
 theme.border_marked                             = "#3ca4d8"
 theme.useless_gap                               = 6
 
 -- Popups
-theme.popup_font                                = "Ubuntu regular 11"
-theme.popup_bg                                  = "#000000dd"
-theme.popup_fg                                  = "#eeeeee"
-
--- Colors 
-theme.blue = "#84a0c6"
-theme.yellow = "#e2a478"
-theme.green = "#b4be82"
-theme.red = "#e27878"
-theme.magenta = "#B8AED5"
-theme.transparent = "#00000000"
+theme.popup_font                                = theme.font
+theme.popup_bg                                  = theme.black .. "dd"
+theme.popup_fg                                  = theme.white
 
 -- Topbar icons
 theme.widget_temp                               = theme.confdir .. "/icons/thermometer.svg"
