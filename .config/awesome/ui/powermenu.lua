@@ -44,12 +44,6 @@ logout:buttons(my_table.join(
 	end)
 ))
 
-logout:keys(my_table.join(
-	awful.key({altkey}, "x", function()
-		toggle() 
-	end)
-))
-
 awesome.connect_signal("logout::toggle", function()
 	toggle()
 end)

@@ -45,12 +45,16 @@ theme.menu_fg_focus                             = theme.light_blue
 
 -- Bars
 theme.bar_bg_normal                             = theme.black .. "6e"
-theme.bar_bg_focus                              = theme.transparent
-theme.bar_bg_urgent                             = theme.transparent
 theme.bar_fg_normal                             = theme.white
-theme.bar_fg_focus                              = theme.light_blue--"#ff8c00"
-theme.bar_fg_urgent                             = "#af1d18"
-theme.bar_fg_minimize                           = theme.white
+
+-- Taglist
+theme.taglist_bg_normal                         = theme.black .. "6e"
+theme.taglist_bg_focus                          = theme.transparent
+theme.taglist_bg_urgent                         = theme.transparent
+theme.taglist_fg_normal                         = theme.white
+theme.taglist_fg_focus                          = theme.light_blue--"#ff8c00"
+theme.taglist_fg_urgent                         = "#af1d18"
+theme.taglist_fg_minimize                       = theme.white
 
 -- Clients
 theme.border_width                              = 2
