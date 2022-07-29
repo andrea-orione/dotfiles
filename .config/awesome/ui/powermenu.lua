@@ -5,10 +5,6 @@ local beautiful = require("beautiful")
 
 local my_table = awful.util.table or gears.table -- bindings table 4.{0,1} compatibility
 
-local coloring = function(text, color)
-	return "<span foreground='" .. color .. "'>" .. text .. "</span>"
-end
-
 -- PAGE {{{
 local logout = wibox {
 	visible = false,
@@ -18,6 +14,8 @@ local logout = wibox {
 }
 
 awful.placement.maximize(logout)
+
+-- TODO Add resizing signal
 
 local keylock = awful.keygrabber {
 	autostart = false,
@@ -54,7 +52,7 @@ end)
 -- Greeting
 local greeting = wibox.widget.textbox()
 
-greeting.font = "azukifontBI Italic 42"
+greeting.font = beautiful.font_name .. "Italic 42"
 greeting.align = 'center'
 greeting.markup = "Rest well, " .. string.gsub(os.getenv('USER'), "^%l", string.upper)
 
@@ -127,7 +125,7 @@ local function create_button(text, desc, color, command)
 	text_var.align = "center"
 	desc_var.align = "center"
 
-	text_var.markup = coloring(text, color)
+	text_var.markup = "<span foreground='" .. color .. "'>" .. text .. "</span>"
 	desc_var.markup = desc
 
 	local widget = wibox.widget {
