@@ -106,7 +106,6 @@ local middle = wibox.widget {
 		{
 			clock,
 			greeting,
-			poweroff,
 			spacing = 5, -- beautiful.xresources.apply_dpi(5)
 			layout = wibox.layout.fixed.vertical,
 		},
@@ -141,5 +140,6 @@ logout:setup {
 	middle,
 	right,
 	layout = wibox.layout.align.horizontal,
+	expand = 'none'
 }
 -- }}}
