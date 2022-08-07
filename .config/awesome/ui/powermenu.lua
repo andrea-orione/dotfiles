@@ -2,8 +2,10 @@ local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
+local lain = require("lain")
 
 local my_table = awful.util.table or gears.table -- bindings table 4.{0,1} compatibility
+local markup = lain.util.markup
 
 -- PAGE {{{
 local logout = wibox {
@@ -47,72 +49,18 @@ awesome.connect_signal("logout::toggle", function()
 end)
 -- }}}
 
------ Var -----
-
+-- WIDGETS {{{
 -- Greeting
 local greeting = wibox.widget.textbox()
+greeting.font = beautiful.font_name .. " Regular Italic 42"
+greeting.align = "center"
+greeting.markup = "May the force be mass times acceleration"
+--greeting.markup = "Rest well, " .. string.gsub(os.getenv('USER'), "^%l", string.upper)
 
-greeting.font = beautiful.font_name .. "Italic 42"
-greeting.align = 'center'
-greeting.markup = "Rest well, " .. string.gsub(os.getenv('USER'), "^%l", string.upper)
-
--- Time
-local time = wibox.widget.textbox()
-local date = wibox.widget.textbox()
-
-time.font = beautiful.font_name .. " Bold 142"
-date.font = beautiful.font_name .. " 32"
-time.align = "center"
-date.align = "center"
-
-gears.timer {
-	timeout = 60,
-	call_now = true,
-	autostart = true,
-	callback = function()
-		time_var = os.date("%R")
-		date_var = os.date("%d %B, %Y")
-		time.markup = "<span>" .. time_var .. "</span>"
-		date.markup = "<span>" .. date_var .. "</span>"
-	end
-}
-
-local clock = wibox.widget {
-	time,
-	layout = wibox.layout.fixed.vertical,
-}
-
-local left = wibox.widget {
-	{
-		nil,
-		{
-			clock,
-			spacing = 40, -- beautiful.xresources.apply_dpi(40)
-			layout = wibox.layout.fixed.vertical,
-		},
-		expand = 'none',
-		layout = wibox.layout.align.vertical,
-	},
-	margins = {left = 50}, -- beautiful.xresources.apply_dpi(50)
-	widget = wibox.container.margin,
-}
-
-local middle = wibox.widget {
-	nil,
-	{
-		nil,
-		{
-			clock,
-			greeting,
-			spacing = 5, -- beautiful.xresources.apply_dpi(5)
-			layout = wibox.layout.fixed.vertical,
-		},
-		expand = 'none',
-		layout = wibox.layout.align.horizontal,
-	},
-	expand = 'none',
-	layout = wibox.layout.align.vertical,
-}
+-- Clock
+local clock = wibox.widget.textclock(markup(beautiful.white "%H:%M"))
+clock.font = beautiful.font_name .. " Bold 142"
+clock.align = "center"
 
 -- Powermenu
 local function create_button(text, desc, color, command)
@@ -148,6 +96,26 @@ local poweroff = create_button("󰐥", "PowerOff", beautiful.red, "poweroff")
 local reboot = create_button("󰜉", "Reboot", beautiful.yellow, "reboot")
 local sleeping = create_button("󰤄", "Sleep", beautiful.blue, "systemctl suspend")
 local logging_out = create_button("󰌾", "Logout", beautiful.green, "pkill awesome")
+-- }}}
+
+-- PLACING {{{
+local middle = wibox.widget {
+	nil,
+	{
+		nil,
+		{
+			clock,
+			greeting,
+			poweroff,
+			spacing = 5, -- beautiful.xresources.apply_dpi(5)
+			layout = wibox.layout.fixed.vertical,
+		},
+		expand = 'none',
+		layout = wibox.layout.align.horizontal,
+	},
+	expand = 'none',
+	layout = wibox.layout.align.vertical,
+}
 
 local right = wibox.widget {
 	{
@@ -173,3 +141,4 @@ logout:setup {
 	right,
 	layout = wibox.layout.align.horizontal,
 }
+-- }}}
