@@ -54,11 +54,11 @@ end)
 local greeting = wibox.widget.textbox()
 greeting.font = beautiful.font_name .. " Regular Italic 42"
 greeting.align = "center"
-greeting.markup = "May the force be mass times acceleration"
+greeting.markup = "May the force be...\nmass times acceleration"
 --greeting.markup = "Rest well, " .. string.gsub(os.getenv('USER'), "^%l", string.upper)
 
 -- Clock
-local clock = wibox.widget.textclock(markup(beautiful.white "%H:%M"))
+local clock = wibox.widget.textclock(markup(beautiful.white, "%H:%M"))
 clock.font = beautiful.font_name .. " Bold 142"
 clock.align = "center"
 
@@ -117,7 +117,8 @@ local middle = wibox.widget {
 	layout = wibox.layout.align.vertical,
 }
 
-local right = wibox.widget {
+local right = wibox.container.margin(wibox.widget {
+	nil,
 	{
 		nil,
 		{
@@ -131,9 +132,9 @@ local right = wibox.widget {
 		expand = 'none',
 		layout = wibox.layout.align.vertical,
 	},
-	margins = {right = 40}, -- beautiful.xresources.apply_dpi(40)
-	widget = wibox.container.margin,
-}
+	expand = 'none',
+	layout = wibox.layout.align.vertical,
+}, 0, 30)
 
 logout:setup {
 	nil,
