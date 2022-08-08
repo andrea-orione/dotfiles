@@ -63,6 +63,12 @@ theme.border_focus                              = theme.light_blue
 theme.border_marked                             = "#3ca4d8"
 theme.useless_gap                               = 6
 
+-- Sidebar
+theme.sidebar_border                            = 2
+theme.sidebar_width                             = 320 -- The border is not included
+theme.sidebar_hight                             = 400 -- The border is not included
+theme.sidebar_gaps                              = 20
+
 -- Popups
 theme.popup_font                                = theme.font
 theme.popup_bg                                  = theme.black .. "dd"
@@ -99,8 +105,8 @@ theme.layout_tilebottom                         = theme.confdir .. "/icons/layou
 --theme.layout_spiral                             = theme.confdir .. "/icons/spiral.png"
 --theme.layout_dwindle                            = theme.confdir .. "/icons/dwindle.png"
 theme.layout_max                                = theme.confdir .. "/icons/layout/maxw.png"
---theme.layout_fullscreen                         = theme.confdir .. "/icons/fullscreen.png"
---theme.layout_magnifier                          = theme.confdir .. "/icons/magnifier.png"
+theme.layout_fullscreen                         = theme.confdir .. "/icons/layout/fullscreenw.png"
+theme.layout_magnifier                          = theme.confdir .. "/icons/layout/magnifierw.png"
 theme.layout_floating                           = theme.confdir .. "/icons/layout/floatingw.png"
 
 -- Titlebar icons

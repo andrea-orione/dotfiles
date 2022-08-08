@@ -11,7 +11,7 @@ local markup = lain.util.markup
 local logout = wibox {
 	visible = false,
 	ontop = true,
-	bg = beautiful.black .. "22",
+	bg = beautiful.black .. "aa",
 	type = 'dock',
 }
 
@@ -29,7 +29,7 @@ local keylock = awful.keygrabber {
 	end
 }
 
-local toggle = function()
+local function toggle()
 	if logout.visible then
 		keylock:stop()
 	else

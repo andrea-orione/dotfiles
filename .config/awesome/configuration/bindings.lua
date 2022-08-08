@@ -107,7 +107,7 @@ globalkeys = my_table.join(
     -- awful.key({ }, "XF86MonBrightnessDown", function() awful.spawn.with_shell("brightnessctl set 3%-") end, {description = "Decrease brightness", group = "Brightness"}),
 
 -- Toggle spaces
-    --awful.key({altkey}, "c", function() awesome.emit_signal("sidebar::toggle") end, {description = "Toggle sidebar", group = "Spaces"})
+    awful.key({altkey}, "c", function() awesome.emit_signal("sidebar::toggle") end, {description = "Toggle sidebar", group = "Spaces"}),
     awful.key({altkey}, "x", function() awesome.emit_signal("logout::toggle") end, {description = "Toggle logout", group = "Spaces"})
     --awful.key({altkey}, "z", function() awesome.emit_signal("dashboard::toggle") end, {description = "Toggle dashboard", group = "Spaces"})
 
