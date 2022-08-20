@@ -4,7 +4,7 @@ local gears = require("gears")
 local APIKEY = "d31f4205400f56c0f062b4213e717fe1"
 local CITY = "1732891"
 local UNIT = "metric"
-local LANG = "en"
+local LANG = "it"
 
 sun_icon = ""
 moon_icon = ""

@@ -5,7 +5,7 @@ local freedesktop = require("freedesktop")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 require("awful.hotkeys_popup.keys")
 
-local scr = function()
+local function scr()
     local time = os.date("%y-%m-%d_%H:%M:%S")
     local location = "/tmp/" .. time .. ".png"
     local script = [[maim | tee /tmp/]] .. time .. [[.png | xclip -selection clipboard -t image/png notify-send -i ]] .. location .. [[ "Kashott!" "Screenshot copied to clipboard"]]
