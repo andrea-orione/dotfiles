@@ -5,6 +5,8 @@ local freedesktop = require("freedesktop")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 require("awful.hotkeys_popup.keys")
 
+local dpi = beautiful.xresources.apply_dpi
+
 local function scr()
     local time = os.date("%y-%m-%d_%H:%M:%S")
     local location = "/tmp/" .. time .. ".png"
@@ -20,7 +22,7 @@ myawesomemenu = {
 }
  
 awful.util.mymainmenu = freedesktop.menu.build({
-    icon_size = beautiful.menu_height or 16,
+    icon_size = beautiful.menu_height or dpi(16),
     before = { 
         { "Awesome", myawesomemenu, beautiful.awesome_icon },
     },

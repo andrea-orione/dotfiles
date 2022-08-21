@@ -3,43 +3,45 @@ local wibox = require("wibox")
 local gears = require("gears")
 local beautiful = require("beautiful")
 
+local dpi = beautiful.xresources.apply_dpi
+
 local rubato = require "lib.rubato"
 
 -- VAR {{{
-local width = 250 --beautiful.xresources.apply_dpi(250)
-local height = 150 --beautiful.xresources.apply_dpi(150)
+local width = dpi(250)
+local height = dpi(150)
 -- }}}
 
 -- STRUCTURE {{{
-local icon = {
+local icon = wibox.widget {
 	font = beautiful.font_name .. "Regular 40",
 	markup = "",
-	widget = wibox.widget.textbox,
+	widget = wibox.widget.textbox
 }
 
-local name = {
+local name = wibox.widget {
 	font = beautiful.font_name .. " 12",
 	markup = "Volume",
-	widget = wibox.widget.textbox,
+	widget = wibox.widget.textbox
 }
 
 -- the progress bar
 local progress = {
-	margins = {top = 6, bottom = 6}, --{top = beautiful.xresources.apply_dpi(6), bottom = beautiful.xresources.apply_dpi(6)},
+	margins = {top = dpi(6), bottom = dpi(6)},
 	max_value = 100,
 	min_value = 0,
 	shape = gears.shape.rounded_bar,
 	bar_shape = gears.shape.rounded_bar,
-	background_color = beautiful.bar_alt,
-	color = beautiful.blue,
-	bar_border_width = 6, --beautiful.xresources.apply_dpi(0),
-	widget = wibox.widget.progressbar,
+	background_color = beautiful.blue,
+	color = beautiful.light_blue,
+	bar_border_width = dpi(6),
+	widget = wibox.widget.progressbar
 }
 
 -- the slider
 local slider = wibox.widget {
 	shape = gears.shape.rounded_bar,
-	bar_margins = {top = 6, bottom = 6},--{top = beautiful.xresources.apply_dpi(6), bottom = beautiful.xresources.apply_dpi(6)},
+	bar_margins = {top = dpi(6), bottom = dpi(6)},
 	maximum = 100,
 	minimum = 0,
 	value = 0,
@@ -49,11 +51,11 @@ local slider = wibox.widget {
 	bar_shape = gears.shape.rounded_bar,
 	-- Handle
 	handle_shape = gears.shape.circle,
-	handle_border_width = 2, --beautiful.xresources.apply_dpi(2),
+	handle_border_width = dpi(2),
 	handle_border_color = beautiful.bar_alt,
 	handle_color = beautiful.blue,
 	handle_width = 30, beautiful.xresources.apply_dpi(30),
-	widget = wibox.widget.slider,
+	widget = wibox.widget.slider
 }
 
 -- slider's behavior (kinda)...
@@ -68,7 +70,7 @@ local popup = awful.popup {
 	ontop = true,
 	visible = false,
 	placement = function(c)
-		awful.placement.centered(c, {margins = {top = 500}}) -- beautiful.xresources.apply_dpi(500)
+		awful.placement.centered(c, {margins = {top = dpi(500)}})
 	end,
 	shape = function(cr,w,h)
 		gears.shape.rounded_rect(cr,w,h,10)
@@ -87,10 +89,10 @@ popup:setup {
 					progress,
 					layout = wibox.layout.align.vertical,
 				},
-				spacing = 10, --beautiful.xresources.apply_dpi(10),
+				spacing = dpi(10),
 				layout = wibox.layout.fixed.horizontal,
 			},
-			margins = {top = 50, bottom = 50, left = 30, right = 30},--{top = beautiful.xresources.apply_dpi(50), bottom = beautiful.xresources.apply_dpi(50), left = beautiful.xresources.apply_dpi(30), right = beautiful.xresources.apply_dpi(30)},
+			margins = {top = dpi(50), bottom = dpi(50), left = dpi(30), right = dpi(30)},
 			widget = wibox.container.margin,
 		},
 		halign = 'center',

@@ -2,7 +2,7 @@ local awful = require("awful")
 local gears = require("gears")
 
 local APIKEY = "d31f4205400f56c0f062b4213e717fe1"
-local CITY = "1732891"
+local CITY = "3165524" -- Turin
 local UNIT = "metric"
 local LANG = "it"
 

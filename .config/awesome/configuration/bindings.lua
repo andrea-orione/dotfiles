@@ -108,8 +108,8 @@ globalkeys = my_table.join(
 
 -- Toggle spaces
     awful.key({altkey}, "c", function() awesome.emit_signal("sidebar::toggle") end, {description = "Toggle sidebar", group = "Spaces"}),
-    awful.key({altkey}, "x", function() awesome.emit_signal("logout::toggle") end, {description = "Toggle logout", group = "Spaces"})
-    --awful.key({altkey}, "z", function() awesome.emit_signal("dashboard::toggle") end, {description = "Toggle dashboard", group = "Spaces"})
+    awful.key({altkey}, "x", function() awesome.emit_signal("logout::toggle") end, {description = "Toggle logout", group = "Spaces"}),
+    awful.key({altkey}, "z", function() awesome.emit_signal("dashboard::toggle") end, {description = "Toggle dashboard", group = "Spaces"})
 
 -- Emacs (Super + e followed by KEY)
     -- awful.key( {modkey}, "e", function()

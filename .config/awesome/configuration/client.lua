@@ -32,5 +32,22 @@ client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", {raise = false})
 end)
 
+-- Add title bar if floating
+-- Client
+client.connect_signal("property::floating", function(c)
+    if c.floating and not c.requests_no_titlebar then
+        awful.titlebar.show(c)
+    else
+        awful.titlebar.hide(c)
+    end
+  end)
+-- Tag
+awful.tag.attached_connect_signal(nil, "property::layout", function (t)
+    local float = t.layout.name == "floating"
+    for _,c in pairs(t:clients()) do
+        c.floating = float
+    end
+end)
+
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
