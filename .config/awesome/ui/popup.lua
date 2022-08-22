@@ -26,7 +26,7 @@ local name = wibox.widget {
 }
 
 -- the progress bar
-local progress = {
+local progress = wibox.widget {
 	margins = {top = dpi(6), bottom = dpi(6)},
 	max_value = 100,
 	min_value = 0,
@@ -46,15 +46,15 @@ local slider = wibox.widget {
 	minimum = 0,
 	value = 0,
 	-- Sliderr
-	bar_active_color = beautiful.blue,
-	bar_color = beautiful.bar_alt,
+	bar_active_color = beautiful.light_blue,
+	bar_color = beautiful.blue,
 	bar_shape = gears.shape.rounded_bar,
 	-- Handle
 	handle_shape = gears.shape.circle,
 	handle_border_width = dpi(2),
-	handle_border_color = beautiful.bar_alt,
-	handle_color = beautiful.blue,
-	handle_width = 30, beautiful.xresources.apply_dpi(30),
+	handle_border_color = beautiful.blue,
+	handle_color = beautiful.light_blue,
+	handle_width = dpi(30),
 	widget = wibox.widget.slider
 }
 

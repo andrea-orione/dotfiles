@@ -1,23 +1,23 @@
 local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
-local ruled = require("ruled")
 local menubar = require("menubar")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
 
 local dpi = beautiful.xresources.apply_dpi
 
-naughty.connect_signal("request::icon", function(n, context, hints)
-    if context ~= "app_icon" then return end
+-- TODO fix icon notification
+-- naughty.connect_signal("request::icon", function(n, context, hints)
+--     if context ~= "app_icon" then return end
 
-    local path = menubar.utils.lookup_icon(hints.app_icon) or
-        menubar.utils.lookup_icon(hints.app_icon:lower())
+--     local path = menubar.utils.lookup_icon(hints.app_icon) or
+--         menubar.utils.lookup_icon(hints.app_icon:lower())
 
-    if path then
-        n.icon = path
-    end
-end)
+--     if path then
+--         n.icon = path
+--     end
+-- end)
 
 naughty.config.defaults.ontop = true
 naughty.config.defaults.position = "top_right"
@@ -30,21 +30,21 @@ naughty.config.presets.critical.timeout = 0
 -- naughty normal preset
 naughty.config.presets.normal = {
     font    = beautiful.font,
-    fg      = beautiful.fg_normal,
-    bg      = beautiful.bar
+    fg      = beautiful.white,
+    bg      = beautiful.blue
 }
 
 -- naughty low preset
 naughty.config.presets.low = {
     font = beautiful.font_name .. "10",
-    fg = beautiful.fg_normal,
-    bg = beautiful.bar
+    fg = beautiful.white,
+    bg = beautiful.blue
 }
 
 -- naughty critical preset
 naughty.config.presets.critical = {
     font = beautiful.font_name .. "12",
-    fg = beautiful.red,
+    fg = beautiful.white,
     bg = beautiful.red,
     timeout = 0
 }
@@ -55,14 +55,6 @@ naughty.config.presets.ok   =   naughty.config.presets.normal
 naughty.config.presets.info =   naughty.config.presets.normal
 naughty.config.presets.warn =   naughty.config.presets.critical
 
-
--- ruled notification
-ruled.notification.connect_signal("request::rules", function()
-    ruled.notification.append_rule {
-        rule = {},
-        properties = {screen = awful.screen.preferred, implicit_timeout = 6}
-    }
-end)
 
 naughty.connect_signal("request::display", function(n)
 	local icon = n.icon
