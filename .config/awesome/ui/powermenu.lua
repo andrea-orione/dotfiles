@@ -41,6 +41,9 @@ end
 logout:buttons(my_table.join(
 	awful.button({ }, 1, function()
 		toggle()
+	end),
+	awful.button({ }, 3, function()
+		toggle()
 	end)
 ))
 

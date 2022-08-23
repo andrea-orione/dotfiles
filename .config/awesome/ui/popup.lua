@@ -13,20 +13,16 @@ local height = dpi(150)
 -- }}}
 
 -- STRUCTURE {{{
-local icon = wibox.widget {
-	font = beautiful.font_name .. "Regular 40",
-	markup = "",
-	widget = wibox.widget.textbox
-}
+local icon = wibox.widget.textbox()
+icon.font = beautiful.font_name .. " Regular 40"
+icon.markup = ""
 
-local name = wibox.widget {
-	font = beautiful.font_name .. " 12",
-	markup = "Volume",
-	widget = wibox.widget.textbox
-}
+local name = wibox.widget.textbox()
+icon.font = beautiful.font_name .. " Regular 12"
+icon.markup = "Volume"
 
 -- the progress bar
-local progress = wibox.widget {
+local progress =  wibox.widget.progressbar({
 	margins = {top = dpi(6), bottom = dpi(6)},
 	max_value = 100,
 	min_value = 0,
@@ -34,12 +30,11 @@ local progress = wibox.widget {
 	bar_shape = gears.shape.rounded_bar,
 	background_color = beautiful.blue,
 	color = beautiful.light_blue,
-	bar_border_width = dpi(6),
-	widget = wibox.widget.progressbar
-}
+	bar_border_width = dpi(6)
+})
 
 -- the slider
-local slider = wibox.widget {
+local slider = wibox.widget.slider({
 	shape = gears.shape.rounded_bar,
 	bar_margins = {top = dpi(6), bottom = dpi(6)},
 	maximum = 100,
@@ -54,13 +49,12 @@ local slider = wibox.widget {
 	handle_border_width = dpi(2),
 	handle_border_color = beautiful.blue,
 	handle_color = beautiful.light_blue,
-	handle_width = dpi(30),
-	widget = wibox.widget.slider
-}
+	handle_width = dpi(30)
+})
 
 -- slider's behavior (kinda)...
 slider:connect_signal("property::value", function(_, newValue)
-	awful.spawn.with_shell("amixer -D pulse set Master " .. newValue .. "%")
+	awful.spawn.with_shell("pamixer -D pulse set Master " .. newValue .. "%")
 end)
 -- }}}
 

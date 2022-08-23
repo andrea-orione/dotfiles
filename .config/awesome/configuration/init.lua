@@ -43,5 +43,6 @@ require("configuration.client")
 local picom_startup_script = [[picom]] -- --config $HOME/.config/picom/picom.conf --experimental-backends
 
 awful.spawn.with_shell(picom_startup_script)
+awful.spawn.with_shell("setxkbmap -layout it,us -variant ,dvorak")
 
 -- }}}

@@ -245,7 +245,6 @@ function draw_bar_at_the_top(scr)
             bat.widget,
             scr.mylayoutbox,
         },
-        
     }
 end
 
