@@ -3,13 +3,14 @@ local gears = require "gears"
 local wibox = require "wibox"
 local beautiful = require "beautiful"
 
+local io, os, string, tostring, tonumber = io, os, string, tostring, tonumber
+
 local dpi = beautiful.xresources.apply_dpi
 local my_table = awful.util.table or gears.table -- bindings table 4.{0,1} compatibility
 
 -- SETUP {{{
-local description = "Description"
-
 local box_gap = dpi(10)
+local border_radius = 10
 
 local dashboard = wibox {
 	visible = false,
@@ -56,7 +57,7 @@ end)
 -- FUCNTIONS {{{
 -- Rounded Rectangle
 local function rr(cr,w,h)
-	gears.shape.rounded_rect(cr,w,h,10)
+	gears.shape.rounded_rect(cr,w,h,border_radius)
 end
 
 -- Vertical padding
@@ -74,33 +75,20 @@ local function coloring_text(text, color)
 end
 
 -- Create box function
-local function crt_box(widget, width, height, bg)
-	local container = wibox.container.background()
-	container.bg = bg
+local function create_box(widget, width, height, bg)
+	local box_h_layout = wibox.layout.align.horizontal(nil, widget)
+	box_h_layout.expand = "none"
+	local box_v_layout = wibox.layout.align.vertical(nil, box_h_layout)
+	box_v_layout.expand = "none"
+
+	local container = wibox.container.background(box_v_layout, bg, rr)
 	container.forced_width = width
 	container.forced_height = height
 	container.border_width = dpi(4)
 	container.border_color = beautiful.light_blue
-	container.shape = rr
 
-	local box_widget = wibox.widget {
-		{
-			{
-				nil,
-				{
-					nil,
-					widget,
-					expand = 'none',
-					layout = wibox.layout.align.horizontal,
-				},
-				expand = 'none',
-				layout = wibox.layout.align.vertical,
-			},
-			widget = container,
-		},
-		margins = box_gap,
-		widget = wibox.container.margin,
-	}
+	local box_widget = wibox.container.margin(container)
+	box_widget = box_gap
 
 	return box_widget
 end
@@ -108,113 +96,41 @@ end
 
 -- VARIABLES {{{
 -- Profile Widget
-local pfp = wibox.widget {
-	{
-		image = beautiful.pfp,
-		halign = 'center',
-		widget = wibox.widget.imagebox,
-	},
-	forced_width = dpi(200),
-	forced_height = dpi(200),
-	shape = gears.shape.circle,
-	widget = wibox.container.background,
-}
+local user_image = wibox.widget.imagebox(beautiful.pfp)
+user_image.halign = "center"
+local user_picture = wibox.container.background(user_image)
+user_picture.forced_width = dpi(200)
+user_picture.forced_height = dpi(200)
+user_picture.shape = gears.shape.circle
 
 local user_widget = wibox.widget.textbox()
-local desc_widget = wibox.widget.textbox()
-
-user_widget.font = beautiful.font_name .. " bold 38"
-user_widget.align = 'center'
+user_widget.font = beautiful.font_name .. " Bold 38"
+user_widget.align = "center"
 user_widget.markup = coloring_text(os.getenv('USER'), beautiful.red)
 
-desc_widget.font = beautiful.font_name .. " Regular 16"
-desc_widget.align = 'center'
-desc_widget.markup = description
+local description_widget = wibox.widget.textbox(beautiful.user_description)
+description_widget.font = beautiful.font_name .. " Regular 16"
+description_widget.align = "center"
 
-local profile_widget = wibox.widget {
-	{
-		nil,
-		{
-			pfp,
-			v_pad(20),
-			user_widget,
-			desc_widget,
-			spacing = dpi(20),
-			layout = wibox.layout.fixed.vertical,
-		},
-		expand = 'none',
-		layout = wibox.layout.align.horizontal,
-	},
-	margins = dpi(12),
-	widget = wibox.container.margin,
-}
+local profile_v_layout = wibox.layout.fixed.vertical(user_picture, v_pad(20), user_widget, description_widget)
+profile_v_layout.spacing = dpi(20)
 
-local profile = crt_box(profile_widget, 360, 460, beautiful.blue)
+local profile_h_layout = wibox.layout.align.horizontal(nil, profile_v_layout)
+profile_h_layout.expand = "none"
+
+local profile_widget = wibox.container.margin(profile_h_layout)
+profile_widget.margins = dpi(12)
+
+local profile = create_box(profile_widget, 360, 460, beautiful.blue)
 
 -- Clock Widget
-local time = wibox.widget.textbox()
-time.font = beautiful.font_name .. " bold 42"
-time.align = 'center'
+local clock_widget = wibox.widget.textclock("%H:%M", 60)
+clock_widget.font = beautiful.font_name .. " bold 42"
 
-local date = wibox.widget.textbox()
-date.font = beautiful.font_name .. " 16"
-date.align = 'center'
-
-local am = wibox.widget.textbox()
-local pm = wibox.widget.textbox()
-am.font = beautiful.font_name .. " bold 36"
-pm.font = beautiful.font_name .. " bold 36"
-am.align = 'center'
-pm.align = 'center'
-am.valign = 'center'
-pm.valign = 'center'
-
-local updt_ampm = function()
-	tmp = os.date("%p")
-	if tmp == "AM" then
-		am.markup = coloring_text("AM", beautiful.yellow)
-		pm.markup = coloring_text("PM", beautiful.empty)
-	else
-		am.markup = coloring_text("AM", beautiful.empty)
-		pm.markup = coloring_text("PM", beautiful.blue)
-	end
-end
-
-local ampm_widget = wibox.widget {
-	nil,
-	{
-		am,
-		pm,
-		spacing = dpi(5),
-		layout = wibox.layout.fixed.vertical,
-	},
-	expand = 'none',
-	layout = wibox.layout.align.vertical,
-}
-
-gears.timer {
-	timeout = 60,
-	autostart = true,
-	call_now = true,
-	callback = function()
-		time.markup = coloring_text(os.date("%R"), beautiful.green)
-		date.markup = coloring_text(os.date("%d %B, %Y"))
-		updt_ampm()
-	end
-}
-
-local clock_widget = wibox.widget {
-	time,
-	ampm_widget,
-	spacing = dpi(24),
-	layout = wibox.layout.fixed.horizontal,
-}
-
-local clock = crt_box(clock_widget, 360, 200, beautiful.blue)
+local clock = create_box(clock_widget, 360, 200, beautiful.blue)
 
 -- Calendar
 local styles = {}
-
 styles.month = { 
 	padding = dpi(20),
 	bg_color = beautiful.transparent,
@@ -267,21 +183,17 @@ local function decorate_cell(widget, flag, date)
     return ret
 end
 
-local calendar_widget = wibox.widget {
-	date = os.date('*t'),
-	font = beautiful.font_name .. " Regular 16",
-	spacing = dpi(10),
-	fn_embed = decorate_cell,
-	widget = wibox.widget.calendar.month
-}
+local calendar_widget = wibox.widget.calendar.month(os.date('*t'), beautiful.font_name .. " Regular 16")
+calendar_widget.spacing = dpi(10)
+calendar_widget.fn_embed = decorate_cell
 
-local calendar = crt_box(calendar_widget, 300, 400, beautiful.blue)
+local calendar = create_box(calendar_widget, 300, 400, beautiful.blue)
 
 -- Uptime
 local uptime_text = wibox.widget.textbox()
-local uptime_icon = wibox.widget.textbox()
 uptime_text.font = beautiful.font_name .. " Regular 16"
-uptime_text.align = 'center'
+uptime_text.align = "center"
+local uptime_icon = wibox.widget.textbox()
 uptime_icon.font = beautiful.font_name .. " Regular 42"
 uptime_icon.align = 'center'
 uptime_icon.markup = coloring_text("󰌢", beautiful.blue)
@@ -291,21 +203,17 @@ gears.timer {
 	autostart = true,
 	call_now = true,
 	callback = function()
-		script = io.popen('uptime -p')
-		upfor = tostring(script:read('*a'))
+		local script = io.popen('uptime -p')
+		local upfor = tostring(script:read('*a'))
 		upfor = string.gsub(upfor, '\n', '')
 		uptime_text.markup = coloring_text(upfor)
 	end
 }
 
-local uptime_widget = wibox.widget {
-	uptime_icon,
-	uptime_text,
-	spacing = dpi(10),
-	layout = wibox.layout.fixed.vertical,
-}
+local uptime_widget = wibox.layout.fixed.vertical(uptime_icon, uptime_text)
+uptime_widget.spacing = dpi(10)
 
-local uptime = crt_box(uptime_widget, 400, 140, beautiful.blue)
+local uptime = create_box(uptime_widget, 400, 140, beautiful.blue)
 
 -- Stats
 local volume_icon = wibox.widget.textbox()
@@ -317,46 +225,31 @@ bright_icon.font = beautiful.font_name .. " Regular 42"
 volume_icon.markup = coloring_text("󰋋", beautiful.blue)
 bright_icon.markup = coloring_text("󰃟", beautiful.yellow)
 
-local volume_slider = wibox.widget {
-	{
-		id = 'slider',
-		max_value = 100,
-		color = beautiful.blue,
-		background_color = beautiful.blue,
-		shape = gears.shape.rounded_bar,
-		bar_shape = gears.shape.rounded_bar,
-		widget = wibox.widget.progressbar,
-	},
-	forced_width = dpi(5),
-	forced_height = dpi(150),
-	direction = "east",
-	widget = wibox.container.rotate,
-}
+local volume_progressbar = wibox.widget.progressbar()
+volume_progressbar.max_value = 100
+volume_progressbar.color = beautiful.blue
+volume_progressbar.background_color = beautiful.blue
+volume_progressbar.shape = gears.shape.rounded_bar
+volume_progressbar.bar_shape = gears.shape.rounded_bar
+local volume_slider = wibox.container.rotate(volume_progressbar, "east")
+volume_slider.forced_width = dpi(5)
+volume_slider.forced_height = dpi(150)
+awesome.connect_signal("signal::volume", function(value,_)
+	volume_progressbar.value = value
+end)
 
-local bright_slider = wibox.widget {
-	{
-		id = 'slider',
-		max_value = 80,
-		color = beautiful.yellow,
-		background_color = beautiful.blue,
-		shape = gears.shape.rounded_bar,
-		bar_shape = gears.shape.rounded_bar,
-		widget = wibox.widget.progressbar,
-	},
-	forced_width = dpi(5),
-	forced_height = dpi(150),
-	direction = "east",
-	widget = wibox.container.rotate,
-}
-
-local insert_value = function(widget, signal)
-	awesome.connect_signal("signal::" .. signal, function(value,_)
-		widget:get_children_by_id('slider')[1].value = value
-	end)
-end
-
-insert_value(volume_slider, "volume")
-insert_value(bright_slider, "brightness")
+local bright_progressbar = wibox.widget.progressbar()
+bright_progressbar.max_value = 80
+bright_progressbar.color = beautiful.yellow
+bright_progressbar.background_color = beautiful.blue
+bright_progressbar.shape = gears.shape.rounded_bar
+bright_progressbar.bar_shape = gears.shape.rounded_bar
+local bright_slider = wibox.container.rotate(bright_progressbar, "east")
+bright_slider.forced_width = dpi(5)
+bright_slider.forced_height = dpi(150)
+awesome.connect_signal("signal::brightness", function(value,_)
+	bright_progressbar.value = value
+end)
 
 volume_slider:buttons(gears.table.join(
 	awful.button({ }, 4, function()
@@ -376,32 +269,20 @@ bright_slider:buttons(gears.table.join(
 	end)
 ))
 
-local stats_widget = wibox.widget {
-	{
-		{
-			volume_slider,
-			margins = {left = dpi(20), right = dpi(20)},
-			widget = wibox.container.margin,
-		},
-		volume_icon,
-		spacing = dpi(10),
-		layout = wibox.layout.fixed.vertical,
-	},
-	{
-		{
-			bright_slider,
-			margins = {left = dpi(20), right = dpi(20)},
-			widget = wibox.container.margin,
-		},
-		bright_icon,
-		spacing = dpi(10),
-		layout = wibox.layout.fixed.vertical,
-	},
-	spacing = dpi(20),
-	layout = wibox.layout.fixed.horizontal,
-}
+local volume_container = wibox.container.margin(volume_slider)
+volume_container.margins = {left = dpi(20), right = dpi(20)}
+local volume_v_layout = wibox.layout.fixed.vertical(volume_container)
+volume_v_layout.spacing = dpi(10)
 
-local stats = crt_box(stats_widget, 200, 300, beautiful.blue)
+local bright_container = wibox.container.margin(bright_slider)
+bright_container.margins = {left = dpi(20), right = dpi(20)}
+local bright_v_layout = wibox.layout.fixed.vertical(bright_container)
+bright_v_layout.spacing = dpi(10)
+
+local stats_widget = wibox.layout.fixed.horizontal(volume_v_layout, bright_v_layout)
+stats_widget.spacing = dpi(20)
+
+local stats = create_box(stats_widget, 200, 300, beautiful.blue)
 
 -- Disk
 local disk_text = wibox.widget.textbox()
@@ -410,18 +291,12 @@ disk_text.markup = coloring_text("󰋊", beautiful.blue)
 disk_text.align = 'center'
 disk_text.valign = 'center'
 
-local disk_bar = wibox.widget {
-	{
-		id = 'bar',
-		color = beautiful.red,
-		background_color = beautiful.blue,
-		widget = wibox.widget.progressbar,
-	},
-	direction = 'east',
-	widget = wibox.container.rotate,
-}
+local disk_progressbar = wibox.widget.progressbar()
+disk_progressbar.color = beautiful.red
+disk_progressbar.background_color = beautiful.blue
+local disk_bar = wibox.container.rotate(disk_progressbar, "east")
 
-local get_disk = function()
+local function get_disk()
 	script = [[
 	df -kH -B 1MB /dev/sda2 | tail -1 | awk '{printf "%d|%d" ,$2, $3}'
 	]]
@@ -445,35 +320,30 @@ gears.timer {
 }
 
 awesome.connect_signal("signal::disk", function(disk_total, disk_available)
-	disk_bar:get_children_by_id('bar')[1].value = disk_available
-	disk_bar:get_children_by_id('bar')[1].max_value = disk_total
+	disk_progressbar.value = disk_available
+	disk_progressbar.max_value = disk_total
 end)
 
-local disk_widget = wibox.widget {
-	disk_bar,
-	{
-		nil,
-		disk_text,
-		expand = 'none',
-		layout = wibox.layout.align.vertical,
-	},
-	layout = wibox.layout.stack,
-}
+local disk_v_layout = wibox.layout.align.vertical(nil, disk_text)
+disk_v_layout.expand = "none"
+local disk_widget = wibox.layout.stack()
+disk_widget:add(disk_bar)
+disk_widget:add(disk_v_layout)
 
-local disk = crt_box(disk_widget, 100, 300, beautiful.blue)
+local disk = create_box(disk_widget, 100, 300, beautiful.blue)
 
 -- Weather
 local temperature = wibox.widget.textbox()
-temperature.font = beautiful.font_name .. " bold 20"
-temperature.align = 'center'
+temperature.font = beautiful.font_name .. " Bold 20"
+temperature.align = "center"
 
 local how = wibox.widget.textbox() -- How's-the-weather widget
 how.font = beautiful.font_name .. " Regular 18"
-how.align = 'center'
+how.align = "center"
 
 local weather_icon = wibox.widget.textbox()
 weather_icon.font = beautiful.font_name .. " Regualr 72"
-weather_icon.align = 'center'
+weather_icon.align = "center"
 
 awesome.connect_signal('signal::weather', function(temp, icon, what)
 	temperature.markup = coloring_text(temp .. "󰔄", beautiful.yellow)
@@ -481,23 +351,13 @@ awesome.connect_signal('signal::weather', function(temp, icon, what)
 	weather_icon.markup = coloring_text(icon, beautiful.white)
 end)
 
-local weather_widget = wibox.widget {
-	weather_icon,
-	{
-		temperature,
-		{
-			how,
-			strategy = 'max',
-			width = dpi(200),
-			widget = wibox.container.constraint,
-		},
-		widget = wibox.layout.fixed.vertical,
-	},
-	spacing = dpi(10),
-	layout = wibox.layout.fixed.horizontal,
-}
+local weather_container = wibox.container.constraint(how, "max")
+weather_container.width = dpi(200)
+local weather_v_layout = wibox.layout.fixed.vertical(temperature, weather_container)
+local weather_widget = wibox.layout.fixed.horizontal(weather_icon, weather_v_layout)
+weather_widget.spacing = dpi(10)
 
-local weather = crt_box(weather_widget, 300, 300, beautiful.bar)
+local weather = create_box(weather_widget, 300, 300, beautiful.blue)
 -- }}}
 
 -- PLACING {{{

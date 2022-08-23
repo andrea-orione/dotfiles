@@ -4,6 +4,8 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local lain = require("lain")
 
+local dpi = beautiful.xresources.apply_dpi
+
 local my_table = awful.util.table or gears.table -- bindings table 4.{0,1} compatibility
 local markup = lain.util.markup
 
@@ -70,8 +72,8 @@ local function create_button(text, desc, color, command)
 	local text_var = wibox.widget.textbox()
 	local desc_var = wibox.widget.textbox()
 	
-	text_var.font = beautiful.font_name .. " 38"
-	desc_var.font = beautiful.font_name .. " 12"
+	text_var.font = beautiful.font_name .. " Regular 38"
+	desc_var.font = beautiful.font_name .. " Regular 12"
 
 	text_var.align = "center"
 	desc_var.align = "center"
@@ -79,12 +81,8 @@ local function create_button(text, desc, color, command)
 	text_var.markup = "<span foreground='" .. color .. "'>" .. text .. "</span>"
 	desc_var.markup = desc
 
-	local widget = wibox.widget {
-		text_var,
-		desc_var,
-		spacing = 10, -- beautiful.xresources.apply_dpi(10)
-		layout = wibox.layout.fixed.vertical,
-	}
+	local widget = wibox.layout.fixed.vertical(text_var, desc_var)
+	widget.spacing = dpi(10)
 
 	widget:buttons(my_table.join(
 		awful.button({ }, 1, function()
@@ -102,41 +100,21 @@ local logging_out = create_button("󰌾", "Logout", beautiful.green, "pkill awes
 -- }}}
 
 -- PLACING {{{
-local middle = wibox.widget {
-	nil,
-	{
-		nil,
-		{
-			clock,
-			greeting,
-			spacing = 5, -- beautiful.xresources.apply_dpi(5)
-			layout = wibox.layout.fixed.vertical,
-		},
-		expand = 'none',
-		layout = wibox.layout.align.horizontal,
-	},
-	expand = 'none',
-	layout = wibox.layout.align.vertical,
-}
+local middle_v_layout = wibox.layout.fixed.vertical(clock, greeting)
+middle_v_layout.spacing = dpi(5)
+local middle_h_layout = wibox.layout.align.horizontal(nil, middle_v_layout)
+middle_h_layout.expand = "none"
+local middle = wibox.layout.align.vertical(nil, middle_h_layout)
+middle.expand = "none"
 
-local right = wibox.container.margin(wibox.widget {
-	nil,
-	{
-		nil,
-		{
-			poweroff,
-			reboot,
-			sleeping,
-			logging_out,
-			spacing = 40, -- beautiful.xresources.apply_dpi(40)
-			layout = wibox.layout.fixed.vertical,
-		},
-		expand = 'none',
-		layout = wibox.layout.align.vertical,
-	},
-	expand = 'none',
-	layout = wibox.layout.align.vertical,
-}, 0, 30)
+local buttons_v_layout = wibox.layout.fixed.vertical(poweroff, reboot, sleeping, logging_out)
+buttons_v_layout.spacing = dpi(40)
+local right_h_layout = wibox.layout.align.vertical(nil, buttons_v_layout)
+right_h_layout.expand = "none"
+local right_v_layout = wibox.layout.align.vertical(nil, right_h_layout)
+right_v_layout.expand = "none"
+local right = wibox.container.margin(right_v_layout)
+right.margin = {left = dpi(0), right = dpi(30)}
 
 logout:setup {
 	nil,

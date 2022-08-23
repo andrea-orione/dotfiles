@@ -16,6 +16,9 @@ local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/orion-blue"
 theme.wallpapers_folder                         = os.getenv("HOME") .. "/.wallpapers"
 
+-- User description
+theme.user_description                          = "Description"
+
 -- Fonts
 theme.font_name                                 = "Ubuntu"
 theme.font                                      = "Ubuntu Regular 11"
