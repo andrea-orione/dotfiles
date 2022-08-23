@@ -94,7 +94,7 @@ local function create_button(text, desc, color, command)
 end
 
 local poweroff = create_button("󰐥", "PowerOff", beautiful.red, "poweroff")
-local reboot = create_button("󰜉", "Reboot", beautiful.yellow, "reboot")
+local reboot = create_button("󰜉", "Reboot", beautiful.orange, "reboot")
 local sleeping = create_button("󰤄", "Sleep", beautiful.blue, "systemctl suspend")
 local logging_out = create_button("󰌾", "Logout", beautiful.green, "pkill awesome")
 -- }}}

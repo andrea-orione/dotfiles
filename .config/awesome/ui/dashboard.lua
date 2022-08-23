@@ -88,7 +88,7 @@ local function create_box(widget, width, height, bg)
 	container.border_color = beautiful.light_blue
 
 	local box_widget = wibox.container.margin(container)
-	box_widget = box_gap
+	box_widget.margins = box_gap
 
 	return box_widget
 end
@@ -96,7 +96,7 @@ end
 
 -- VARIABLES {{{
 -- Profile Widget
-local user_image = wibox.widget.imagebox(beautiful.pfp)
+local user_image = wibox.widget.imagebox(beautiful.user_pic)
 user_image.halign = "center"
 local user_picture = wibox.container.background(user_image)
 user_picture.forced_width = dpi(200)
@@ -106,7 +106,7 @@ user_picture.shape = gears.shape.circle
 local user_widget = wibox.widget.textbox()
 user_widget.font = beautiful.font_name .. " Bold 38"
 user_widget.align = "center"
-user_widget.markup = coloring_text(os.getenv('USER'), beautiful.red)
+user_widget.markup = coloring_text(os.getenv('USER'), beautiful.green)
 
 local description_widget = wibox.widget.textbox(beautiful.user_description)
 description_widget.font = beautiful.font_name .. " Regular 16"
@@ -121,35 +121,35 @@ profile_h_layout.expand = "none"
 local profile_widget = wibox.container.margin(profile_h_layout)
 profile_widget.margins = dpi(12)
 
-local profile = create_box(profile_widget, 360, 460, beautiful.blue)
+local profile = create_box(profile_widget, 360, 460, beautiful.dark_blue)
 
 -- Clock Widget
 local clock_widget = wibox.widget.textclock("%H:%M", 60)
-clock_widget.font = beautiful.font_name .. " bold 42"
+clock_widget.font = beautiful.font_name .. " Bold 42"
 
-local clock = create_box(clock_widget, 360, 200, beautiful.blue)
+local clock = create_box(clock_widget, 360, 200, beautiful.dark_blue)
 
 -- Calendar
 local styles = {}
 styles.month = { 
 	padding = dpi(20),
-	bg_color = beautiful.transparent,
 	fg_color = beautiful.blue,
+	bg_color = beautiful.transparent,
 	border_width = dpi(0)
 }
 styles.normal = { shape = rr }
 styles.focus = { 
-	fg_color = beautiful.yellow,
+	fg_color = beautiful.orange,
 	bg_color = beautiful.transparent,
 	markup = function(t) return '<b>' .. t .. '</b>' end 
 }
 styles.header = {
 	fg_color = beautiful.red,
-	markup = function(t) return '<span font_desc="' .. beautiful.font_name .. ' bold 20">' ..  t .. '</span>' end
+	markup = function(t) return '<span font_desc="' .. beautiful.font_name .. ' Bold 20">' ..  t .. '</span>' end
 }
 styles.weekday = {
-	bg_color = beautiful.transparent,
 	fg_color = beautiful.blue,
+	bg_color = beautiful.transparent,
 	padding = dpi(3),
 	markup   = function(t) return '<b>' .. t .. '</b>' end
 }
@@ -187,7 +187,7 @@ local calendar_widget = wibox.widget.calendar.month(os.date('*t'), beautiful.fon
 calendar_widget.spacing = dpi(10)
 calendar_widget.fn_embed = decorate_cell
 
-local calendar = create_box(calendar_widget, 300, 400, beautiful.blue)
+local calendar = create_box(calendar_widget, 300, 400, beautiful.dark_blue)
 
 -- Uptime
 local uptime_text = wibox.widget.textbox()
@@ -196,7 +196,7 @@ uptime_text.align = "center"
 local uptime_icon = wibox.widget.textbox()
 uptime_icon.font = beautiful.font_name .. " Regular 42"
 uptime_icon.align = 'center'
-uptime_icon.markup = coloring_text("󰌢", beautiful.blue)
+uptime_icon.markup = coloring_text("󰌢", beautiful.dark_blue)
 
 gears.timer {
 	timeout = 60,
@@ -213,7 +213,7 @@ gears.timer {
 local uptime_widget = wibox.layout.fixed.vertical(uptime_icon, uptime_text)
 uptime_widget.spacing = dpi(10)
 
-local uptime = create_box(uptime_widget, 400, 140, beautiful.blue)
+local uptime = create_box(uptime_widget, 400, 140, beautiful.dark_blue)
 
 -- Stats
 local volume_icon = wibox.widget.textbox()
@@ -223,12 +223,12 @@ volume_icon.font = beautiful.font_name .. " Regular 42"
 bright_icon.font = beautiful.font_name .. " Regular 42"
 
 volume_icon.markup = coloring_text("󰋋", beautiful.blue)
-bright_icon.markup = coloring_text("󰃟", beautiful.yellow)
+bright_icon.markup = coloring_text("󰃟", beautiful.orange)
 
 local volume_progressbar = wibox.widget.progressbar()
 volume_progressbar.max_value = 100
 volume_progressbar.color = beautiful.blue
-volume_progressbar.background_color = beautiful.blue
+volume_progressbar.background_color = beautiful.white .. "40"
 volume_progressbar.shape = gears.shape.rounded_bar
 volume_progressbar.bar_shape = gears.shape.rounded_bar
 local volume_slider = wibox.container.rotate(volume_progressbar, "east")
@@ -240,8 +240,8 @@ end)
 
 local bright_progressbar = wibox.widget.progressbar()
 bright_progressbar.max_value = 80
-bright_progressbar.color = beautiful.yellow
-bright_progressbar.background_color = beautiful.blue
+bright_progressbar.color = beautiful.orange
+bright_progressbar.background_color = beautiful.white .. "40"
 bright_progressbar.shape = gears.shape.rounded_bar
 bright_progressbar.bar_shape = gears.shape.rounded_bar
 local bright_slider = wibox.container.rotate(bright_progressbar, "east")
@@ -282,18 +282,18 @@ bright_v_layout.spacing = dpi(10)
 local stats_widget = wibox.layout.fixed.horizontal(volume_v_layout, bright_v_layout)
 stats_widget.spacing = dpi(20)
 
-local stats = create_box(stats_widget, 200, 300, beautiful.blue)
+local stats = create_box(stats_widget, 200, 300, beautiful.dark_blue)
 
 -- Disk
 local disk_text = wibox.widget.textbox()
 disk_text.font = beautiful.font_name .. " Regular 46"
-disk_text.markup = coloring_text("󰋊", beautiful.blue)
+disk_text.markup = coloring_text("󰋊", beautiful.white .. "40")
 disk_text.align = 'center'
 disk_text.valign = 'center'
 
 local disk_progressbar = wibox.widget.progressbar()
 disk_progressbar.color = beautiful.red
-disk_progressbar.background_color = beautiful.blue
+disk_progressbar.background_color = beautiful.transparent
 local disk_bar = wibox.container.rotate(disk_progressbar, "east")
 
 local function get_disk()
@@ -330,7 +330,7 @@ local disk_widget = wibox.layout.stack()
 disk_widget:add(disk_bar)
 disk_widget:add(disk_v_layout)
 
-local disk = create_box(disk_widget, 100, 300, beautiful.blue)
+local disk = create_box(disk_widget, 100, 300, beautiful.dark_blue)
 
 -- Weather
 local temperature = wibox.widget.textbox()
@@ -346,7 +346,7 @@ weather_icon.font = beautiful.font_name .. " Regualr 72"
 weather_icon.align = "center"
 
 awesome.connect_signal('signal::weather', function(temp, icon, what)
-	temperature.markup = coloring_text(temp .. "󰔄", beautiful.yellow)
+	temperature.markup = coloring_text(temp .. "󰔄", beautiful.orange)
 	how.markup = coloring_text(what, beautiful.white)
 	weather_icon.markup = coloring_text(icon, beautiful.white)
 end)
@@ -357,7 +357,7 @@ local weather_v_layout = wibox.layout.fixed.vertical(temperature, weather_contai
 local weather_widget = wibox.layout.fixed.horizontal(weather_icon, weather_v_layout)
 weather_widget.spacing = dpi(10)
 
-local weather = create_box(weather_widget, 300, 300, beautiful.blue)
+local weather = create_box(weather_widget, 300, 300, beautiful.dark_blue)
 -- }}}
 
 -- PLACING {{{

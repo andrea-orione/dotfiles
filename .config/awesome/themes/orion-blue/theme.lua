@@ -16,8 +16,9 @@ local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/orion-blue"
 theme.wallpapers_folder                         = os.getenv("HOME") .. "/.wallpapers"
 
--- User description
+-- User
 theme.user_description                          = "Description"
+theme.user_pic                                  = theme.confdir .. "/icons/profile_pic.jpg"
 
 -- Fonts
 theme.font_name                                 = "Ubuntu"
@@ -28,11 +29,12 @@ theme.taglist_font                              = "Ubuntu Regular 11"
 theme.white                                     = "#eeeeee"
 theme.black                                     = "#000000"
 theme.light_blue                                = "#00e1ff"
+theme.dark_blue                                 = "#000e60"
 theme.blue                                      = "#84a0c6"
-theme.yellow                                    = "#e2a478"
-theme.green                                     = "#b4be82"
+theme.yellow                                    = "#ffef00"
+theme.green                                     = "#00b70a"
 theme.red                                       = "#e27878"
-theme.magenta                                   = "#B8AED5"
+theme.orange                                    = "#fea400"
 theme.transparent                               = "#00000000"
 
 -- Menu
@@ -61,7 +63,7 @@ theme.taglist_fg_minimize                       = theme.white
 
 -- Clients
 theme.border_width                              = 2
-theme.border_normal                             = "#1c2022"
+theme.border_normal                             = theme.transparent
 theme.border_focus                              = theme.light_blue
 theme.border_marked                             = "#3ca4d8"
 theme.useless_gap                               = 6

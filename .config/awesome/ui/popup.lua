@@ -21,38 +21,32 @@ local name = wibox.widget.textbox()
 icon.font = beautiful.font_name .. " Regular 12"
 icon.markup = "Volume"
 
--- the progress bar
-local progress =  wibox.widget.progressbar({
-	margins = {top = dpi(6), bottom = dpi(6)},
-	max_value = 100,
-	min_value = 0,
-	shape = gears.shape.rounded_bar,
-	bar_shape = gears.shape.rounded_bar,
-	background_color = beautiful.blue,
-	color = beautiful.light_blue,
-	bar_border_width = dpi(6)
-})
+-- Progress bar
+local progress =  wibox.widget.progressbar()
+progress.margins = {top = dpi(6), bottom = dpi(6)}
+progress.max_value = 100
+progress.shape = gears.shape.rounded_bar
+progress.bar_shape = gears.shape.rounded_bar
+progress.background_color = beautiful.white .. "40"
+progress.color = beautiful.light_blue
+progress.bar_border_width = dpi(6)
 
--- the slider
-local slider = wibox.widget.slider({
-	shape = gears.shape.rounded_bar,
-	bar_margins = {top = dpi(6), bottom = dpi(6)},
-	maximum = 100,
-	minimum = 0,
-	value = 0,
-	-- Sliderr
-	bar_active_color = beautiful.light_blue,
-	bar_color = beautiful.blue,
-	bar_shape = gears.shape.rounded_bar,
-	-- Handle
-	handle_shape = gears.shape.circle,
-	handle_border_width = dpi(2),
-	handle_border_color = beautiful.blue,
-	handle_color = beautiful.light_blue,
-	handle_width = dpi(30)
-})
+-- Slider
+local slider = wibox.widget.slider()
+slider.shape = gears.shape.rounded_bar
+slider.bar_margins = {top = dpi(6), bottom = dpi(6)}
+slider.maximum = 100
+slider.minimum = 0
+slider.value = 0
+slider.bar_active_color = beautiful.light_blue
+slider.bar_color = beautiful.blue
+slider.bar_shape = gears.shape.rounded_bar
+slider.handle_shape = gears.shape.circle
+slider.handle_border_width = dpi(2)
+slider.handle_border_color = beautiful.blue
+slider.handle_color = beautiful.light_blue
+slider.handle_width = dpi(30)
 
--- slider's behavior (kinda)...
 slider:connect_signal("property::value", function(_, newValue)
 	awful.spawn.with_shell("pamixer -D pulse set Master " .. newValue .. "%")
 end)
@@ -162,7 +156,7 @@ awesome.connect_signal("signal::brightness", function(bri)
 		popup.visible = true
 
 		slide.target = bri
-		progress.color = beautiful.yellow
+		progress.color = beautiful.orange
 		name.markup = "Brightness"
 		icon.markup = ""
 
