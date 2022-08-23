@@ -361,30 +361,19 @@ local weather = create_box(weather_widget, 300, 300, beautiful.blue)
 -- }}}
 
 -- PLACING {{{
+local left = wibox.layout.fixed.vertical(profile, uptime)
+local middle = wibox.layout.fixed.vertical(clock, calendar)
+local sliders = wibox.layout.fixed.horizontal(stats, disk)
+local right = wibox.layout.fixed.vertical(weather, sliders)
+
 dashboard : setup {
 	nil,
 	{
 		nil,
 		{
-			{
-				profile,
-				uptime,
-				layout = wibox.layout.fixed.vertical,
-			},
-			{
-				clock,
-				calendar,
-				layout = wibox.layout.fixed.vertical,
-			},
-			{
-				weather,
-				{
-					stats,
-					disk,
-					layout = wibox.layout.fixed.horizontal,
-				},
-				layout = wibox.layout.fixed.vertical,
-			},
+			left,
+			middle,
+			right,
 			spacing = dpi(10),
 			layout = wibox.layout.fixed.horizontal,
 		}, 
