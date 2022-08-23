@@ -98,13 +98,13 @@ globalkeys = my_table.join(
               {description = "Select previous", group = "Layout"}),
 
 -- Volume
-    -- awful.key({ }, "XF86AudioRaiseVolume", function() awful.spawn.with_shell("pamixer -i 3") end, {description = "Raise volume", group = "Volume"}),
-    -- awful.key({ }, "XF86AudioLowerVolume", function() awful.spawn.with_shell("pamixer -d 3") end, {description = "Lower volume", group = "Volume"}),
-    -- awful.key({ }, "XF86AudioMute", function() awful.spawn.with_shell("pamixer -t") end , {description = "Mute", group = "Volume"}),
+    awful.key({ }, "XF86AudioRaiseVolume", function() awful.spawn.with_shell("pamixer -i 3") end, {description = "Raise volume", group = "Volume"}),
+    awful.key({ }, "XF86AudioLowerVolume", function() awful.spawn.with_shell("pamixer -d 3") end, {description = "Lower volume", group = "Volume"}),
+    awful.key({ }, "XF86AudioMute", function() awful.spawn.with_shell("pamixer -t") end , {description = "Mute", group = "Volume"}),
 
 -- Brightness
-    -- awful.key({ }, "XF86MonBrightnessUp", function() awful.spawn.with_shell("brightnessctl set 3%+") end, {description = "Increase brightness", group = "Brightness"}),
-    -- awful.key({ }, "XF86MonBrightnessDown", function() awful.spawn.with_shell("brightnessctl set 3%-") end, {description = "Decrease brightness", group = "Brightness"}),
+    awful.key({ }, "XF86MonBrightnessUp", function() awful.spawn.with_shell("brightnessctl set 3%+") end, {description = "Increase brightness", group = "Brightness"}),
+    awful.key({ }, "XF86MonBrightnessDown", function() awful.spawn.with_shell("brightnessctl set 3%-") end, {description = "Decrease brightness", group = "Brightness"}),
 
 -- Toggle spaces
     awful.key({altkey}, "c", function() awesome.emit_signal("sidebar::toggle") end, {description = "Toggle sidebar", group = "Spaces"}),
