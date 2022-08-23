@@ -196,7 +196,7 @@ uptime_text.align = "center"
 local uptime_icon = wibox.widget.textbox()
 uptime_icon.font = beautiful.font_name .. " Regular 42"
 uptime_icon.align = 'center'
-uptime_icon.markup = coloring_text("󰌢", beautiful.dark_blue)
+uptime_icon.markup = coloring_text("󰌢", beautiful.blue)
 
 gears.timer {
 	timeout = 60,
