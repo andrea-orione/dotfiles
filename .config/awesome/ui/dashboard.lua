@@ -294,6 +294,7 @@ disk_text.valign = 'center'
 local disk_progressbar = wibox.widget.progressbar()
 disk_progressbar.color = beautiful.red
 disk_progressbar.background_color = beautiful.transparent
+disk_progressbar.shape = rr
 local disk_bar = wibox.container.rotate(disk_progressbar, "east")
 
 local function get_disk()
