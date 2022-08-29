@@ -196,7 +196,7 @@ uptime_text.align = "center"
 local uptime_icon = wibox.widget.textbox()
 uptime_icon.font = beautiful.font_name .. " Regular 42"
 uptime_icon.align = 'center'
-uptime_icon.markup = coloring_text("󰌢", beautiful.blue)
+uptime_icon.markup = coloring_text("", beautiful.blue)
 
 gears.timer {
 	timeout = 60,
@@ -222,8 +222,8 @@ local bright_icon = wibox.widget.textbox()
 volume_icon.font = beautiful.font_name .. " Regular 42"
 bright_icon.font = beautiful.font_name .. " Regular 42"
 
-volume_icon.markup = coloring_text("󰋋", beautiful.blue)
-bright_icon.markup = coloring_text("󰃟", beautiful.orange)
+volume_icon.markup = coloring_text("", beautiful.blue)
+bright_icon.markup = coloring_text("", beautiful.orange)
 
 local volume_progressbar = wibox.widget.progressbar()
 volume_progressbar.max_value = 100
@@ -234,7 +234,19 @@ volume_progressbar.bar_shape = gears.shape.rounded_bar
 local volume_slider = wibox.container.rotate(volume_progressbar, "east")
 volume_slider.forced_width = dpi(5)
 volume_slider.forced_height = dpi(150)
-awesome.connect_signal("signal::volume", function(value,_)
+awesome.connect_signal("signal::volume", function(value, muted)
+	if muted then
+		volume_icon.markup = coloring_text("", beautiful.blue)
+		volume_progressbar.value = 0
+		return
+	end
+	if value >= 60 then
+		volume_icon.markup = coloring_text("", beautiful.blue)
+	elseif value < 30 then
+		volume_icon.markup = coloring_text("", beautiful.blue)
+	else
+		volume_icon.markup = coloring_text("", beautiful.blue)
+	end
 	volume_progressbar.value = value
 end)
 
@@ -253,19 +265,19 @@ end)
 
 volume_slider:buttons(gears.table.join(
 	awful.button({ }, 4, function()
-		awful.spawn.with_shell("pamixer -i 2")
+		awful.spawn.with_shell("pamixer -i 5")
 	end),
 	awful.button({ }, 5, function()
-		awful.spawn.with_shell("pamixer -d 2")
+		awful.spawn.with_shell("pamixer -d 5")
 	end)
 ))
 
 bright_slider:buttons(gears.table.join(
 	awful.button({ }, 4, function()
-		awful.spawn.with_shell("brightnessctl set +2%")
+		awful.spawn.with_shell("brightnessctl set +4%")
 	end),
 	awful.button({ }, 5, function()
-		awful.spawn.with_shell("brightnessctl set 2%-")
+		awful.spawn.with_shell("brightnessctl set 4%-")
 	end)
 ))
 
