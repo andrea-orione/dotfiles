@@ -14,7 +14,7 @@ local theme                                     = {}
 
 -- Folders
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/orion-blue"
-theme.wallpapers_folder                         = os.getenv("HOME") .. "/.wallpapers"
+theme.wallpapers_folder                         = theme.confdir .. "/wallpapers"
 
 -- User
 theme.user_description                          = "Description"
@@ -28,13 +28,13 @@ theme.taglist_font                              = "Ubuntu Regular 11"
 -- Colors 
 theme.white                                     = "#eeeeee"
 theme.black                                     = "#000000"
-theme.light_blue                                = "#00e1ff"
-theme.dark_blue                                 = "#101029"
+theme.light_blue                                = "#00e1ff"--"#00bff9"
+theme.dark_blue                                 = "#011627"
 theme.blue                                      = "#84a0c6"
-theme.yellow                                    = "#ffef00"
 theme.green                                     = "#00b70a"
-theme.red                                       = "#da0700"
-theme.orange                                    = "#fea400"
+theme.red                                       = "#bb0000"
+theme.orange                                    = "#fd971f"
+theme.yellow                                    = "#a6e22e"
 theme.transparent                               = "#00000000"
 
 -- Menu

@@ -188,7 +188,7 @@ local function crt_slider(color)
 end
 
 local volume_slider = crt_slider(beautiful.blue)
-local bright_slider = crt_slider(beautiful.yellow)
+local bright_slider = crt_slider(beautiful.orange)
 
 local search_vol = true
 

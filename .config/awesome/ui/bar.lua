@@ -7,6 +7,7 @@ local beautiful = require("beautiful") --Theme handler
 
 local os = os
 local my_table = awful.util.table or gears.table --Binding tale 4.{0,1} compatibility
+local dpi = beautiful.xresources.apply_dpi
 
 local markup = lain.util.markup
 local separator =lain.util.separators
@@ -205,7 +206,7 @@ function draw_bar_at_the_top(scr)
     scr.mytaglist = awful.widget.taglist(scr, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
 
     -- Create the wibox
-    scr.mywibox = awful.wibar({ position = "top", screen = scr, height = 20, bg = beautiful.bar_bg_normal, fg = beautiful.bar_fg_normal })
+    scr.mywibox = awful.wibar({ position = "top", screen = scr, height = dpi(20), bg = beautiful.bar_bg_normal, fg = beautiful.bar_fg_normal })
 
     -- Add widgets to the wibox
     scr.mywibox:setup {

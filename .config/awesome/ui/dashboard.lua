@@ -10,7 +10,7 @@ local my_table = awful.util.table or gears.table -- bindings table 4.{0,1} compa
 
 -- SETUP {{{
 local box_gap = dpi(10)
-local border_radius = 10
+local border_radius = dpi(10)
 
 local dashboard = wibox {
 	visible = false,
