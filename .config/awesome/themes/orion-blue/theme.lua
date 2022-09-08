@@ -34,6 +34,7 @@ theme.green                                     = "#00b70a"
 theme.red                                       = "#bb0000"
 theme.orange                                    = "#ff961f"
 theme.yellow                                    = "#a6e22e"
+theme.purple                                    = "#6C00D9"
 theme.transparent                               = "#00000000"
 
 -- Menu
