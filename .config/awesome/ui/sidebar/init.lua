@@ -170,7 +170,7 @@ local function crt_icon(text, color)
 	return icon_widget
 end
 
-local volume_icon = crt_icon("󰋋", beautiful.blue)
+local volume_icon = crt_icon("󰋋", beautiful.light_blue)
 local bright_icon = crt_icon("󰃟", beautiful.orange)
 
 local function crt_slider(color)
@@ -187,7 +187,7 @@ local function crt_slider(color)
 	return slider_widget
 end
 
-local volume_slider = crt_slider(beautiful.blue)
+local volume_slider = crt_slider(beautiful.light_blue)
 local bright_slider = crt_slider(beautiful.orange)
 
 local search_vol = true

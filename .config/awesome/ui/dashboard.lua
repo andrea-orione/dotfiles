@@ -133,7 +133,7 @@ local clock = create_box(clock_widget, 360, 200, beautiful.dark_blue)
 local styles = {}
 styles.month = { 
 	padding = dpi(20),
-	fg_color = beautiful.blue,
+	fg_color = beautiful.light_blue,
 	bg_color = beautiful.transparent,
 	border_width = dpi(0)
 }
@@ -148,7 +148,7 @@ styles.header = {
 	markup = function(t) return '<span font_desc="' .. beautiful.font_name .. ' Bold 20">' ..  t .. '</span>' end
 }
 styles.weekday = {
-	fg_color = beautiful.blue,
+	fg_color = beautiful.light_blue,
 	bg_color = beautiful.transparent,
 	padding = dpi(3),
 	markup   = function(t) return '<b>' .. t .. '</b>' end
@@ -173,7 +173,7 @@ local function decorate_cell(widget, flag, date)
             widget  = wibox.container.margin
         },
         shape        = props.shape,
-        border_color = props.border_color or beautiful.blue,
+        border_color = props.border_color or beautiful.light_blue,
         border_width = props.border_width or 0,
         fg           = props.fg_color or "#999999",
         bg           = props.bg_color or default_bg,
@@ -196,7 +196,7 @@ uptime_text.align = "center"
 local uptime_icon = wibox.widget.textbox()
 uptime_icon.font = beautiful.font_name .. " Regular 42"
 uptime_icon.align = 'center'
-uptime_icon.markup = coloring_text("", beautiful.blue)
+uptime_icon.markup = coloring_text("", beautiful.light_blue)
 
 gears.timer {
 	timeout = 60,
@@ -222,12 +222,12 @@ local bright_icon = wibox.widget.textbox()
 volume_icon.font = beautiful.font_name .. " Regular 42"
 bright_icon.font = beautiful.font_name .. " Regular 42"
 
-volume_icon.markup = coloring_text("", beautiful.blue)
+volume_icon.markup = coloring_text("", beautiful.light_blue)
 bright_icon.markup = coloring_text("", beautiful.orange)
 
 local volume_progressbar = wibox.widget.progressbar()
 volume_progressbar.max_value = 100
-volume_progressbar.color = beautiful.blue
+volume_progressbar.color = beautiful.light_blue
 volume_progressbar.background_color = beautiful.white .. "40"
 volume_progressbar.shape = gears.shape.rounded_bar
 volume_progressbar.bar_shape = gears.shape.rounded_bar
@@ -236,16 +236,16 @@ volume_slider.forced_width = dpi(5)
 volume_slider.forced_height = dpi(150)
 awesome.connect_signal("signal::volume", function(value, muted)
 	if muted then
-		volume_icon.markup = coloring_text("", beautiful.blue)
+		volume_icon.markup = coloring_text("", beautiful.light_blue)
 		volume_progressbar.value = 0
 		return
 	end
 	if value >= 60 then
-		volume_icon.markup = coloring_text("", beautiful.blue)
+		volume_icon.markup = coloring_text("", beautiful.light_blue)
 	elseif value < 30 then
-		volume_icon.markup = coloring_text("", beautiful.blue)
+		volume_icon.markup = coloring_text("", beautiful.light_blue)
 	else
-		volume_icon.markup = coloring_text("", beautiful.blue)
+		volume_icon.markup = coloring_text("", beautiful.light_blue)
 	end
 	volume_progressbar.value = value
 end)

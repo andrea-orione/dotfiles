@@ -10,7 +10,7 @@ icon.align = 'center'
 icon.valign = 'center'
 icon.markup = "<span foreground='#000000'>󰂯</span>"
 
-local bluetooth = wibox.container.background(icon, beautiful.blue)
+local bluetooth = wibox.container.background(icon, beautiful.light_blue)
 bluetooth.forced_width = dpi(50)
 bluetooth.forced_height = dpi(50)
 bluetooth.shape = function(cr,w,h) gears.shape.rounded_rect(cr,w,h,5) end
@@ -22,7 +22,7 @@ bluetooth:buttons(gears.table.join(
 		stat = not stat
 		if stat then
 			icon.markup = "<span foreground='#000000'>󰂯</span>"
-			bluetooth.bg = beautiful.blue
+			bluetooth.bg = beautiful.light_blue
 			awful.spawn.with_shell "bluetoothctl power on"
 		else
 			icon.markup = "<span foreground='" .. beautiful.fg_normal .. "'>󰂲</span>"

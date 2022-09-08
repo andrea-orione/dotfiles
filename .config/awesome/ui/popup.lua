@@ -39,11 +39,11 @@ slider.maximum = 100
 slider.minimum = 0
 slider.value = 0
 slider.bar_active_color = beautiful.light_blue
-slider.bar_color = beautiful.blue
+slider.bar_color = beautiful.light_blue
 slider.bar_shape = gears.shape.rounded_bar
 slider.handle_shape = gears.shape.circle
 slider.handle_border_width = dpi(2)
-slider.handle_border_color = beautiful.blue
+slider.handle_border_color = beautiful.light_blue
 slider.handle_color = beautiful.light_blue
 slider.handle_width = dpi(30)
 
@@ -124,7 +124,7 @@ awesome.connect_signal("signal::volume", function(vol,mute)
 	else
 		popup.visible = true
 		name.markup = "volume"
-		progress.color = beautiful.blue
+		progress.color = beautiful.light_blue
 
 		if mute or vol == 0 then
 			slide.target = 0

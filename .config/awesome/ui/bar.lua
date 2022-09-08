@@ -13,38 +13,10 @@ local markup = lain.util.markup
 local separator =lain.util.separators
 -- }}}
 
-
 -- TEXTCLOCK{{{
 os.setlocale(os.getenv("LANG")) -- to localize the clock
 local mytextclock = wibox.widget.textclock(markup("#eeeeee", "%A %d %B ") .. markup("#eeeeee", " %H:%M "))
 mytextclock.font = beautiful.font
--- }}}
-
--- WEATHER {{{
--- The weather information are taken from
--- https://openweathermap.org
--- To change visit the site above and look for the corresponding id
--- local weathericon = wibox.widget.imagebox(beautiful.widget_weather)
--- beautiful.weather = lain.widget.weather({
---     city_id = 3165523, -- City id (Torino, IT)
---     notification_preset = { font = beautiful.popup_font, fg = beautiful.popup_fg, bg = beautiful.popup_bg },
---     weather_na_markup = markup.fontfg(beautiful.font, beautiful.fg_normal, "N/A "),
---     settings = function()
---         descr = weather_now["weather"][1]["description"]:lower()
---         units = math.floor(weather_now["main"]["temp"])
---         widget:set_markup(markup.fontfg(beautiful.font, beautiful.fg_normal, descr .. " @ " .. units .. "°C"))
---     end
--- })
--- }}}
-
--- FILESYSTEM INFO {{{
---local fsicon = wibox.widget.imagebox(beautiful.widget_fs)
---beautiful.fs = lain.widget.fs({
---    notification_preset = { font = "Noto Sans Mono Medium 10", fg = beautiful.fg_normal },
---    settings  = function()
---        widget:set_markup(markup.fontfg(beautiful.font, "#80d9d8", fs_now.used .. "% "))
---    end
---})
 -- }}}
 
 -- MAIL IMAP CHECK {{{
@@ -100,19 +72,6 @@ local bat = lain.widget.bat({
         end
 
         widget:set_markup(markup.fontfg(beautiful.font, beautiful.fg_normal, perc .. " "))
-    end
-})
--- }}}
-
--- ALSA VOLUME {{{
-local volicon = wibox.widget.imagebox(beautiful.widget_vol)
-local volume = lain.widget.alsa({
-    settings = function()
-        if volume_now.status == "off" then
-            volume_now.level = volume_now.level .. "M"
-        end
-
-        widget:set_markup(markup.fontfg(beautiful.font, "#7493d2", volume_now.level .. "% "))
     end
 })
 -- }}}
@@ -228,12 +187,6 @@ function draw_bar_at_the_top(scr)
             --mail.widget,
             --mpdicon,
             --beautiful.mpd.widget,
-            -- netdownicon,
-            -- netdowninfo,
-            -- netupicon,
-            -- netupinfo.widget,
-            volicon,
-            volume.widget,
             memicon,
             memory.widget,
             cpuicon,

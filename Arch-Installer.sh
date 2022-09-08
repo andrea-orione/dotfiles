@@ -35,7 +35,7 @@ rm -r yay-git;
 cd $DOTFILES;
 
 $(yay -Sy);
-AUR_REQUIRED=('awesome-freedesktop-git', 'lain-git');
+AUR_REQUIRED=('awesome-git', 'awesome-freedesktop-git', 'lain-git');
 AUR_ABSENT=();
 for i in ${AUR_REQUIRED[@]}; do
 	if ! yay -Qs $i > /dev/null; then
@@ -66,8 +66,7 @@ $(curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent
 
 # neofetch
 echo "Coping neofetch config";
-mkdir -p $USER_HOME/.config/neofetch;
-cp .config/neofetch/config.conf $USER_HOME/.config/neofetch;
+cp -r .config/neofetch $USER_HOME/.config;
 
 # awsome
 echo "Coping awesome config files";
