@@ -56,6 +56,7 @@ done
 echo "Setting up lightdm";
 $(systemctl enable lightdm);
 cp lightdm.conf /etc/lightdm;
+cp lightdm-webkit2-greeter.conf /etc/lightdm;
 echo "Coping config file";
 
 # vim
