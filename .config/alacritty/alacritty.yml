@@ -34,8 +34,8 @@ window:
   #  y: 0
 
   padding: # Window padding (blank space around window in pixels scaled by DPI). Changes require restart
-    x: 15
-    y: 15
+    x: 10
+    y: 10
 
     dynamic_padding: true # Spread additional padding evenly around the terminal content
 
@@ -103,72 +103,98 @@ draw_bold_text_with_bright_colors: false # If `true`, bold text is drawn using t
 
 # COLOR SHEMES
 schemes:
+  # Example: &Example
+  #   primary: # Default colors
+  #     background: '#1d1f21'
+  #     foreground: '#c5c8c6'
+  #     bright_foreground: '#eaeaea'
+  #     dim_foreground: '#828482'
+  #     # The dimmed foreground color is calculated automatically if it is not
+  #     # present. If the bright foreground color is not set, or
+  #     # `draw_bold_text_with_bright_colors` is `false`, the normal foreground
+  #     # color will be used.
+  #   cursor: # Cursor colors (CellForeground/CellBackground or hexadecimal colors)
+  #       text: CellBackground
+  #       cursor: CellForeground
+  #   vi_mode_cursor: # Colors for the cursor when the vi mode is active (CellForeground/CellBackground or hexadecimal colors)
+  #     text: CellBackground
+  #     cursor: CellForeground
+  #   search: # Search colors (CellForeground/CellBackground or hexadecimal colors)
+  #     matches:
+  #       foreground: '#000000'
+  #       background: '#ffffff'
+  #     focused_match:
+  #       foreground: '#ffffff'
+  #       background: '#000000'
+  #   hints: # Keyboard hints
+  #     start: # First character in the hint label (CellForeground/CellBackground or hexadecimal colors)
+  #       foreground: '#1d1f21'
+  #       background: '#e9ff5e'
+  #     end: # All characters after the first one in the hint label (CellForeground/CellBackground or hexadecimal colors)
+  #       foreground: '#e9ff5e'
+  #       background: '#1d1f21'
+  #   line_indicator: # Line indicator used for the indicator displaying the position in history during search and vi mode.
+  #     foreground: None
+  #     background: None
+  #   footer_bar:
+  #     background: '#c5c8c6'
+  #     foreground: '#1d1f21'
+  #   selection: # Selection colors (CellForeground/CellBackground or hexadecimal colors)
+  #     text: CellBackground
+  #     background: CellForeground
+  #   normal: # Normal colors
+  #     black:   '#1d1f21'
+  #     red:     '#cc6666'
+  #     green:   '#b5bd68'
+  #     yellow:  '#f0c674'
+  #     blue:    '#81a2be'
+  #     magenta: '#b294bb'
+  #     cyan:    '#8abeb7'
+  #     white:   '#c5c8c6'
+  #   bright: # Bright colors
+  #     black:   '#666666'
+  #     red:     '#d54e53'
+  #     green:   '#b9ca4a'
+  #     yellow:  '#e7c547'
+  #     blue:    '#7aa6da'
+  #     magenta: '#c397d8'
+  #     cyan:    '#70c0b1'
+  #     white:   '#eaeaea'
+  #   dim: # Dim colors (if not set they will be calculated automaticalli based on the `normal` colors)
+  #     black:   '#131415'
+  #     red:     '#864343'
+  #     green:   '#777c44'
+  #     yellow:  '#9e824c'
+  #     blue:    '#556a7d'
+  #     magenta: '#75617b'
+  #     cyan:    '#5b7d78'
+  #     white:   '#828482'
+
   TomorrowNight: &TomorrowNight
-    primary: # Default colors
+    primary:
       background: '#1d1f21'
       foreground: '#c5c8c6'
-      bright_foreground: '#eaeaea'
-      dim_foreground: '#828482'
-      # The dimmed foreground color is calculated automatically if it is not
-      # present. If the bright foreground color is not set, or
-      # `draw_bold_text_with_bright_colors` is `false`, the normal foreground
-      # color will be used.
-    cursor: # Cursor colors (CellForeground/CellBackground or hexadecimal colors)
-        text: CellBackground
-        cursor: CellForeground
-    vi_mode_cursor: # Colors for the cursor when the vi mode is active (CellForeground/CellBackground or hexadecimal colors)
-      text: CellBackground
-      cursor: CellForeground
-    search: # Search colors (CellForeground/CellBackground or hexadecimal colors)
-      matches:
-        foreground: '#000000'
-        background: '#ffffff'
-      focused_match:
-        foreground: '#ffffff'
-        background: '#000000'
-    hints: # Keyboard hints
-      start: # First character in the hint label (CellForeground/CellBackground or hexadecimal colors)
-        foreground: '#1d1f21'
-        background: '#e9ff5e'
-      end: # All characters after the first one in the hint label (CellForeground/CellBackground or hexadecimal colors)
-        foreground: '#e9ff5e'
-        background: '#1d1f21'
-    line_indicator: # Line indicator used for the indicator displaying the position in history during search and vi mode.
-      foreground: None
-      background: None
-    footer_bar:
-      background: '#c5c8c6'
-      foreground: '#1d1f21'
-    selection: # Selection colors (CellForeground/CellBackground or hexadecimal colors)
-      text: CellBackground
-      background: CellForeground
-    normal: # Normal colors
+    cursor:
+      text: '#1d1f21'
+      cursor: '#ffffff'
+    normal:
       black:   '#1d1f21'
       red:     '#cc6666'
       green:   '#b5bd68'
-      yellow:  '#f0c674'
+      yellow:  '#e6c547'
       blue:    '#81a2be'
       magenta: '#b294bb'
-      cyan:    '#8abeb7'
-      white:   '#c5c8c6'
-    bright: # Bright colors
+      cyan:    '#70c0ba'
+      white:   '#373b41'
+    bright:
       black:   '#666666'
-      red:     '#d54e53'
-      green:   '#b9ca4a'
-      yellow:  '#e7c547'
-      blue:    '#7aa6da'
-      magenta: '#c397d8'
-      cyan:    '#70c0b1'
-      white:   '#eaeaea'
-    dim: # Dim colors (if not set they will be calculated automaticalli based on the `normal` colors)
-      black:   '#131415'
-      red:     '#864343'
-      green:   '#777c44'
-      yellow:  '#9e824c'
-      blue:    '#556a7d'
-      magenta: '#75617b'
-      cyan:    '#5b7d78'
-      white:   '#828482'
+      red:     '#ff3334'
+      green:   '#9ec400'
+      yellow:  '#f0c674'
+      blue:    '#81a2be'
+      magenta: '#b77ee0'
+      cyan:    '#54ced6'
+      white:   '#282a2e'
 
   Dracula: &Dracula
     primary:
@@ -280,34 +306,34 @@ schemes:
       cyan:    '#78DCE8'
       white:   '#FCFCFA'
 
-  Electron: &Electron
+  OrionBlue: &OrionBlue
     primary:
-      background: '#212836'
-      foreground: '#97a7c8'
+      background: '#011627'
+      foreground: '#eeeeee'
     cursor:
       text: CellBackground
-      cursor: '#f30f4c'
+      cursor: '#219fd5'
     selection: # Selection colors (CellForeground/CellBackground or hexadecimal colors)
-      text: CellForeground
-      background: "#e6eeff21"
+      text: CellBackground
+      background: CellForeground
     normal: # Normal colors
-      black:   '#1d1f21'
-      red:     '#cc6666'
-      green:   '#b5bd68'
-      yellow:  '#EAB780'
-      blue:    '#81a2be'
-      magenta: '#b294bb'
-      cyan:    '#8abeb7'
-      white:   '#c5c8c6'
+      black:   '#000000'
+      red:     '#bb0000'
+      green:   '#00b70a'
+      yellow:  '#a6e22e'
+      blue:    '#00e1ff'
+      magenta: '#6C00D9'
+      cyan:    '#89DDFF'
+      white:   '#eeeeee'
     bright: # Bright colors
-      black:   '#666666'
-      red:     '#d54e53'
-      green:   '#b9ca4a'
-      yellow:  '#e7c547'
+      black:   '#999999'
+      red:     '#f07178'
+      green:   '#A6E22E'
+      yellow:  '#f7ecb5'
       blue:    '#7aa6da'
-      magenta: '#c397d8'
-      cyan:    '#70c0b1'
-      white:   '#eaeaea'
+      magenta: '#F92672'
+      cyan:    '#89DDFF'
+      white:   '#ffffff'
 
 # COLOR
 # Choose between:
@@ -315,15 +341,15 @@ schemes:
 #   *Dracula
 #   *DoomOne
 #   *MonokaiPro
-#   *Electron
-colors: *TomorrowNight
+#   *OrionBlue
+colors: *OrionBlue
 
 # BELL
 bell: # The bell is rung every time the BEL control character is received.
   animation: EaseOutExpo # Animation effect for flashing the screen when the visual bell is rung.
   # Values for `animation`:
   #   - Ease
-  #   - EaseOut
+  #   - EaseOutkt
   #   - EaseOutSine
   #   - EaseOutQuad
   #   - EaseOutCubic
@@ -612,7 +638,7 @@ mouse_bindings:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
-#key_bindings:
+key_bindings:
   - { key: Paste,                                       action: Paste          }
   - { key: Copy,                                        action: Copy           }
   - { key: L,         mods: Control,                    action: ClearLogNotice }
@@ -622,7 +648,7 @@ mouse_bindings:
   - { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop    }
   - { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
 
-   Vi Mode
+  # Vi Mode
   - { key: Space,  mods: Shift|Control, mode: ~Search,    action: ToggleViMode            }
   - { key: Space,  mods: Shift|Control, mode: Vi|~Search, action: ScrollToBottom          }
   - { key: Escape,                      mode: Vi|~Search, action: ClearSelection          }
@@ -645,7 +671,7 @@ mouse_bindings:
   - { key: V,      mods: Control,       mode: Vi|~Search, action: ToggleBlockSelection    }
   - { key: V,      mods: Alt,           mode: Vi|~Search, action: ToggleSemanticSelection }
   - { key: Return,                      mode: Vi|~Search, action: Open                    }
-  - { key: Z,                           mode: Vi|~Search, action: CenterAroundViCursor    }
+#  - { key: Z,                           mode: Vi|~Search, action: CenterAroundViCursor    }
   - { key: K,                           mode: Vi|~Search, action: Up                      }
   - { key: J,                           mode: Vi|~Search, action: Down                    }
   - { key: H,                           mode: Vi|~Search, action: Left                    }
