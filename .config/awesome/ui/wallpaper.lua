@@ -2,13 +2,13 @@ local os, io, root, math = os, io, root, math
 
 local gears = require("gears")
 local beautiful = require("beautiful")
+local awful = require("awful")
 
 local cairo = require("lgi").cairo --Wallpaper transition
 
 
--- TODO change this to something that stays the same
 local function set_wallpaper(wallpaper, s)
-    gears.wallpaper.maximized(wallpaper, s, true)
+    awful.spawn.with_shell("feh --bg-scale ~/.wallpapers/" .. wallpaper)
 end
 
 local function reset_current_wallpaper(s)

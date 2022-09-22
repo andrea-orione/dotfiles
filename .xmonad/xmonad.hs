@@ -143,7 +143,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0,                    xF86XK_AudioPrev), spawn "playerctl previous")
     , ((0,                    xF86XK_AudioNext), spawn "playerctl next")
     , ((0,                    xF86XK_AudioRaiseVolume), spawn "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +5%")
-    , ((0,                    xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume 0 +5%")
+    , ((0,                    xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume 0 -5%")
     , ((0,                    xF86XK_AudioMute), spawn "pactl set-sink-mute 0 toggle ")
     
     -- Brightness keys
@@ -166,7 +166,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Client focus keys
     , ((modm,                 xK_Tab   ), windows W.focusDown   ) -- Move focus to the next window
     , ((modm,                 xK_j     ), windows W.focusDown   ) -- Move focus to the next window
-    , ((modm .|. shiftMask,   xK_Tab   ), windows W.focusUp   ) -- Move focus to the previous window
+    , ((modm .|. shiftMask,   xK_Tab   ), windows W.focusUp     ) -- Move focus to the previous window
     , ((modm,                 xK_k     ), windows W.focusUp     ) -- Move focus to the previous window
     , ((modm,                 xK_m     ), windows W.focusMaster ) -- Move focus to the master window
     , ((modm .|. shiftMask,   xK_j     ), windows W.swapDown    ) -- Swap the focused window with the next window
@@ -296,7 +296,7 @@ defaults = defaultConfig {
         focusedBorderColor = myFocusedBorderColor,
 
       -- key bindings
-        keys               = myKeys,
+        keys               = myKeys,Open a browser
         mouseBindings      = myMouseBindings,
 
       -- hooks, layouts
