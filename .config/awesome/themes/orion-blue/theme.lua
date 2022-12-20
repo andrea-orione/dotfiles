@@ -14,7 +14,6 @@ local theme                                     = {}
 
 -- Folders
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/orion-blue"
-theme.wallpapers_folder                         = theme.confdir .. "/wallpapers"
 
 -- User
 theme.user_description                          = "Description"

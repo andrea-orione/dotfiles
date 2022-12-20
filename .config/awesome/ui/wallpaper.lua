@@ -8,7 +8,7 @@ local cairo = require("lgi").cairo --Wallpaper transition
 
 
 local function set_wallpaper(wallpaper, s)
-    awful.spawn.with_shell("feh --bg-scale ~/.wallpapers/" .. wallpaper)
+    awful.spawn.with_shell("feh --bg-scale " .. wallpaper)
 end
 
 local function reset_current_wallpaper(s)
@@ -58,7 +58,7 @@ end
 
 function draw_changing_wallpaper(scr)
     math.randomseed(os.time())
-    local wallpaperList = scanDir(beautiful.wallpapers_folder)
+    local wallpaperList = scanDir(os.getenv("HOME") .. "/.wallpapers")
     set_wallpaper(wallpaperList[math.random(1, #wallpaperList)], scr)
     local changing_time = 1800
     wallpaper_timer = gears.timer{
