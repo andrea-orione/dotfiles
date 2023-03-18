@@ -469,11 +469,11 @@
    `(undo-tree-visualizer-unmodified-face ((,class (:foreground ,orion-green))))
 
    ;;all-the-icons
-   `(all-the-icons-blue       ((,class (:foreground ,orion-bg-2))))
+   `(all-the-icons-blue       ((,class (:foreground ,orion-cyan))))
    `(all-the-icons-blue-alt   ((,class (:foreground ,orion-gray))))
    `(all-the-icons-cyan       ((,class (:foreground ,orion-cyan))))
    `(all-the-icons-cyan-alt   ((,class (:foreground ,orion-gray))))
-   `(all-the-icons-dblue      ((,class (:foreground ,orion-blue-1 ))))
+   `(all-the-icons-dblue      ((,class (:foreground ,orion-cyan-1))))
    `(all-the-icons-dcyan      ((,class (:foreground ,orion-gray))))
    `(all-the-icons-dgreen     ((,class (:foreground ,orion-green))))
    `(all-the-icons-dorange    ((,class (:foreground ,orion-orange))))
@@ -481,7 +481,7 @@
    `(all-the-icons-dpurple    ((,class (:foreground ,orion-purple))))
    `(all-the-icons-dred       ((,class (:foreground ,orion-red))))
    `(all-the-icons-dyellow    ((,class (:foreground ,orion-yellow))))
-   `(all-the-icons-green      ((,class (:foreground ,orion-green+1))))
+   `(all-the-icons-green      ((,class (:foreground ,orion-green))))
    `(all-the-icons-lblue      ((,class (:foreground ,orion-cyan-1))))
    `(all-the-icons-lcyan      ((,class (:foreground ,orion-cyan+1))))
    `(all-the-icons-maroon     ((,class (:foreground ,orion-magenta))))
