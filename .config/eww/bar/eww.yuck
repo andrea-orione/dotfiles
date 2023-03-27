@@ -1,0 +1,31 @@
+(defpoll time
+    :interval "20s"
+    `date +"%a %d %b | %R"`)
+
+(deflisten workspace :initial "(box (label :text \"A 2 3 4 5 6 7 8 9 10\" ))"
+   "../scripts/workspaces.sh")
+
+(defwindow bar
+    :monitor 0
+    :windowtype "dock"
+    :geometry (geometry :width "100%"
+                        :anchor "top center")
+    :exclusive true
+    (box :class "main-container"
+         :space-evenly "true"
+         (box :class "workspaces"
+              :halign "start"
+              (literal :content workspace)
+         )
+
+         (box :class "time"
+              :halign "center"
+              (label :text "${time}")
+         )
+
+         (box :class "systray"
+              :haling "end"
+              (label :text "Systray")
+         )
+    )
+)
