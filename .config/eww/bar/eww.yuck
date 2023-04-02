@@ -1,31 +1,95 @@
-(defpoll time
-    :interval "20s"
-    `date +"%a %d %b | %R"`)
+;; WIDGETS
+; Time
+(defpoll clock :interval "20s" `date +"%A %d %b | %R"`)
+(defwidget time []
+    (label :class "time"
+           :text "${clock}"))
 
-(deflisten workspace :initial "(box (label :text \"A 2 3 4 5 6 7 8 9 10\" ))"
-   "../scripts/workspaces.sh")
+; Workspaces
+(deflisten workspace :initial "(box (label :class \"workspaces\" :text \"         \" ))"
+   `python ../scripts/workspaces.py`)
+(defwidget workspaces []
+   (literal :content workspace))
 
+; Battery
+(defpoll battery            :interval "1s" "../scripts/battery.sh icon")
+(defpoll battery-capacity   :interval "1s" "../scripts/battery.sh percent")
+(defwidget bat []
+    (box    :orientation "h"
+            :space-evenly "false"
+    (label  :class "bat"
+            :halign "end"
+            :text "${battery}"
+            :tooltip "Battery: ${battery-capacity}%")))
+
+; Wifi
+(defpoll wifi-icon :interval "1s" "../scripts/wifi.sh icon")
+(defpoll wifi-name :interval "1s" "../scripts/wifi.sh name")
+(defwidget wifi []
+    (box    :orientation "h"
+            :tooltip wifi-name
+    (button :class "wifi-icon"
+            wifi-icon))) ;TODO add popup
+
+; Brightness
+(defpoll current-brightenss :interval "1s" "brightnessctl get | awk -F, '{print substr($4, 0, length($4)-1)}' | tr -d '%'")
+(defvar bright-show false)
+(defwidget bright []
+    (eventbox (box    :orientation "h"
+                      :space-evenly "false"
+                      :spacing 2
+              (revealer :transition "slideleft"
+                        :reveal true
+                        :duration "550ms"
+              (scale :class "brightness-bar"
+;                     :value current-brightness
+;                     :tooltip "Brightness: ${current-brightenss}%"
+                     :onchange "brightnessctl set {}%"
+                     :orientation "h"
+                     :flipped false
+                     :max 101
+                     :min 0))
+              (label :class "brightness-icon"
+                     :text "BB"))))
+
+;; ORGANIZING
+(defwidget systray []
+    (box    :orientation "h"
+            :halign "end"
+            (bright)
+            (bat)
+            (wifi)))
+
+; Left
+(defwidget left []
+    (box    :orientanion "h"
+            :halign "start"
+            (workspaces)))
+
+(defwidget center []
+    (box    :orientation "h"
+            :halign "center"
+            (time)))
+
+(defwidget right []
+    (box    :orientation "h"
+            :halign "end"
+            (systray)))
+
+(defwidget container []
+    (box    :class "main-container"
+            :orientation "h"
+            :space-evenly "true"
+            (left)
+            (center)
+            (right)))
+
+;; WINDOW
 (defwindow bar
     :monitor 0
     :windowtype "dock"
     :geometry (geometry :width "100%"
                         :anchor "top center")
     :exclusive true
-    (box :class "main-container"
-         :space-evenly "true"
-         (box :class "workspaces"
-              :halign "start"
-              (literal :content workspace)
-         )
-
-         (box :class "time"
-              :halign "center"
-              (label :text "${time}")
-         )
-
-         (box :class "systray"
-              :haling "end"
-              (label :text "Systray")
-         )
-    )
+    (container)
 )
