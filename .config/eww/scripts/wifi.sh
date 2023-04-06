@@ -1,8 +1,8 @@
 #!/bin/bash
 
 symbol() {
-    [ $(cat /sys/class/net/w*/operstate) = down ] && echo "WW" && exit
-    echo "AA"
+    [ $(cat /sys/class/net/w*/operstate) = down ] && echo "" && exit
+    echo ""
 }
 
 name() {

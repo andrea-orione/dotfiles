@@ -32,25 +32,50 @@
             wifi-icon))) ;TODO add popup
 
 ; Brightness
-(defpoll current-brightenss :interval "1s" "brightnessctl get | awk -F, '{print substr($4, 0, length($4)-1)}' | tr -d '%'")
+(defpoll current-brightenss :interval "1s" "brightnessctl -m | cut -d ',' -f 4")
 (defvar bright-show false)
 (defwidget bright []
-    (eventbox (box    :orientation "h"
+    (eventbox :onhover "eww update bright-show=true"
+              :onhoverlost "eww update bright-show=false"
+              (box    :orientation "h"
                       :space-evenly "false"
                       :spacing 2
               (revealer :transition "slideleft"
-                        :reveal true
+                        :reveal bright-show
                         :duration "550ms"
               (scale :class "brightness-bar"
-;                     :value current-brightness
-;                     :tooltip "Brightness: ${current-brightenss}%"
+;                    :value current-brightness
+;                    :tooltip "Brightness: ${current-brightenss}%"
                      :onchange "brightnessctl set {}%"
                      :orientation "h"
                      :flipped false
                      :max 101
                      :min 0))
               (label :class "brightness-icon"
-                     :text "BB"))))
+                     :text ""))))
+
+;; Volume Widgets ;;
+(defpoll current-volume :interval "1s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+(defvar volume-show false)
+(defwidget volum []
+    (eventbox :onhover "$eww update volume-show=true" 		
+			        :onhoverlost "$eww update volume-show=false"
+	  (box      :orientation "v" 	  
+			        :space-evenly "false" 
+			        :spacing "2"
+	  (revealer :transition "slideup" 
+			        :reveal volume-show
+			        :duration "550ms"
+	  (scale    :class "volbar" 	  
+			        :value current-volume 
+			        :orientation "v"      
+			        :flipped true 
+			        :tooltip "Volume: ${current-volume}%" 
+			        :max 101 
+			        :min 0 
+			        :onchange "amixer -D pulse sset Master {}%" ))
+	  (button   :onclick "scripts/popup audio"   :class "volume-icon" ""))))
+
 
 ;; ORGANIZING
 (defwidget systray []
