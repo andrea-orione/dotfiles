@@ -83,7 +83,8 @@
             :halign "end"
             (bright)
             (bat)
-            (wifi)))
+            (wifi)
+            (volum)))
 
 ; Left
 (defwidget left []
