@@ -45,7 +45,7 @@ window:
   #     - full: Borders and title bar
   #     - none: Neither borders nor title bar
 
-  opacity: 1.0 # Background opacity. Floating between `0.0` (transparent) and `1.0` (opaque)
+  opacity: 0.8 # Background opacity. Floating between `0.0` (transparent) and `1.0` (opaque)
 
   startup_mode: Maximized # Startup Mode. Changes require restart
   # Values for `startup_mode`:
