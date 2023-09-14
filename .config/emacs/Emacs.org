@@ -1126,8 +1126,9 @@ Here will be defined the =orion/org-font-setup= function that configures the tex
 
 #+begin_src emacs-lisp
 
-(use-package org-make-toc
-  :hook (org-mode . org-make-toc-mode))
+(use-package toc-org
+  :commands toc-org-enable
+  :hook (org-mode . toc-org-enable))
 
 #+end_src
 

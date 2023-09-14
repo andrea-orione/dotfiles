@@ -9,7 +9,7 @@ cd $DOTFILES;
 
 # PACKAGES INSTALLATION {{{
 # should add htop
-REQUIRED=('neofetch' 'vim' 'xorg' 'picom' 'alacritty' 'firefox' 'lightdm' 'lightdm-webkit2-greeter', 'base-devel', 'ttf-ubuntu-font-family');
+REQUIRED=('neofetch' 'vim' 'neovim' 'picom' 'alacritty' 'firefox' 'lightdm' 'lightdm-webkit2-greeter', 'base-devel', 'ttf-ubuntu-font-family');
 ABSENT=();
 
 echo "Checking installed packages";
@@ -35,7 +35,7 @@ rm -r yay-git;
 cd $DOTFILES;
 
 $(yay -Sy);
-AUR_REQUIRED=('awesome-git', 'awesome-freedesktop-git', 'lain-git');
+AUR_REQUIRED=('lain-git');
 AUR_ABSENT=();
 for i in ${AUR_REQUIRED[@]}; do
 	if ! yay -Qs $i > /dev/null; then
