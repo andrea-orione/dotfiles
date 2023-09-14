@@ -15,7 +15,6 @@
 - arduino
 - keepassxc
 - waybar
-- networkmanager
 - bash and bash-completion
 - bind
 - root (the data analisys tool)

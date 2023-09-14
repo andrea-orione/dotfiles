@@ -4,25 +4,17 @@ DOTFILES=$PWD;
 cd $DOTFILES;
 cd ..
 USER_HOME=$PWD;
-$(pacman -Sy);
+$(sudo pacman -Sy);
 cd $DOTFILES;
 
 # PACKAGES INSTALLATION {{{
 # should add htop
-REQUIRED=('neofetch' 'vim' 'neovim' 'picom' 'alacritty' 'firefox' 'lightdm' 'lightdm-webkit2-greeter', 'base-devel', 'ttf-ubuntu-font-family');
-ABSENT=();
-
-echo "Checking installed packages";
-for i in ${REQUIRED[@]}; do
-	if ! pacman -Qs $i > /dev/null; then
-		ABSENT+=($i);
-	fi
-done
+REQUIRED=('neofetch' 'vim' 'neovim' 'firefox' 'sddm' 'base-devel' 'ttf-ubuntu-font-family' 'vlc' 'rhytmbox' 'okular' 'emacs' 'alacritty' 'pipewire' 'alsa-firmware' 'alsa-plugins' 'alsa-utils' 'htop' 'eza' 'firefox' 'code' 'code-features');
 
 echo "Installation";
-for i in ${ABSENT[@]}; do
+for i in ${REQUIRED[@]}; do
 	echo "Installing $i";
-	$(pacman -S $i);
+	$(sudo pacman -S $i --needed);
 done
 
 echo "Installing yay";
@@ -36,16 +28,10 @@ cd $DOTFILES;
 
 $(yay -Sy);
 AUR_REQUIRED=('lain-git');
-AUR_ABSENT=();
-for i in ${AUR_REQUIRED[@]}; do
-	if ! yay -Qs $i > /dev/null; then
-		AUR_ABSENT+=($i);
-	fi
-done
 
-for i in ${AUR_ABSENT[@]}; do
+for i in ${AUR_REQUIRED[@]}; do
 	echo "Installing $i";
-	$(yay -S $i);
+	$(yay -S $i --needed);
 done
 
 # }}}
@@ -53,10 +39,11 @@ done
 
 # CONFIG FILE PLACING {{{
 # lightdm
-echo "Setting up lightdm";
-$(systemctl enable lightdm);
-cp lightdm.conf /etc/lightdm;
-cp lightdm-webkit2-greeter.conf /etc/lightdm;
+echo "Setting up sddm";
+$(systemctl enable sddm);
+# cp lightdm.conf /etc/lightdm;
+# cp lightdm-webkit2-greeter.conf /etc/lightdm;
+
 echo "Coping config file";
 
 # vim
