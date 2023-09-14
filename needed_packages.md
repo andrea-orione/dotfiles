@@ -33,8 +33,12 @@
 - geogebra
 - eza
 - duc (or filelight, any disk viewer)
-- firefox
+- firefox (maybe librewolf)
 - qalculate-qt 
+- neofetch
+- neovim
+- sddm
+- ttf-ubuntu-font-family
 
 
 
