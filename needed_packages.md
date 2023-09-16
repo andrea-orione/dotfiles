@@ -1,43 +1,65 @@
 # Known Packages
-- vlc
-- rhythmbox
-- partitionmanager (this is kde, or something else until you learn by terminal)
-- okular
-- emacs
-- alacritty
-- blender
-- pipewire (eventualmente pipewire-audio)
+## System
+- base-devel
+- bash-completion
+- eza
+- git
+- vim
+- networkmanager
+- sudo
+- htop
+## Desktop environment
+- pipewire
 - alsa-firmware and alsa-plugins and alsa-utils
-- appmenu-gtk-module
-- apstream-qt
-- gnucash
-- base and base-devel
-- arduino
-- keepassxc
-- waybar
-- bash and bash-completion
-- bind
-- root (the data analisys tool)
 - bluez and bluez-utils
 - blueman (this is standalone, or something else until you learn by terminal)
-- breeze-hacked-cursor-theme
-- klavaro
-- gimp
-- hyprland
-- calibre
-- code 
-- code-features
-- deja-dup
+- waybar
 - dunst
-- geogebra
-- eza
-- duc (or filelight, any disk viewer)
-- firefox (maybe librewolf)
-- qalculate-qt 
+- hyprland
 - neofetch
 - neovim
-- sddm
 - ttf-ubuntu-font-family
+- sddm
+
+## Application
+### Audio Video Music and Design
+- vlc
+- rhythmbox
+- blender
+- gimp
+- musescore
+- shotcut
+- freecad
+### System management
+- partitionmanager (this is kde, or something else until you learn by terminal)
+- deja-dup
+- duc (or filelight, any disk viewer)
+### Documents
+- libre-office-fresh
+- okular
+- calibre
+### Programming
+- emacs
+- alacritty
+- arduino
+- root (the data analisys tool)
+- code 
+- code-features
+- pycharm
+- texstudio
+### Utilities
+- gnucash
+- keepassxc
+- klavaro
+- geogebra
+- firefox (maybe librewolf)
+- qalculate-qt 
+- supertux
+
+
+- appmenu-gtk-module
+- apstream-qt
+- bind
 
 
 
@@ -45,8 +67,18 @@
 - cd utility
 - image viewer (maybe gwenview)
 - file manager
+- printer utility
+- update notifier
 
 
 # Maybe not useful
 - ark
 - audiofile
+
+
+
+
+
+# AUR
+- wpaperd
+- breeze-hacked-cursor-theme
