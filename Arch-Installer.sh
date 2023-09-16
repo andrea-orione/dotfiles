@@ -63,6 +63,10 @@ cp -r .config/waybar ~/.config/;
 
 echo "Coping wallpapers";
 cp -r .wallpapers ~/;
+
+echo "Coping bash config";
+cp .bashrc ~/;
+cp -r .bash_completion ~/;
 # }}}
 
 
