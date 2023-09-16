@@ -3,11 +3,6 @@
 DOTFILES=$PWD;
 
 echo "Installing low level packages"
-REQUIRED="neofetch vim neovim firefox sddm base-devel\
- ttf-ubuntu-font-family vlc rythmbox okular\
- emacs alacritty pipewire alsa-firmware alsa-plugins alsa-utils\
- htop eza code code-features dunst waybar";
-
 sudo pacman -S git vim networkmanager sudo base-devel bash-completion\
  eza htop --needed;
 systemctl enable networkmanager;
@@ -21,6 +16,7 @@ sudo pacman -S pipewire alsa-firmware alsa-plugins alsa-utils\
 echo "Setting up sddm";
 systemctl enable sddm;
 
+
 echo "Installing yay";
 cd ~;
 $(git clone https://aur.archlinux.org/yay-git.git);
@@ -32,7 +28,6 @@ cd $DOTFILES;
 
 echo "Installing aur packages";
 yay -Sy wpaperd breeze-hacked-cursor-theme sddm-theme-mountain-git --needed;
-
 
 
 echo "Coping config files";
