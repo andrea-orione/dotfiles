@@ -9,7 +9,7 @@ systemctl enable networkmanager;
 
 
 echo "Installing desktop environment packages"
-sudo pacman -S pipewire alsa-firmware alsa-plugins alsa-utils\
+sudo pacman -S pipewire pipewire-audio alsa-firmware alsa-plugins alsa-utils\
  bluez bluez-utils waybar dunst hyprland neofetch neovim\
  ttf-ubuntu-font-family sddm rofi;
 
