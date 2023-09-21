@@ -11,7 +11,7 @@ systemctl enable networkmanager;
 echo "Installing desktop environment packages"
 sudo pacman -S pipewire alsa-firmware alsa-plugins alsa-utils\
  bluez bluez-utils waybar dunst hyprland neofetch neovim\
- ttf-ubuntu-font-family sddm;
+ ttf-ubuntu-font-family sddm rofi;
 
 echo "Setting up sddm";
 systemctl enable sddm;

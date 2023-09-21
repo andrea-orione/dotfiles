@@ -20,6 +20,7 @@
 - neovim
 - ttf-ubuntu-font-family
 - sddm
+- rofi
 
 ## Application
 ### Audio Video Music and Design
