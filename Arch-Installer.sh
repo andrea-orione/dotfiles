@@ -12,7 +12,7 @@ echo "Installing desktop environment packages"
 sudo pacman -S pipewire pipewire-audio pipewier-pulse pavucontrol pamixer playertcl\
  alsa-firmware alsa-plugins alsa-utils\
  bluez bluez-utils waybar dunst hyprland neofetch neovim\
- ttf-ubuntu-font-family sddm rofi;
+ ttf-ubuntu-font-family sddm rofi --needed;
 
 echo "Setting up sddm";
 systemctl enable sddm;
@@ -28,7 +28,7 @@ rm -r yay-git;
 cd $DOTFILES;
 
 echo "Installing aur packages";
-yay -Sy wpaperd breeze-hacked-cursor-theme sddm-theme-mountain-git --needed;
+yay -Sy wpaperd breeze-hacked-cursor-theme sddm-theme-mountain-git swaylock-effects --needed;
 
 
 echo "Coping config files";
@@ -61,6 +61,9 @@ cp -r .config/wpaperd ~/.config/;
 
 echo "Coping waybar config";
 cp -r .config/waybar ~/.config/;
+
+echo "Coping swaylock config";
+cp -r .config/swaylock ~/.config/;
 
 echo "Coping wallpapers";
 cp -r .wallpapers ~/;

@@ -21,6 +21,7 @@
 - ttf-ubuntu-font-family
 - sddm
 - rofi
+- swaylock
 
 ## Application
 ### Audio Video Music and Design
