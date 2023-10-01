@@ -9,7 +9,7 @@ systemctl enable networkmanager;
 
 
 echo "Installing desktop environment packages"
-sudo pacman -S pipewire pipewire-audio pipewier-pulse pavucontrol pamixer playertcl\
+sudo pacman -S pipewire pipewire-audio pipewire-pulse pavucontrol pamixer playerctl\
  alsa-firmware alsa-plugins alsa-utils brightnessctl\
  bluez bluez-utils waybar dunst hyprland neofetch neovim\
  ttf-ubuntu-font-family sddm rofi --needed;
@@ -24,7 +24,7 @@ $(git clone https://aur.archlinux.org/yay-git.git);
 cd yay-git;
 $(makepkg -si);
 cd ..;
-rm -r yay-git;
+sudo rm -r yay-git;
 cd $DOTFILES;
 
 echo "Installing aur packages";
@@ -78,7 +78,10 @@ echo "Installing applications"
 sudo pacman -S vlc rhythmbox blender gimp musescore shotcut freecad\
   deja-dup duc libreoffice-fresh okular calibre\
   emacs alacritty root code code-features texstudio\
-  gnucash keepassxc geogebra firefox qalculate-qt supertux
+  gnucash keepassxc geogebra firefox qalculate-qt supertux;
+
+echo "Installing yay applications"
+yay -S code-features duc;
 
 echo "Coping emacs config";
 cp -r .config/emacs ~/.config/;
