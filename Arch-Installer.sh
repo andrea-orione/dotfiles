@@ -76,10 +76,10 @@ echo "Installing applications"
 sudo pacman -S vlc rhythmbox blender gimp musescore shotcut freecad\
   deja-dup libreoffice-fresh okular calibre\
   emacs alacritty root code texstudio\
-  gnucash keepassxc geogebra firefox qalculate-qt supertux;
+  gnucash keepassxc geogebra firefox qalculate-qt supertux --needed;
 
 echo "Installing yay applications"
-yay -S code-features duc;
+yay -S code-features duc --needed;
 
 echo "Coping emacs config";
 cp -r .config/emacs ~/.config/;
