@@ -74,8 +74,8 @@ cp -r .bash_completion ~/;
 
 echo "Installing applications"
 sudo pacman -S vlc rhythmbox blender gimp musescore shotcut freecad\
-  deja-dup duc libreoffice-fresh okular calibre\
-  emacs alacritty root code code-features texstudio\
+  deja-dup libreoffice-fresh okular calibre\
+  emacs alacritty root code texstudio\
   gnucash keepassxc geogebra firefox qalculate-qt supertux;
 
 echo "Installing yay applications"
