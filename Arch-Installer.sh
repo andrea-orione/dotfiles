@@ -3,9 +3,7 @@
 DOTFILES=$PWD;
 
 echo "Installing low level packages"
-sudo pacman -S git vim networkmanager sudo base-devel bash-completion\
- eza htop --needed;
-systemctl enable networkmanager;
+sudo pacman -S git vim sudo base-devel bash-completion eza htop --needed;
 
 
 echo "Installing desktop environment packages"
