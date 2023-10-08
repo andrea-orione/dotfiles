@@ -79,7 +79,7 @@ sudo pacman -S vlc rhythmbox blender gimp musescore shotcut freecad\
   gnucash keepassxc geogebra firefox qalculate-qt supertux --needed;
 
 echo "Installing yay applications"
-yay -S code-features duc --needed;
+yay -S code-features duc update-notifier --needed;
 
 echo "Coping emacs config";
 cp -r .config/emacs ~/.config/;
