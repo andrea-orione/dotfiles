@@ -10,7 +10,7 @@ echo "Installing desktop environment packages"
 sudo pacman -S pipewire pipewire-audio pipewire-pulse pavucontrol pamixer playerctl\
  alsa-firmware alsa-plugins alsa-utils brightnessctl\
  bluez bluez-utils waybar dunst hyprland neofetch neovim\
- ttf-ubuntu-font-family sddm rofi --needed;
+ ttf-ubuntu-font-family ttf-ubuntu-mono-nerd ttf-ubuntu-nerd sddm rofi --needed;
 
 echo "Setting up sddm";
 systemctl enable sddm;
