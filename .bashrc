@@ -47,7 +47,7 @@ alias ll='exa -la --color=always --group-directories-first'
 alias l='ls -lav --ignore=.?*'   # show long listing but no hidden dotfiles except "."
 alias la='ls -CF'
 alias vim='nvim'
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
 [[ "$(whoami)" = "root" ]] && return
 
