@@ -48,7 +48,6 @@
 
     "hyprland/window": {
         "format": "{class}",
-        "icon": true,
     },
 
     "mpris": {
