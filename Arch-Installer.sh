@@ -8,7 +8,7 @@ sudo pacman -S git vim sudo base-devel bash-completion eza htop --needed;
 
 echo "Installing desktop environment packages"
 sudo pacman -S pipewire pipewire-audio pipewire-pulse pavucontrol pamixer playerctl\
- alsa-firmware alsa-plugins alsa-utils brightnessctl\
+ alsa-firmware alsa-plugins alsa-utils brightnessctl starship\
  bluez bluez-utils waybar dunst hyprland neofetch neovim swayidle\
  ttf-ubuntu-font-family ttf-ubuntu-mono-nerd ttf-ubuntu-nerd sddm rofi\
  ttf-firacode-nerd otf-firamono-nerd ttf-jetbrains-mono-nerd --needed;
