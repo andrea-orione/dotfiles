@@ -7,7 +7,7 @@ o.autoindent = true                       -- uses current indent if a new line i
 o.breakindent = true                      -- every wrapped line continues visually indented
 o.clipboard = "unnamedplus"               -- allows neovim to access the system clipboard
 o.cmdheight = 1                           -- number of lines that the command takes up
-o.completeopt = { "menuone", "noselect" } -- how to show command completions (see documuntation for valid values)
+o.completeopt = "menuone,noselect"     -- how to show command completions (see documuntation for valid values)
 o.conceallevel = 0                        -- so that `` is visible in markdown files
 o.cursorline = true                       -- highlight the current line
 o.emoji = true                            -- whether emoji characters should be consider to be full width
@@ -29,7 +29,7 @@ o.scrolloff = 8                           -- min number of lines to keep above a
 o.shiftwidth = 2                          -- the number of spaces inserted for each indentation
 o.showbreak = "> "                       -- the string to put at the start of the wrapped line
 o.showmode = false                        -- we don't need to see things like -- INSERT -- anymore
-o.showtabline = 1                         -- whether the line with tab pages should be displayed (1 = only if more then one)
+o.showtabline = 2                         -- whether the line with tab pages should be displayed (1 = only if more then one)
 o.sidescrolloff = 8
 o.signcolumn = "yes"                      -- always show the sign column, otherwise it would shift the text each time
 o.smartcase = true                        -- consider the case only if an upper case character is used
@@ -39,7 +39,7 @@ o.splitright = true                       -- force all vertical splits to go to 
 o.statusline = "%<%f%h%m%r%=%l:%c%V    %P"
 o.swapfile = false                        -- creates a swapfile
 o.tabstop = 2                             -- insert 2 spaces for a tab
--- o.termguicolors = true                    -- set term gui colors (most terminals support this)
+o.termguicolors = true                    -- set term gui colors (most terminals support this)
 o.timeoutlen = 1000                       -- time to wait for a mapped sequence to complete (in milliseconds)
 o.undofile = true                         -- enable persistent undo
 o.updatetime = 300                        -- faster completion (4000ms default)

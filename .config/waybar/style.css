@@ -1,6 +1,6 @@
 * {
   font-family: Ubuntu Nerd Font;
-  font-size: 12;
+  font-size: 13;
 }
 
 window#waybar {
@@ -53,7 +53,7 @@ window#waybar.hidden {
 #bluetooth,
 #custom-power,
 #custom-lock {
-  padding: 0 10px;
+  padding: 0 8px;
   color: #eeeeee;
   border-radius: 9.5px;
   background-color: #011627;

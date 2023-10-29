@@ -2,9 +2,9 @@
     "layer": "top",
     "position": "top",
     "height": 20,
-    "modules-left": ["custom/launcher", "hyprland/workspaces", "cpu", "memory", "temperature", "hyprland/window"],
+    "modules-left": ["custom/launcher", "clock", "hyprland/workspaces", "cpu", "memory", "temperature", "hyprland/window"],
     "modules-center": ["mpris"],
-    "modules-right": ["tray", "hyprland/language", "pulseaudio", "bluetooth", "network", "backlight", "battery", "clock", "custom/lock", "custom/power"],
+    "modules-right": ["tray", "hyprland/language", "pulseaudio", "bluetooth", "network", "backlight", "battery", "custom/lock", "custom/power"],
     "spacing": 2,
     
     "custom/launcher": {
