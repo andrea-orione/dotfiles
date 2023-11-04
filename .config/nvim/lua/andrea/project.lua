@@ -1,5 +1,6 @@
 local status_ok, project = pcall(require, "project_nvim")
 if not status_ok then
+  vim.notify("Something went wrong loading project")
 	return
 end
 project.setup({

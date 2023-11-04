@@ -16,7 +16,7 @@ o.fileencoding = "utf-8"                  -- the encoding written to a file
 o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250"
                                                 -- the configuration for the cursor in each mode
 o.guifont = "ubuntumono:h17"              -- the font used in graphical neovim applications
-o.hlsearch = true                         -- highlight all matches on previous search pattern
+o.hlsearch = false                        -- highlight all matches on previous search pattern
 o.ignorecase = true                       -- ignore case in search patterns
 o.linebreak = true                        -- breaks the line at a charactre in 'breakat' rather than the last one
 o.mouse = "a"                             -- allow the mouse to be used in neovim

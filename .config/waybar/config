@@ -105,7 +105,7 @@
         "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}\n {bandwidthUpBytes}\n {bandwidthDownBytes}",
         "tooltip-format-wifi": "{essid}\n {bandwidthUpBytes}\n {bandwidthDownBytes}\n{ifname} via {gwaddr}",
         "tooltip-format-disconnected": "Disconnected",
-        "on-click": "bash ~/.config/waybar/scripts/rofi-wifi-menu.sh"
+        "on-click": "nm-applet"
     },
 
     "backlight": {

@@ -1,10 +1,12 @@
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
+  vim.notify("Something went wrong loading cmp")
   return
 end
 
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
+  vim.notify("Something went wrong loading luasnip")
   return
 end
 
@@ -125,7 +127,7 @@ cmp.setup {
     },
   },
   experimental = {
-    ghost_text = false,
+    ghost_text = true,
     native_menu = false,
   },
 }

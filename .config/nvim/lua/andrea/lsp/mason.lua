@@ -1,5 +1,6 @@
 local servers = {
 	"lua_ls",
+  "clangd",
 	-- "cssls",
 	-- "html",
 	-- "tsserver",
@@ -30,6 +31,7 @@ require("mason-lspconfig").setup({
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
+  vim.notify("Something went wrong loading lspconfig")
 	return
 end
 
@@ -47,6 +49,12 @@ for _, server in pairs(servers) do
 	if require_ok then
 		opts = vim.tbl_deep_extend("force", conf_opts, opts)
 	end
+  if not require_ok then
+    vim.notify("Something went wrong loading the config file for the " .. server .. " server")
+  end
 
-	lspconfig[server].setup(opts)
+	local lspconfig_setup_status, _ = pcall(function() lspconfig[server].setup(opts) end)
+  if not lspconfig_setup_status then
+    vim.notify("Default config for " .. server .. " not found")
+  end
 end

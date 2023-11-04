@@ -43,6 +43,10 @@ keymap("n", "<A-k>", ":m .-2<CR>==", opts)
 -- Press jk fast to exit insert mode 
 keymap("i", "jk", "<ESC>", opts)
 keymap("i", "kj", "<ESC>", opts)
+keymap("i", "<C-h>", "<left>", opts)
+keymap("i", "<C-l>", "<right>", opts)
+keymap("i", "<C-k>", "<up>", opts)
+keymap("i", "<C-j>", "<down>", opts)
 
 -- Visual --
 -- Stay in indent mode

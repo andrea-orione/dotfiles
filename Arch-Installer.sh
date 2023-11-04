@@ -11,7 +11,7 @@ sudo pacman -S pipewire pipewire-audio pipewire-pulse pavucontrol pamixer player
  alsa-firmware alsa-plugins alsa-utils brightnessctl starship\
  bluez bluez-utils waybar dunst hyprland neofetch neovim swayidle\
  ttf-ubuntu-font-family ttf-ubuntu-mono-nerd ttf-ubuntu-nerd sddm rofi\
- ttf-firacode-nerd otf-firamono-nerd ttf-jetbrains-mono-nerd --needed;
+ ttf-firacode-nerd otf-firamono-nerd ttf-jetbrains-mono-nerd nmp --needed;
 
 echo "Setting up sddm";
 systemctl enable sddm;

@@ -131,5 +131,5 @@ bind "set completion-ignore-case on"
 . "$HOME/.cargo/env"
 source ~/.bash_completion/alacritty
 
-neofetch
+# neofetch
 eval "$(starship init bash)"
