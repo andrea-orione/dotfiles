@@ -1,4 +1,4 @@
-;;; orion-blue-theme.el
+;;; orion-dark-theme.el
 
 ;;    ____     ____
 ;;  /  __  \ /  __  \
@@ -11,55 +11,55 @@
 
 ;;; Commentary:
 
-;; A colorful theme centered on shades of cyan and dark blue
+;; A very dark theme in progress
 
 ;;; Code:
 
-(deftheme orion-blue "A very colorful theme from the stars")
+(deftheme orion-dark "A dark theme rich of contrast")
 
-(defgroup orion-blue-theme nil
-  "Options for the `orion-blue' theme."
+(defgroup orion-dark-theme nil
+  "Options for the `orion-dark' theme."
   :group 'personal-themes
-  :prefix "orion-blue-"
-  :tag "Orion blue theme")
+  :prefix "orion-dark-"
+  :tag "Orion dark theme")
 
 
 (let ((class '((class color) (min-colors 89)))
       ;; Color Palette
-      (orion-bg-2     "#041020")
-      (orion-bg-1     "#001323")
-      (orion-bg       "#011627")
-      (orion-bg+1     "#07213F")
-      (orion-bg+2     "#0E2D58")
-      (orion-bg+3     "#103362")
-      (orion-bg-alt   "#252526")
+      (orion-bg-2     "#000000") ;; !base2
+      (orion-bg-1     "#030303") ;; !modeline-bg-alt
+      (orion-bg       "#060606")
+      (orion-bg+1     "#090909") ;; !base0 "#171F24"
+      (orion-bg+2     "#0E0E0E")
+      (orion-bg+3     "#1F1F1F") ;; !base6
+      (orion-bg-alt   "#252526") ;; vertical-bar
       (orion-base1    "#1C1C1C")
       (orion-base3    "#313131")
       (orion-base4    "#4b474c")
       (orion-base5    "#37474F")
-      (orion-fg       "#A7DBF7")
+      (orion-fg       "#A7DBF7") ;; variables
       (orion-fg-alt   "#C7DBF7")
-      (orion-white-1  "#f4f4f4")
+      (orion-white-1  "#f4f4f4") ;; !base 8
       (orion-white    "#FFFFFF")
       (orion-gray     "#999999")
-      (orion-red      "#D30102")
+      (orion-red      "#D30102") ;; vc-deleted
       (orion-red+1    "#FC2626")
       (orion-orange   "#FF961F")
       (orion-orange+1 "#FFCA28")
-      (orion-green    "#00B70A")
-      (orion-green+1  "#A6E22E")
+      (orion-green    "#00B70A") ;; vc-added
+      (orion-green+1  "#A6E22E") ;; success
       (orion-yellow-1 "#FFFF00")
       (orion-yellow   "#D7BA7D")
-      (orion-yellow+1 "#D9DAA2")
+      (orion-yellow+1 "#D9DAA2") ;; methods
       (orion-pink     "#FF8CB6")
       (orion-magenta  "#B300B3")
       (orion-violet-1 "#C792EA")
       (orion-violet   "#F07178")
       (orion-purple   "#8B049C")
-      (orion-purple-1 "#6C00D9")
+      (orion-purple-1 "#6C00D9") ;; numbers
       (orion-blue-1   "#040520")
-      (orion-cyan-1   "#219FD5")
-      (orion-cyan     "#00BFF9")
+      (orion-cyan-1   "#219FD5") ;; vc-modified
+      (orion-cyan     "#00BFF9") ;; operators
       (orion-cyan+1   "#00E1FF")
       (orion-teal     "#35CDAF")
       (orion-black    "#000000"))
@@ -499,6 +499,6 @@
   (add-to-list 'custom-theme-load-path
                (file-name-as-directory (file-name-directory load-file-name))))
 
-(provide-theme 'orion-blue)
+(provide-theme 'orion-dark)
 
-;;; orion-blue-theme.el ends here
+;;; orion-dark-theme.el ends here
