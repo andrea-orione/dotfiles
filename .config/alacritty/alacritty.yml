@@ -27,11 +27,11 @@ window:
   #  x: 0
   #  y: 0
   padding: # Window padding (blank space around window in pixels scaled by DPI)
-    x: 10
-    y: 10
+    x: 6
+    y: 6
     dynamic_padding: true # Spread additional padding evenly around the terminal content
   decorations: none # Window decorations (`full` for borders and title bar, `none` for neither of them)
-  opacity: 0.8 # Background opacity. float between `0.0` (transparent) and `1.0` (opaque)
+  opacity: 0.9 # Background opacity. float between `0.0` (transparent) and `1.0` (opaque)
   startup_mode: Maximized # Startup Mode (`Windowed`, `Maximized` or `Fullscreen`)
   title: Alacritty # Window title
   dynamic_title: true # Allow terminal applications to change Alacritty`s window title.
@@ -49,15 +49,15 @@ scrolling:
 # FONT CONFIGURATION
 font:
   normal:
-    family: UbuntuMono # Default: monospace
+    family: Ubuntu Mono # Default: monospace
   bold:
-    family: UbuntuMono # If not specified it will fall back to the normal font family
+    family: Ubuntu Mono # If not specified it will fall back to the normal font family
     style: Bold
   italic:
-    family: UbuntuMono # If not specified it will fall back to the normal font family
+    family: Ubuntu Mono # If not specified it will fall back to the normal font family
     style: Italic
   bold_italic:
-    family: UbuntuMono # If not specified it will fall back to the normal font family
+    family: Ubuntu Mono # If not specified it will fall back to the normal font family
     style: Bold Italic
   size: 12.0 
   offset: # Extra space around each character
@@ -231,9 +231,38 @@ schemes:
       cyan:    '#89DDFF'
       white:   '#ffffff'
 
+  OrionDark: &OrionDark
+    primary:
+      background: '#101016'
+      foreground: '#e0e0e0'
+    cursor:
+      text: CellBackground
+      cursor: '#219fd5'
+    selection: # Selection colors (CellForeground/CellBackground or hexadecimal colors)
+      text: CellForeground
+      background: '#25252d'
+    normal: # Normal colors
+      black:   '#040404'
+      red:     '#D30102'
+      green:   '#00b70a'
+      yellow:  '#db990a'
+      blue:    '#0cb8c9'
+      magenta: '#6C00D9'
+      cyan:    '#0cc97e'
+      white:   '#e0e0e0'
+    bright: # Bright colors
+      black:   '#363636'
+      red:     '#db3334'
+      green:   '#33c53b'
+      yellow:  '#e2ad3b'
+      blue:    '#3cc6d3'
+      magenta: '#8933e0'
+      cyan:    '#3cd397'
+      white:   '#f0f0f0'
+
 # COLOR
-# Choose between: `*TomorrowNight`, `*Dracula`, `*DoomOne`, `*MonokaiPro`, `*OrionBlue`
-colors: *OrionBlue
+# Choose between: `*TomorrowNight`, `*Dracula`, `*DoomOne`, `*MonokaiPro`, `*OrionBlue`, `*OrionDark`
+colors: *OrionDark
 
 # BELL
 bell:
