@@ -27,7 +27,7 @@ sudo rm -r yay-git;
 cd $DOTFILES;
 
 echo "Installing aur packages";
-yay -Sy wpaperd breeze-hacked-cursor-theme sddm-theme-mountain-git swaylock-effects --needed;
+yay -Sy wpaperd breeze-hacked-cursor-theme sddm-theme-mountain-git swaylock-effects hyprsome-git --needed;
 
 
 echo "Coping config files";
