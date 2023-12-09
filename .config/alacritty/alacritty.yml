@@ -31,7 +31,7 @@ window:
     y: 6
     dynamic_padding: true # Spread additional padding evenly around the terminal content
   decorations: none # Window decorations (`full` for borders and title bar, `none` for neither of them)
-  opacity: 0.9 # Background opacity. float between `0.0` (transparent) and `1.0` (opaque)
+  opacity: 1.0 # Background opacity. float between `0.0` (transparent) and `1.0` (opaque)
   startup_mode: Maximized # Startup Mode (`Windowed`, `Maximized` or `Fullscreen`)
   title: Alacritty # Window title
   dynamic_title: true # Allow terminal applications to change Alacritty`s window title.

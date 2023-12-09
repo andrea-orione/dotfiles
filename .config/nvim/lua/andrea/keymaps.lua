@@ -43,6 +43,8 @@ keymap("n", "<A-k>", ":m .-2<CR>==", opts)
 -- Press jk fast to exit insert mode 
 keymap("i", "jk", "<ESC>", opts)
 keymap("i", "kj", "<ESC>", opts)
+
+-- Move in insert mode using CTRL+hljk
 keymap("i", "<C-h>", "<left>", opts)
 keymap("i", "<C-l>", "<right>", opts)
 keymap("i", "<C-k>", "<up>", opts)

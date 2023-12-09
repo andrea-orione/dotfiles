@@ -9,9 +9,9 @@ sudo pacman -S git vim sudo base-devel bash-completion eza htop --needed;
 echo "Installing desktop environment packages"
 sudo pacman -S pipewire pipewire-audio pipewire-pulse pavucontrol pamixer playerctl\
  alsa-firmware alsa-plugins alsa-utils brightnessctl starship\
- bluez bluez-utils waybar dunst hyprland neofetch neovim swayidle\
+ bluez bluez-utils blueman waybar dunst hyprland neofetch neovim swayidle\
  ttf-ubuntu-font-family ttf-ubuntu-mono-nerd ttf-ubuntu-nerd sddm rofi\
- ttf-firacode-nerd otf-firamono-nerd ttf-jetbrains-mono-nerd nmp --needed;
+ ttf-firacode-nerd otf-firamono-nerd ttf-jetbrains-mono-nerd nmp redshift --needed;
 
 echo "Setting up sddm";
 systemctl enable sddm;
@@ -77,7 +77,7 @@ echo "Installing applications"
 sudo pacman -S vlc rhythmbox blender gimp musescore shotcut freecad\
   deja-dup libreoffice-fresh okular calibre\
   emacs alacritty root code texstudio\
-  gnucash keepassxc geogebra firefox qalculate-qt supertux --needed;
+  gnucash keepassxc geogebra firefox thunar qalculate-qt supertux --needed;
 
 echo "Installing yay applications"
 yay -S code-features duc update-notifier --needed;

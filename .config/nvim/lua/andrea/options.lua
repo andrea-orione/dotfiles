@@ -1,7 +1,6 @@
 -- OPTION FILE
 -- In this file will be set some general options. To see a full list use :help options
 local o = vim.opt
-o.autoindent = true                       -- uses current indent if a new line is created
 o.backup = false                          -- creates a backup file before overwriting it
 o.autoindent = true                       -- uses current indent if a new line is created
 o.breakindent = true                      -- every wrapped line continues visually indented
@@ -24,10 +23,10 @@ o.mousehide = true                        -- hides the mouse while typing
 o.number = true                           -- set numbered lines
 o.numberwidth = 2                         -- minimal number of columns to use for the line number
 o.pumheight = 10                          -- max number of items in the popup menu
-o.relativenumber = false                  -- set relative numbered lines
+o.relativenumber = true                   -- set relative numbered lines
 o.scrolloff = 8                           -- min number of lines to keep above and below the cursor
 o.shiftwidth = 2                          -- the number of spaces inserted for each indentation
-o.showbreak = "> "                       -- the string to put at the start of the wrapped line
+o.showbreak = "> "                        -- the string to put at the start of the wrapped line
 o.showmode = false                        -- we don't need to see things like -- INSERT -- anymore
 o.showtabline = 2                         -- whether the line with tab pages should be displayed (1 = only if more then one)
 o.sidescrolloff = 8
