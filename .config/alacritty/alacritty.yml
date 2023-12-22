@@ -49,15 +49,15 @@ scrolling:
 # FONT CONFIGURATION
 font:
   normal:
-    family: Ubuntu Mono # Default: monospace
+    family: Ubuntu mono # Default: monospace
   bold:
-    family: Ubuntu Mono # If not specified it will fall back to the normal font family
+    family: Ubuntu mono # If not specified it will fall back to the normal font family
     style: Bold
   italic:
-    family: Ubuntu Mono # If not specified it will fall back to the normal font family
+    family: Ubuntu mono # If not specified it will fall back to the normal font family
     style: Italic
   bold_italic:
-    family: Ubuntu Mono # If not specified it will fall back to the normal font family
+    family: Ubuntu mono # If not specified it will fall back to the normal font family
     style: Bold Italic
   size: 12.0 
   offset: # Extra space around each character

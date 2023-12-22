@@ -65,9 +65,7 @@ return packer.startup(function(use)
 
 	-- Colorschemes
   use "folke/tokyonight.nvim" -- tokyonight
-  use "nyoom-engineering/oxocarbon.nvim" -- oxocarbon
   use "EdenEast/nightfox.nvim" -- nightfox
-  use "oxfist/night-owl.nvim" -- nightowl
   --use "svermeulen/text-to-colorscheme.nvim" -- to generate a colorscheme from a text prompt
 
   -- Colors
