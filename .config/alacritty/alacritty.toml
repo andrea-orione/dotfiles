@@ -1,0 +1,86 @@
+#    ____     ____
+#  /  __  \ /  __  \
+# |  |__|  |  |  |  |  Andrea Orione
+# |   __   |  |  |  |  https://www.github.com/andrea-orione
+# |  |  |  |  |__|  |
+# |__|  |__|\ ____ / 
+#
+#
+# Customization of Alacritty
+
+# Choose the color theme here
+# Valid themes are:
+#  - `Dracula.toml`
+#  - `DoomOne.toml`
+#  - `MonokayPro.toml`
+#  - `OrionBlue.toml`
+#  - `OrionDark.toml`
+import = [
+  "~/.config/alacritty/OrionDark.toml",
+  "~/.config/alacritty/bindings.toml",
+  ]
+
+live_config_reload = true
+working_directory = "None"
+
+[env]
+TERM = "alacritty"
+
+[window]
+dimensions = { columns = 0, lines = 0 } #Falls back to wm recommended size
+position = "None" #Falls back to wm specifications
+padding = { x = 6, y = 6 }
+dynamic_padding = true
+decorations = "None"
+decorations_theme_variant = "None"
+opacity = 1.0
+blur = false
+startup_mode = "Maximized"
+title = "Alacritty"
+dynamic_title = true
+class = { instance = "alacritty", general = "alacritty" }
+
+[scrolling]
+history = 10000
+multiplier = 4
+
+[font]
+normal = { family = "Ubuntu mono" }
+bold = { family = "Ubuntu mono", style = "Bold" }
+italic = { family = "Ubuntu mono", style = "Italic" }
+bold_italic = { family = "Ubuntu mono", style = "Bold Italic" }
+size = 12.0
+offset = { x = 0, y = 0 }
+glyph_offset = { x = 0, y = 0 }
+builtin_box_drawing = false
+
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[bell]
+animation = "EaseOutExpo"
+duration = 0
+color = "#ffffff"
+command = "None"
+
+[selection]
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+save_to_clipboard = false
+
+[cursor]
+style = { blinking = "On", shape = "Beam" }
+vi_mode_style = "Block"
+blink_interval = 750
+blink_timeout = 30
+unfocused_hollow = true
+thickness = 0.15
+
+[mouse]
+hide_when_typing = true
+
+[debug]
+render_timer = false
+persistent_logging = false
+log_level = "Warn"
+print_events = false
+highlight_damage = false

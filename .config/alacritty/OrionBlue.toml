@@ -1,0 +1,41 @@
+#    ____     ____
+#  /  __  \ /  __  \
+# |  |__|  |  |  |  |  Andrea Orione
+# |   __   |  |  |  |  https://www.github.com/andrea-orione
+# |  |  |  |  |__|  |
+# |__|  |__|\ ____ / 
+#
+#
+# OrionBlue theme for alacritty
+
+[colors.primary]
+background = "#011627"
+foreground = "#eeeeee"
+
+[colors.normal]
+black = "#000000"
+blue = "#00e1ff"
+cyan = "#89DDFF"
+green = "#00b70a"
+magenta = "#6C00D9"
+red = "#bb0000"
+white = "#eeeeee"
+yellow = "#a6e22e"
+
+[colors.bright]
+black = "#999999"
+blue = "#7aa6da"
+cyan = "#89DDFF"
+green = "#A6E22E"
+magenta = "#F92672"
+red = "#f07178"
+white = "#ffffff"
+yellow = "#f7ecb5"
+
+[colors.cursor]
+cursor = "#219fd5"
+text = "CellBackground"
+
+[colors.selection]
+background = "CellForeground"
+text = "CellBackground"
