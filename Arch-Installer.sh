@@ -10,8 +10,9 @@ echo "Installing desktop environment packages"
 sudo pacman -S pipewire pipewire-audio pipewire-pulse pavucontrol pamixer playerctl\
  alsa-firmware alsa-plugins alsa-utils brightnessctl starship\
  bluez bluez-utils blueman waybar dunst hyprland neofetch neovim swayidle\
- ttf-ubuntu-font-family ttf-ubuntu-mono-nerd ttf-ubuntu-nerd sddm rofi\
- ttf-firacode-nerd otf-firamono-nerd ttf-jetbrains-mono-nerd nmp redshift --needed;
+ ttf-fira-code ttf-fira-mono ttf-firacode-nerd ttf-hack ttf-inconsolata ttf-inconsolata-nerd\
+ tttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-liberation ttf-ubuntu-font-family ttf-ubuntu-mono-nerd ttf-ubuntu-nerd\
+ sddm rofi nmp redshift --needed;
 
 echo "Setting up sddm";
 systemctl enable sddm;
