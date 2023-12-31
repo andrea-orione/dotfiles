@@ -29,7 +29,7 @@ TERM = "alacritty"
 [window]
 dimensions = { columns = 0, lines = 0 } #Falls back to wm recommended size
 position = "None" #Falls back to wm specifications
-padding = { x = 6, y = 6 }
+padding = { x = 0, y = 0 }
 dynamic_padding = true
 decorations = "None"
 decorations_theme_variant = "None"

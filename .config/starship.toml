@@ -9,10 +9,6 @@ disabled = true
 [package]
 disabled = true
 
-[cmd_duration]
-min_time = 10_000  # Show command duration over 10,000 milliseconds (= 10 sec)
-format = "took [$duration]($style)"
-
 [character]
 error_symbol = "[X](bold red) "
 
