@@ -30,6 +30,8 @@ cd $DOTFILES;
 echo "Installing aur packages";
 yay -Sy wpaperd breeze-hacked-cursor-theme sddm-theme-mountain-git swaylock-effects hyprsome-git --needed;
 
+echo "Installing tpm";
+$(git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm)
 
 echo "Coping config files";
 
