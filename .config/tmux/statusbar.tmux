@@ -28,9 +28,9 @@ set -g pane-border-style "fg=${thm_gray}"
 set -g pane-active-border-style "fg=${thm_blue}"
 
 # windows
-set -w window-status-activity-style "fg=${thm_fg},bg=${thm_bg},none"
-set -w window-status-separator ""
-set -w window-status-style "fg=${thm_fg},bg=${thm_bg},none"
+set -g window-status-activity-style "fg=${thm_fg},bg=${thm_bg},none"
+set -g window-status-separator ""
+set -g window-status-style "fg=${thm_fg},bg=${thm_bg},none"
 
 # --------=== Statusline
 # These variables are the defaults so that the setw and set calls are easier to parse.
@@ -74,9 +74,9 @@ right_column2=$right_column2$show_date_time
 
 set -g status-left ""
 set -g status-right "${right_column1},${right_column2}"
-set -w window-status-format "${window_status_format}"
-set -w window-status-current-format "${window_status_current_format}"
+set -g window-status-format "${window_status_format}"
+set -g window-status-current-format "${window_status_current_format}"
 
 # --------=== Modes
-set -w clock-mode-colour "${thm_blue}"
-set -w mode-style "fg=${thm_pink} bg=${thm_black4} bold"
+set -g clock-mode-colour "${thm_blue}"
+set -g mode-style "fg=${thm_pink} bg=${thm_black4} bold"

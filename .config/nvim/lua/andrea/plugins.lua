@@ -105,6 +105,9 @@ return packer.startup(function(use)
   -- Tmux
   use "christoomey/vim-tmux-navigator"
 
+  -- Neorg
+  use {"nvim-neorg/neorg", run = ":Neorg sync-parsers", requires = "nvim-lua/plenary.nvim"}
+
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
