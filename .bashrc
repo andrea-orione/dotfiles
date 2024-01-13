@@ -103,6 +103,9 @@ alias ll='exa -la --color=always --group-directories-first'
 alias l='ls -lav --ignore=.?*'   # show long listing but no hidden dotfiles except "."
 alias la='ls -CF'
 
+# common typos
+alias tumx='tmux'
+
 # neovim shortcut
 alias vim='nvim'
 
