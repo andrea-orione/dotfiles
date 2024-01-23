@@ -12,7 +12,7 @@ sudo pacman -S pipewire pipewire-audio pipewire-pulse pavucontrol pamixer player
  bluez bluez-utils blueman waybar dunst hyprland neofetch neovim swayidle\
  ttf-fira-code ttf-fira-mono ttf-firacode-nerd ttf-hack ttf-inconsolata ttf-inconsolata-nerd\
  tttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-liberation ttf-ubuntu-font-family ttf-ubuntu-mono-nerd ttf-ubuntu-nerd\
- sddm rofi nmp redshift --needed;
+ sddm rofi nmp redshift grim slurp --needed;
 
 echo "Setting up sddm";
 systemctl enable sddm;
