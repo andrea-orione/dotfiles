@@ -1,6 +1,6 @@
 * {
   font-family: Ubuntu Nerd Font;
-  font-size: 13;
+  font-size: 13px;
 }
 
 window#waybar {
@@ -8,9 +8,9 @@ window#waybar {
   color: #eeeeee;
   transition-property: background-color;
   transition-duration: 0.5s;
-  border-top: 8px transparent;
+  /*border-top: 8px transparent;
   border-radius: 8px;
-  margin: 16px 16px;
+  margin: 16px 16px;*/
 }
 
 window#waybar.hidden {
@@ -211,7 +211,7 @@ label:focus {
 }
 
 #temperature {
-  background-color: #f0932b;
+  color: #f0932b;
 }
 
 #temperature.critical {
@@ -253,23 +253,10 @@ label:focus {
 }
 
 #language {
-  background: #00b093;
-  color: #740864;
+  color: #00b093;
   padding: 0 5px;
   margin: 0 5px;
   min-width: 16px;
-}
-
-#keyboard-state {
-  background: #97e1ad;
-  color: #000000;
-  padding: 0 0px;
-  margin: 0 5px;
-  min-width: 16px;
-}
-
-#keyboard-state > label {
-  padding: 0 5px;
 }
 
 #custom-spotify {
