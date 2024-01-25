@@ -108,6 +108,9 @@ return packer.startup(function(use)
   -- Neorg
   use {"nvim-neorg/neorg", run = ":Neorg sync-parsers", requires = "nvim-lua/plenary.nvim"}
 
+  -- Csv
+  use "chrisbra/csv.vim"
+
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
