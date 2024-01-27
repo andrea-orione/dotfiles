@@ -17,14 +17,14 @@
         "all-outputs": false,
         "on-click": "activate",
         "format-icons": {
-          "1": "",
-          "2": "",
-          "3": "",
-          "4": "",
-          "5": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
           "urgent": "",
           "active": "",
-          "default": ""
+          "default": ""
         }
       },
 
