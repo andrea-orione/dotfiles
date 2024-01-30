@@ -111,6 +111,9 @@ return packer.startup(function(use)
   -- Csv
   use "chrisbra/csv.vim"
 
+  -- Markdown
+  use "ixru/nvim-markdown"
+
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
