@@ -114,6 +114,9 @@ return packer.startup(function(use)
   -- Markdown
   use "ixru/nvim-markdown"
 
+  -- Jupyter
+  use "GCBallesteros/jupytext.nvim"
+
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()

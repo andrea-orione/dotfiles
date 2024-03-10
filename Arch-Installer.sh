@@ -3,7 +3,7 @@
 DOTFILES=$PWD;
 
 echo "Installing low level packages"
-sudo pacman -S git vim sudo base-devel bash-completion eza htop --needed;
+sudo pacman -S git vim sudo base-devel bash-completion eza htop strongswan --needed;
 
 
 echo "Installing desktop environment packages"

@@ -25,7 +25,7 @@ o.numberwidth = 2                         -- minimal number of columns to use fo
 o.pumheight = 10                          -- max number of items in the popup menu
 o.relativenumber = true                   -- set relative numbered lines
 o.scrolloff = 8                           -- min number of lines to keep above and below the cursor
-o.shiftwidth = 2                          -- the number of spaces inserted for each indentation
+o.shiftwidth = 4                          -- the number of spaces inserted for each indentation
 o.showbreak = "> "                        -- the string to put at the start of the wrapped line
 o.showmode = false                        -- we don't need to see things like -- INSERT -- anymore
 o.showtabline = 2                         -- whether the line with tab pages should be displayed (1 = only if more then one)
