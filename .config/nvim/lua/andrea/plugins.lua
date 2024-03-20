@@ -115,7 +115,7 @@ return packer.startup(function(use)
   use "ixru/nvim-markdown"
 
   -- Jupyter
-  use "GCBallesteros/jupytext.nvim"
+  use "mwouts/jupytext"
 
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
