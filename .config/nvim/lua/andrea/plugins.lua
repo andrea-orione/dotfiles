@@ -114,11 +114,18 @@ return packer.startup(function(use)
   -- Markdown
   use "ixru/nvim-markdown"
 
-  -- Jupyter
-  use "mwouts/jupytext"
+  -- Latex
+  use 'lervag/vimtex'
+
+  -- Jupyter 
+  use "hkupty/iron.nvim"
+  use "kana/vim-textobj-user"
+  use "kana/vim-textobj-line"
+  use "GCBallesteros/vim-textobj-hydrogen"
+  use "GCBallesteros/jupytext.vim"
 
 	-- Put this at the end after all plugins
-	if PACKER_BOOTSTRAP then
-		require("packer").sync()
-	end
+    if PACKER_BOOTSTRAP then
+        require("packer").sync()
+    end
 end)
