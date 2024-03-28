@@ -98,8 +98,8 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # file listing
-alias ls='exa --color=auto'
-alias ll='exa -la --color=always --group-directories-first'
+alias ls='eza --color=auto'
+alias ll='eza -la --color=always --group-directories-first'
 alias l='ls -lav --ignore=.?*'   # show long listing but no hidden dotfiles except "."
 alias la='ls -CF'
 
