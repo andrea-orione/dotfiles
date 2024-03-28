@@ -100,6 +100,7 @@ fi
 # file listing
 alias ls='eza --color=auto'
 alias ll='eza -la --color=always --group-directories-first'
+alias lt='eza -la --color=always --group-directories-first --tree'
 alias l='ls -lav --ignore=.?*'   # show long listing but no hidden dotfiles except "."
 alias la='ls -CF'
 
