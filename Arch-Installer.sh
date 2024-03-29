@@ -12,7 +12,7 @@ sudo pacman -S pipewire pipewire-audio pipewire-pulse pavucontrol pamixer player
  bluez bluez-utils blueman waybar dunst hyprland neofetch neovim swayidle\
  ttf-fira-code ttf-fira-mono ttf-firacode-nerd ttf-hack ttf-inconsolata ttf-inconsolata-nerd\
  tttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-liberation ttf-ubuntu-font-family ttf-ubuntu-mono-nerd ttf-ubuntu-nerd\
- sddm rofi nmp redshift grim slurp hyprlang sdbus-cpp xdg-desktop-portal-hyprland --needed;
+ sddm rofi nmp redshift grim slurp hyprlang sdbus-cpp xdg-desktop-portal-hyprland hypridle hyprlock --needed;
 
 echo "Setting up sddm";
 systemctl enable sddm;
@@ -28,7 +28,7 @@ sudo rm -r yay-git;
 cd $DOTFILES;
 
 echo "Installing aur packages";
-yay -Sy wpaperd breeze-hacked-cursor-theme sddm-swish swaylock-effects hyprsome-git --needed;
+yay -Sy wpaperd breeze-hacked-cursor-theme sddm-swish swaylock-effects hyprsome-git hyprpicker --needed;
 
 echo "Installing tpm";
 $(git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm)
