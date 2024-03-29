@@ -75,4 +75,4 @@ keymap("x", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- Jupyter --
-keymap("n", "]x", "ctrih/^# %%<CR><CR>", opts)
+keymap("n", "]x", "ctrih/^# %%<CR><CR>", {noremap=false, silent=true})

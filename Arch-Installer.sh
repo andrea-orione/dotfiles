@@ -28,7 +28,7 @@ sudo rm -r yay-git;
 cd $DOTFILES;
 
 echo "Installing aur packages";
-yay -Sy wpaperd breeze-hacked-cursor-theme sddm-theme-mountain-git swaylock-effects hyprsome-git --needed;
+yay -Sy wpaperd breeze-hacked-cursor-theme sddm-swish swaylock-effects hyprsome-git --needed;
 
 echo "Installing tpm";
 $(git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm)
