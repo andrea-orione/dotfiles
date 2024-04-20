@@ -19,8 +19,7 @@ local ctrlkey = "Control"
 globalkeys = my_table.join(
 -- Awesome keybindings
     awful.key({modkey, ctrlkey  }, "r", awesome.restart, {description = "Reload awesome", group = "Awesome"}),
-    awful.key({modkey           }, "s", hotkeys_popup.show_help, {description="Show help", group="Awesome"}),
-    awful.key({modkey           }, "w", function() awful.util.mymainmenu:show() end, {description = "Show main menu", group = "Awesome"}),
+    awful.key({modkey           }, "h", hotkeys_popup.show_help, {description="Show help", group="Awesome"}),
     awful.key({modkey           }, "r", 
         function() 
             awful.screen.focused().mypromptbox:run() 
@@ -36,7 +35,6 @@ globalkeys = my_table.join(
         end,
         {description = "Execute lua prompt", group = "Awesome"}),
     awful.key({modkey           }, "p", function() menubar.show() end, {description = "Show the menubar", group = "Awesome"}),
-    awful.key({modkey           }, "F1", function() awful.spawn.with_shell("betterlockscreen -l") end, {description = "Launch lockscreen", group = "Awesome"}),
     awful.key({modkey, "Shift"  }, "q", awesome.quit, {description = "quit awesome", group = "Awesome"}),
 
 -- Launcher
@@ -44,9 +42,9 @@ globalkeys = my_table.join(
     awful.key({modkey           }, "b", function() awful.spawn(browser) end, {description = "Open a browser", group = "Launcher"}),
 
 -- Toggle spaces
-    awful.key({modkey, altkey   }, "c", function() awesome.emit_signal("sidebar::toggle") end, {description = "Toggle sidebar", group = "Spaces"}),
+    -- awful.key({modkey, altkey   }, "c", function() awesome.emit_signal("sidebar::toggle") end, {description = "Toggle sidebar", group = "Spaces"}),
     awful.key({modkey, altkey   }, "x", function() awesome.emit_signal("logout::toggle") end, {description = "Toggle logout", group = "Spaces"}),
-    awful.key({modkey, altkey   }, "z", function() awesome.emit_signal("dashboard::toggle") end, {description = "Toggle dashboard", group = "Spaces"}),
+    -- awful.key({modkey, altkey   }, "z", function() awesome.emit_signal("dashboard::toggle") end, {description = "Toggle dashboard", group = "Spaces"}),
 
 -- Audio
     awful.key({ }, "XF86AudioRaiseVolume", function() awful.spawn.with_shell("pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +5%") end, {description = "Raise volume", group = "Audio"}),

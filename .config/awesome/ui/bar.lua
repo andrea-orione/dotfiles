@@ -1,4 +1,4 @@
--- LIBRARY IMPORTATION {{{
+-- LIBRARY IMPORTATION
 local gears = require("gears") --Utilities such as color parsing and objects
 local lain  = require("lain") --Layout, asyncronous widgets and utilities
 local awful = require("awful") --Everything related to window parsing
@@ -11,7 +11,6 @@ local dpi = beautiful.xresources.apply_dpi
 
 local markup = lain.util.markup
 local separator =lain.util.separators
--- }}}
 
 -- TEXTCLOCK{{{
 os.setlocale(os.getenv("LANG")) -- to localize the clock
@@ -140,7 +139,7 @@ beautiful.mpd = lain.widget.mpd({
 })
 --]]
 
-function draw_bar_at_the_top(scr)
+function Draw_bar_at_the_top(scr)
     -- Menu launcher
     local mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = awful.util.mymainmenu })
 

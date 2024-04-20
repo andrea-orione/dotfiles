@@ -8,21 +8,20 @@
 --
 -- Configuration for awesome wm
 
--- LIBRARY IMPORTATION {{{
+-- LIBRARY IMPORTATION
 local awesome = awesome
 local tostring = tostring
 
 -- Notification library
 local naughty = require("naughty")
 naughty.config.defaults['icon_size'] = 50
--- }}}
 
 require("signals")
 require("configuration")
 require("ui")
 
 
--- ERROR HANDLING {{{
+-- ERROR HANDLING
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
@@ -45,4 +44,3 @@ do
         in_error = false
     end)
 end
--- }}}

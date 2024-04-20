@@ -48,7 +48,7 @@ theme.menu_fg_normal                            = theme.white
 theme.menu_fg_focus                             = theme.light_blue
 
 -- Bars
-theme.bar_bg_normal                             = theme.black .. "6e"
+theme.bar_bg_normal                             = theme.black
 theme.bar_fg_normal                             = theme.white
 
 -- Taglist
