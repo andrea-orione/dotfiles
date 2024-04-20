@@ -75,4 +75,6 @@ keymap("x", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- Jupyter --
-keymap("n", "]x", "ctrih/^# %%<CR><CR>", {noremap=false, silent=true})
+vim.cmd('nmap <space>jt ctrih/^# %%<CR><CR>')
+vim.cmd('nmap <space>ja ggctrG<C-o>')
+vim.cmd('nmap <space>jb /^# %%<CR>ctrgg<C-o>')
