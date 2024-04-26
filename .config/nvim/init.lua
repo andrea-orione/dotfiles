@@ -24,3 +24,4 @@ require "andrea.csv"
 require "andrea.nvim-markdown"
 vim.cmd('source ~/.config/nvim/lua/andrea/latex.vim')
 require "andrea.jupyter"
+require "andrea.images"
