@@ -23,4 +23,3 @@ require "andrea.neorg"
 require "andrea.csv"
 require "andrea.nvim-markdown"
 vim.cmd('source ~/.config/nvim/lua/andrea/latex.vim')
-require "andrea.jupyter"
