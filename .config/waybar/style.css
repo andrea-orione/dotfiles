@@ -59,7 +59,7 @@ window#waybar.hidden {
   background-color: #011627;
 }
 
-#window,
+/* #window, */
 #workspaces {
   margin: 0 4px;
   border-radius: 7.8px;

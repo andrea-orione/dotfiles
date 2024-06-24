@@ -1,62 +1,71 @@
 local servers = {
-	"lua_ls",
-  "clangd",
-	-- "cssls",
-	-- "html",
-	-- "tsserver",
-	"pyright",
-	-- "bashls",
-	"jsonls",
-	-- "yamlls",
-  "rust_analyzer",
-  "texlab"
+    lua_ls = require("andrea.lsp.settings.lua_ls"),
+    clangd = {
+        settings = {
+            ["clangd"] = {
+                excludeArgs = { "-frounding-math" },
+                includeDirs = { "./include" },
+            },
+        },
+    },
+    pyright = {
+        settings = {
+            python = {
+                analysis = {
+                    typeCheckingMode = "off",
+                },
+            },
+        },
+    },
+    rust_analyzer = {
+        settings = {
+            ['rust-analyzer'] = {
+                diagnostics = {
+                    enable = false;
+                }
+            }
+        }
+    },
+    texlab = {} ,
+    jsonls = require("andrea.lsp.settings.jsonls"),
+    -- gopls = {},
+    -- cssls = {},
+    -- html = {},
+    -- tsserver = {},
+    -- bashls = {},
+    -- yamlls = {} ,
 }
 
-local settings = {
-	ui = {
-		border = "none",
-		icons = {
-			package_installed = "◍",
-			package_pending = "◍",
-			package_uninstalled = "◍",
-		},
-	},
-	log_level = vim.log.levels.INFO,
-	max_concurrent_installers = 4,
-}
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-require("mason").setup(settings)
-require("mason-lspconfig").setup({
-	ensure_installed = servers,
-	automatic_installation = true,
+require("mason").setup({
+    ui = {
+        border = "none",
+        icons = {
+            package_installed = "◍",
+            package_pending = "◍",
+            package_uninstalled = "◍",
+        },
+    },
+    log_level = vim.log.levels.INFO,
+    max_concurrent_installers = 4,
 })
 
-local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status_ok then
-  vim.notify("Something went wrong loading lspconfig")
-	return
-end
+local ensure_installed_list = vim.tbl_keys(servers or {})
+vim.list_extend(ensure_installed_list, { 'stylua', })-- Used to format Lua code
+require('mason-tool-installer').setup({ ensure_installed = ensure_installed_list })
 
-local opts = {}
-
-for _, server in pairs(servers) do
-	opts = {
-		on_attach = require("andrea.lsp.handlers").on_attach,
-		capabilities = require("andrea.lsp.handlers").capabilities,
-	}
-
-	server = vim.split(server, "@")[1]
-
-	local require_ok, conf_opts = pcall(require, "andrea.lsp.settings." .. server)
-	if require_ok then
-		opts = vim.tbl_deep_extend("force", conf_opts, opts)
-	end
-  if not require_ok then
-    vim.notify("Something went wrong loading the config file for the " .. server .. " server")
-  end
-
-	local lspconfig_setup_status, _ = pcall(function() lspconfig[server].setup(opts) end)
-  if not lspconfig_setup_status then
-    vim.notify("Default config for " .. server .. " not found")
-  end
-end
+require("mason-lspconfig").setup({
+    handlers = {
+        function(server_name)
+            local server = servers[server_name] or {}
+            -- This handles overriding only values explicitly passed by the server configuration above.
+            -- Useful when disabling certain features of an LSP (for example, turning off formatting for tsserver)
+            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+            require('lspconfig')[server_name].setup(server)
+          end,
+        },
+    ensure_installed = servers,
+    automatic_installation = true,
+})

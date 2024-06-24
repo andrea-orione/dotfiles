@@ -1,14 +1,23 @@
-local M = {
-}
-function M.config()
-  local treesitter = require "nvim-treesitter"
-  local configs = require "nvim-treesitter.configs"
+local treesitter = require "nvim-treesitter"
+require("nvim-treesitter.install").prefer_git = true
+local configs = require "nvim-treesitter.configs"
 
-  configs.setup {
-    ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python" }, -- put the language you want in this array
-    -- ensure_installed = "all", -- one of "all" or a list of languages
-    ignore_install = { "" },                                                       -- List of parsers to ignore installing
-    sync_install = false,                                                          -- install languages synchronously (only applied to `ensure_installed`)
+local options = {
+    ensure_installed = { -- put the language you want in this array
+        "bash",
+        "c",
+        "diff",
+        "html",
+        "lua",
+        "luadoc",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "vim",
+        "vimdoc",
+    },
+    auto_install = true,
+    sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
 
     highlight = {
       enable = true,       -- false will disable the whole extension
@@ -17,13 +26,8 @@ function M.config()
     autopairs = {
       enable = true,
     },
-    indent = { enable = true, disable = { "python", "css" } },
+    indent = { enable = true, disable = { "python", "css", "ruby" } },
+}
 
-    context_commentstring = {
-      enable = true,
-      enable_autocmd = false,
-    },
-  }
-end
-
-return M
+treesitter.setup()
+configs.setup(options)

@@ -1,12 +1,12 @@
-local opts = { noremap = true, silent = true }
-
-local term_opts = { silent = true }
+-- General keybindings. To see a full list use <SPACE>sk
 
 -- Shorten function name
-local keymap = vim.keymap.set
+local keymap = function(mode, keys, func, description)
+    vim.keymap.set(mode, keys, func, { noremap = true, silent = true, desc = description })
+end
 
---Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
+-- Remap space as leader key
+keymap("", "<Space>", "<Nop>", " ")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -19,62 +19,63 @@ vim.g.maplocalleader = " "
 --   command_mode = "c",
 
 -- Normal --
+-- Escape from search results
+vim.keymap.set("n", "<ESC>", "<cmd>nohlsearch<CR>")
+
 -- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+keymap("n", "<C-h>", "<C-w>h", "Move focus to the left window")
+keymap("n", "<C-j>", "<C-w>j", "Move focus to the upper window")
+keymap("n", "<C-k>", "<C-w>k", "Move focus to the lower window")
+keymap("n", "<C-l>", "<C-w>l", "Move focus to the right window")
 
 -- Resize with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+keymap("n", "<C-Up>", ":resize -2<CR>", "Resize upwards")
+keymap("n", "<C-Down>", ":resize +2<CR>", "Resize downwards")
+keymap("n", "<C-Left>", ":vertical resize -2<CR>", "Resize to the left")
+keymap("n", "<C-Right>", ":vertical resize +2<CR>", "Resize to the right")
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<S-l>", ":bnext<CR>", "Move to the next buffer")
+keymap("n", "<S-h>", ":bprevious<CR>", "Move to the previous buffer")
 
 -- Move text up and down
-keymap("n", "<A-j>", ":m .+1<CR>==", opts)
-keymap("n", "<A-k>", ":m .-2<CR>==", opts)
+keymap("n", "<A-j>", ":m .+1<CR>==", "Move line up")
+keymap("n", "<A-k>", ":m .-2<CR>==", "Move line down")
+
+-- Diagnostics
+-- TODO: Consider changing them
+keymap("n", "<leader>dp", vim.diagnostic.goto_next, "Go to [P]revious diagnostic message")
+keymap("n", "<leader>dn", vim.diagnostic.goto_prev, "Go to [N]ext diagnostic message")
+keymap("n", "<leader>de", vim.diagnostic.open_float, "Show diagnostic [E]rror message") -- Maybe "<leader>e"
+keymap("n", "<leader>dq", vim.diagnostic.setloclist, "Open diagnostic [Q]quickfix list")
+
+-- Buffer and operations
+keymap("n", "<leader>w", "<cmd>w!<CR>", "Save")
+keymap("n", "<leader>c", "<cmd>Bdelete!<CR>", "[C]lose Buffer")
+keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", "No [H]ighlight")
 
 -- Insert --
--- Press jk fast to exit insert mode 
-keymap("i", "jk", "<ESC>", opts)
-keymap("i", "kj", "<ESC>", opts)
+-- Press jk fast to exit insert mode
+keymap("i", "jk", "<ESC>", "Exit insert mode")
+keymap("i", "kj", "<ESC>", "Exit insert mode")
 
 -- Move in insert mode using CTRL+hljk
-keymap("i", "<C-h>", "<left>", opts)
-keymap("i", "<C-l>", "<right>", opts)
-keymap("i", "<C-k>", "<up>", opts)
-keymap("i", "<C-j>", "<down>", opts)
+keymap("i", "<C-h>", "<left>", "Move left")
+keymap("i", "<C-l>", "<right>", "Move right")
+keymap("i", "<C-k>", "<up>", "Move up")
+keymap("i", "<C-j>", "<down>", "Move down")
 
 -- Visual --
 -- Stay in indent mode
-keymap("v", "<", "<gv^", opts)
-keymap("v", ">", ">gv^", opts)
+keymap("v", "<", "<gv^", "Increase indentation level")
+keymap("v", ">", ">gv^", "Decrease indentation level")
 
 -- Move text up and down
-keymap("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
-keymap("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
-keymap("v", "p", '"_dP', opts)
+keymap("v", "<A-j>", ":m '>+1<CR>gv=gv", "Move line up")
+keymap("v", "<A-k>", ":m '<-2<CR>gv=gv", "Move line down")
+keymap("v", "p", '"_dP', "Delete selected region and paste")
 
 -- Visual Block --
 -- Move text up and down
-keymap("x", "J", ":m '>+1<CR>gv=gv", opts)
-keymap("x", "K", ":m '<-2<CR>gv=gv", opts)
-keymap("x", "<A-j>", ":m '>+1<CR>gv=gv", opts)
-keymap("x", "<A-k>", ":m '<-2<CR>gv=gv", opts)
-
--- Terminal --
--- Better terminal navigation
--- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
--- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
--- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
--- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-
--- Jupyter --
-vim.cmd('nmap <space>jt ctrih/^# %%<CR><CR>')
-vim.cmd('nmap <space>ja ggctrG<C-o>')
-vim.cmd('nmap <space>jb /^# %%<CR>ctrgg<C-o>')
+keymap("x", "<A-j>", ":m '>+1<CR>gv=gv", "Move line up")
+keymap("x", "<A-k>", ":m '<-2<CR>gv=gv", "Move line down")

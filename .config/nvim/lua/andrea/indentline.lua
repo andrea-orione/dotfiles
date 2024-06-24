@@ -7,7 +7,7 @@ end
 indent_blankline.setup({
     enabled = true,
     indent = {
-        char = "▏", -- other possible options are "▎" or "│"
+        char = "│", -- other possible options are "▎" or "▏"
         smart_indent_cap = true,
     },
     whitespace = {
