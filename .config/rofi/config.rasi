@@ -1,0 +1,46 @@
+configuration {
+    modes: "window,drun,run,filebrowser";
+    font: "mono 12";
+    fixed-num-lines: true;
+    show-icons: true;
+    run-command: "{cmd}";
+    run-list-command: "";
+    run-shell-command: "{terminal} -e {cmd}";
+    /* icon-theme: ; */
+    drun-match-fields: "name,generic,exec,categories,keywords";
+    drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+    disable-history: false;
+    ignored-prefixes: "";
+    sort: false;
+    case-sensitive: false;
+    cycle: true;
+    sidebar-mode: false;
+    hover-select: false;
+    auto-select: false;
+    combi-modes: "window,drun,run";
+    matching: "normal";
+    scroll-method: 0;
+    window-format: "{w}    {c}   {t}";
+    click-to-exit: true;
+    global-kb: false;
+    max-history-size: 25;
+    combi-hide-mode-prefix: false;
+    combi-display-format: "{mode} {text}";
+    normalize-match: false;
+    steal-focus: false;
+    refilter-timeout-limit: 300;
+    completer-mode: "recursivebrowser";
+  timeout {
+      action: "kb-cancel";
+      delay:  0;
+  }
+  filebrowser {
+      directories-first: true;
+      sorting-method:    "name";
+  }
+}
+
+@import "keybindings"
+@theme "tokyonight"
+
+/* vim:ft=css
