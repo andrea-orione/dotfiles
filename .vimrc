@@ -8,17 +8,6 @@
 "
 " Customisation of Vim
 
-" PLUGINS ---------------------------------------------------------------- {{{
-
-call plug#begin('~/.vim/plugged')
-
-    Plug 'preservim/nerdtree'   " For browsing the filesystem
-    Plug 'dense-analysis/ale'   " For checking spell
-
-call plug#end()
-
-" }}}
-
 " VARIOUS SETTINGS ------------------------------------------------------- {{{
 
 " TODO add spell check

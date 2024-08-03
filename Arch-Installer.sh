@@ -3,20 +3,20 @@
 DOTFILES=$PWD;
 
 echo "Installing low level packages"
-sudo pacman -S git vim sudo base-devel bash-completion eza htop strongswan --needed;
-
+sudo pacman -S git vim nano sudo base-devel bash-completion eza lazygit htop strongswan stow\
+  networkmanager networkmanager-l2tp tmux zsh --needed;
 
 echo "Installing desktop environment packages"
-sudo pacman -S pipewire pipewire-audio pipewire-pulse pavucontrol pamixer playerctl\
- alsa-firmware alsa-plugins alsa-utils brightnessctl starship\
- bluez bluez-utils blueman waybar dunst hyprland neofetch neovim swayidle\
+sudo pacman -S pipewire pipewire-audio pipewire-pulse pavucontrol pamixer playerctl xterm\
+ alsa-firmware alsa-plugins alsa-utils brightnessctl starship cmatrix network-manager-applet\
+ bluez bluez-utils blueman waybar dunst hyprland neofetch fastfetch neovim udiskie wpaperd\
  ttf-fira-code ttf-fira-mono ttf-firacode-nerd ttf-hack ttf-inconsolata ttf-inconsolata-nerd\
  tttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-liberation ttf-ubuntu-font-family ttf-ubuntu-mono-nerd ttf-ubuntu-nerd\
- sddm rofi nmp redshift grim slurp hyprlang sdbus-cpp xdg-desktop-portal-hyprland hypridle hyprlock --needed;
+ sddm rofi-wayland nmp redshift grim slurp hyprlang sdbus-cpp xdg-desktop-portal-hyprland\
+ xdg-desktop-portal-kde xdg-desktop-portal-wlr xorg-server-xephyr hypridle hyprlock --needed;
 
 echo "Setting up sddm";
 systemctl enable sddm;
-
 
 echo "Installing yay";
 cd ~;
@@ -28,62 +28,26 @@ sudo rm -r yay-git;
 cd $DOTFILES;
 
 echo "Installing aur packages";
-yay -Sy wpaperd breeze-hacked-cursor-theme sddm-swish swaylock-effects hyprsome-git hyprpicker kickoff wlogout --needed;
+yay -Sy cava breeze-hacked-cursor-theme sddm-swish hyprsome-git hyprpicker kickoff wlogout --needed;
 
 echo "Installing tpm";
 $(git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm)
 
 echo "Coping config files";
+stow .
 
-echo "Coping .vimrc";
-cp .vimrc ~/;
-echo "Installing vim plugins";
-$(curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim);
-
-echo "Coping neofetch config";
-cp -r .config/neofetch ~/.config/;
-
-echo "Coping awesome config files";
-cp -r .config/awesome ~/.config/;
-
-echo "Coping alacritty config";
-cp -r .config/alacritty ~/.config/;
-
-echo "Coping dunst config";
-cp -r .config/dunst ~/.config/;
-
-echo "Coping htop config";
-cp -r .config/htop ~/.config/;
-
-echo "Coping hyprland config";
-cp -r .config/hypr ~/.config/;
-
-echo "Coping wpaperd config";
-cp -r .config/wpaperd ~/.config/;
-
-echo "Coping waybar config";
-cp -r .config/waybar ~/.config/;
-
-echo "Coping swaylock config";
-cp -r .config/swaylock ~/.config/;
-
-echo "Coping wallpapers";
-cp -r .wallpapers ~/;
-
-echo "Coping bash config";
-cp .bashrc ~/;
-cp -r .bash_completion ~/;
-# }}}
-
+echo "Installing programming libraries"
+sudo pacman -S cern-vdt ipython jupyter-notebook python-numba python-pandas --needed
 
 echo "Installing applications"
-sudo pacman -S vlc rhythmbox blender gimp musescore shotcut freecad\
-  deja-dup libreoffice-fresh okular calibre\
-  emacs alacritty root code texstudio\
-  gnucash keepassxc geogebra firefox thunar qalculate-qt supertux --needed;
+sudo pacman -S vlc rhythmbox blender gimp musescore shotcut freecad system-config-printer\
+  deja-dup libreoffice-fresh okular calibre arduino filelight nomacs prusa-slicer\
+  emacs alacritty kitty konsole root code texstudio blanket kdeconnect thunderbird\
+  gnucash keepassxc geogebra firefox thunar qalculate-qt supertux android-file-transfer --needed;
 
 echo "Installing yay applications"
-yay -S code-features duc update-notifier --needed;
+yay -S code-features duc update-notifier pipes.sh --needed;
 
-echo "Coping emacs config";
-cp -r .config/emacs ~/.config/;
+echo "Setting zsh as the default shell"
+chsh -s /bin/zsh $USERNAME
+
