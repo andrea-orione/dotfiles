@@ -133,7 +133,12 @@ bind "set completion-ignore-case on"
 
 # Sourcing useful stuff
 . "$HOME/.cargo/env"
+if [ ! -d "~/.bash_completion/" ]; then
+    mkdir -p "~/.bash_completion/"
+fi
+if [ ! -f "~/.bash_completion/alacritty" ]; then
+    touch "~/.bash_completion/alacritty"
+fi
 source ~/.bash_completion/alacritty
 
-# neofetch
 eval "$(starship init bash)"

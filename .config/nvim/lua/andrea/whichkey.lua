@@ -5,6 +5,14 @@ if not status_ok then
 end
 
 local setup = {
+    preset = "classic", -- layout (false, "classic", "modern", "helix"). Use false to costumize with win
+    delay = function(ctx) return ctx.plugin and 0 or 200 end,
+    filter = function(mapping) return mapping.desc and mapping.desc ~= "" end, -- This excludes mappings without a description
+    notify = true, -- show a warning when issues were detected with your mappings
+    -- triggers = {  -- Which keys trigger the panel
+    --     { "<auto>", mode = "nxsot" },
+    --     { "<leader>", mode = "nxsot" },
+    -- },
     plugins = {
         marks = true, -- shows a list of your marks on ' and `
         registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -27,28 +35,14 @@ local setup = {
     -- add operators that will trigger motion and text object completion
     -- to enable all native operators, set the preset / operators plugin above
     -- operators = { gc = "Comments" },
-    key_labels = {
-        -- override the label used to display some keys. It doesn't effect WK in any other way.
-        -- For example:
-        -- ["<space>"] = "SPC",
-        -- ["<cr>"] = "RET",
-        -- ["<tab>"] = "TAB",
-    },
     icons = {
         breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
         separator = "➜", -- symbol used between a key and it's label
         group = "+", -- symbol prepended to a group
     },
-    popup_mappings = {
+    keys = {
         scroll_down = "<c-d>", -- binding to scroll down inside the popup
         scroll_up = "<c-u>", -- binding to scroll up inside the popup
-    },
-    window = {
-        border = "rounded", -- none, single, double, shadow
-        position = "bottom", -- bottom, top
-        margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-        padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-        winblend = 0,
     },
     layout = {
         height = { min = 4, max = 25 }, -- min and max height of the columns
@@ -56,27 +50,32 @@ local setup = {
         spacing = 3, -- spacing between columns
         align = "left", -- align columns left, center or right
     },
-    ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
-    hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
+    -- hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
     show_help = true, -- show help message on the command line when the popup is visible
-    triggers = "auto", -- automatically setup triggers
-    -- triggers = {"<leader>"} -- or specify a list manually
-    triggers_blacklist = {
-        -- list of mode / prefixes that should never be hooked by WhichKey
-        -- this is mostly relevant for key maps that start with a native binding
-        -- most people should not need to change this
-        i = { "j", "k" },
-        v = { "j", "k" },
-    },
 }
 
+-- Old version
+-- local mappings = {
+--     ["<leader>d"] = { name = "[D]iagnostics", _ = "which_key_ignore" },
+--     ["<leader>g"] = { name = "[G]it", _ = "which_key_ignore" },
+--     ["<leader>l"] = { name = "[L]SP", _ = "which_key_ignore" },
+--     ["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
+--     ["<leader>t"] = { name = "[T]erminal", _ = "which_key_ignore" },
+-- }
+
+-- New version
 local mappings = {
-    ["<leader>d"] = { name = "[D]iagnostics", _ = "which_key_ignore" },
-    ["<leader>g"] = { name = "[G]it", _ = "which_key_ignore" },
-    ["<leader>l"] = { name = "[L]SP", _ = "which_key_ignore" },
-    ["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
-    ["<leader>t"] = { name = "[T]erminal", _ = "which_key_ignore" },
+    { "<leader>d", group = "[D]iagnostics" },
+    { "<leader>d_", hidden = true },
+    { "<leader>g", group = "[G]it" },
+    { "<leader>g_", hidden = true },
+    { "<leader>l", group = "[L]SP" },
+    { "<leader>l_", hidden = true },
+    { "<leader>s", group = "[S]earch" },
+    { "<leader>s_", hidden = true },
+    { "<leader>t", group = "[T]erminal" },
+    { "<leader>t_", hidden = true },
 }
 
 which_key.setup(setup)
-which_key.register(mappings)
+which_key.add(mappings)

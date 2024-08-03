@@ -44,8 +44,8 @@ keymap("n", "<A-k>", ":m .-2<CR>==", "Move line down")
 
 -- Diagnostics
 -- TODO: Consider changing them
-keymap("n", "<leader>dp", vim.diagnostic.goto_next, "Go to [P]revious diagnostic message")
-keymap("n", "<leader>dn", vim.diagnostic.goto_prev, "Go to [N]ext diagnostic message")
+keymap("n", "<leader>dp", vim.diagnostic.goto_prev, "Go to [P]revious diagnostic message")
+keymap("n", "<leader>dn", vim.diagnostic.goto_next, "Go to [N]ext diagnostic message")
 keymap("n", "<leader>de", vim.diagnostic.open_float, "Show diagnostic [E]rror message") -- Maybe "<leader>e"
 keymap("n", "<leader>dq", vim.diagnostic.setloclist, "Open diagnostic [Q]quickfix list")
 

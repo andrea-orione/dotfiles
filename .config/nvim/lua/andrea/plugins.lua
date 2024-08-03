@@ -116,7 +116,18 @@ lazy.setup({
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 
     -- keybinding helper
-    { "folke/which-key.nvim",            event = "VimEnter" },
+    { "folke/which-key.nvim",
+        event = "VimEnter",
+        keys = {
+            {
+                "<leader>?",
+                function()
+                    require("which-key").show({ global = false })
+                end,
+                desc = "Buffer Local Keymaps (which-key)",
+            },
+        },
+    },
 
     -- Specific filetypes
     { "nvim-neorg/neorg",                version = "v7.0.0" }, -- Neorg
