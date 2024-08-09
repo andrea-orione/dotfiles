@@ -7,9 +7,9 @@ sudo pacman -S git vim nano sudo base-devel bash-completion eza lazygit htop str
   networkmanager networkmanager-l2tp tmux zsh --needed;
 
 echo "Installing desktop environment packages"
-sudo pacman -S pipewire pipewire-audio pipewire-pulse pavucontrol pamixer playerctl xterm\
+sudo pacman -S pipewire pipewire-audio pipewire-pulse pavucontrol pamixer playerctl xterm tree-sitter-cli\
  alsa-firmware alsa-plugins alsa-utils brightnessctl starship cmatrix network-manager-applet\
- bluez bluez-utils blueman waybar dunst hyprland neofetch fastfetch neovim udiskie wpaperd\
+ bluez bluez-utils blueman waybar dunst hyprland neofetch fastfetch neovim udiskie wpaperd luarocks\
  ttf-fira-code ttf-fira-mono ttf-firacode-nerd ttf-hack ttf-inconsolata ttf-inconsolata-nerd\
  tttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-liberation ttf-ubuntu-font-family ttf-ubuntu-mono-nerd ttf-ubuntu-nerd\
  sddm rofi-wayland nmp redshift grim slurp hyprlang sdbus-cpp xdg-desktop-portal-hyprland\
@@ -28,7 +28,7 @@ sudo rm -r yay-git;
 cd $DOTFILES;
 
 echo "Installing aur packages";
-yay -Sy cava breeze-hacked-cursor-theme sddm-swish hyprsome-git hyprpicker kickoff wlogout --needed;
+yay -Sy cava breeze-hacked-cursor-theme sddm-swish hyprsome-git hyprpicker kickoff wlogout python-pylatexenc --needed;
 
 echo "Installing tpm";
 $(git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm)

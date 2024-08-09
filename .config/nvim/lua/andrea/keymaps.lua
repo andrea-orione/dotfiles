@@ -21,18 +21,11 @@ vim.g.maplocalleader = " "
 -- Normal --
 -- Escape from search results
 vim.keymap.set("n", "<ESC>", "<cmd>nohlsearch<CR>")
+vim.keymap.set("i" , "<C-c>", "<ESC>", { noremap = true })
 
--- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", "Move focus to the left window")
-keymap("n", "<C-j>", "<C-w>j", "Move focus to the upper window")
-keymap("n", "<C-k>", "<C-w>k", "Move focus to the lower window")
-keymap("n", "<C-l>", "<C-w>l", "Move focus to the right window")
-
--- Resize with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>", "Resize upwards")
-keymap("n", "<C-Down>", ":resize +2<CR>", "Resize downwards")
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", "Resize to the left")
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", "Resize to the right")
+-- Better file navigation
+keymap("n", "<C-d>", "<C-d>zz", "Move down and center")
+keymap("n", "<C-u>", "<C-u>zz", "Move up and center")
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", "Move to the next buffer")
@@ -43,27 +36,24 @@ keymap("n", "<A-j>", ":m .+1<CR>==", "Move line up")
 keymap("n", "<A-k>", ":m .-2<CR>==", "Move line down")
 
 -- Diagnostics
--- TODO: Consider changing them
 keymap("n", "<leader>dp", vim.diagnostic.goto_prev, "Go to [P]revious diagnostic message")
 keymap("n", "<leader>dn", vim.diagnostic.goto_next, "Go to [N]ext diagnostic message")
-keymap("n", "<leader>de", vim.diagnostic.open_float, "Show diagnostic [E]rror message") -- Maybe "<leader>e"
+keymap("n", "<leader>de", vim.diagnostic.open_float, "Show diagnostic [E]rror message")
 keymap("n", "<leader>dq", vim.diagnostic.setloclist, "Open diagnostic [Q]quickfix list")
 
 -- Buffer and operations
 keymap("n", "<leader>w", "<cmd>w!<CR>", "Save")
-keymap("n", "<leader>c", "<cmd>Bdelete!<CR>", "[C]lose Buffer")
-keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", "No [H]ighlight")
+keymap("n", "<leader>c", "<cmd>bdelete!<CR>", "[C]lose Buffer")
+-- keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", "No [H]ighlight")
+
+-- Commands
+keymap("n", "<leader>xm", "<cmd>!chmod +x %<CR>", "[M]ake this file e[X]ecutable")
+keymap("n", "<leader>xx", "<cmd>so %<CR>", "E[X]ecute this file")
 
 -- Insert --
 -- Press jk fast to exit insert mode
-keymap("i", "jk", "<ESC>", "Exit insert mode")
-keymap("i", "kj", "<ESC>", "Exit insert mode")
-
--- Move in insert mode using CTRL+hljk
-keymap("i", "<C-h>", "<left>", "Move left")
-keymap("i", "<C-l>", "<right>", "Move right")
-keymap("i", "<C-k>", "<up>", "Move up")
-keymap("i", "<C-j>", "<down>", "Move down")
+-- keymap("i", "jk", "<ESC>", "Exit insert mode")
+-- keymap("i", "kj", "<ESC>", "Exit insert mode")
 
 -- Visual --
 -- Stay in indent mode

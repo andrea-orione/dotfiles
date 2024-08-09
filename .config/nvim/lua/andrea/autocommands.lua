@@ -1,4 +1,25 @@
+local general_group = vim.api.nvim_create_augroup("orion-general-settings", { clear = true })
+local yanking_group = vim.api.nvim_create_augroup("orion-highlight-yank", { clear = true })
+
 -- General autocommands. They run each time a condition is met. See :help lua-guide-autocommands
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "qf" , "help", "man", "lsp_info" },
+    desc = "Use q to close temporary buffers",
+    group = general_group,
+    callback = function(event)
+        vim.keymap.set("n", "q", ":close<CR>", { noremap = true, silent = true, buffer = event.buf })
+    end
+})
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "qf" },
+    group = general_group,
+    command = "set nobuflisted",
+})
+vim.api.nvim_create_autocmd("VimResized", {
+    group = general_group,
+    command = "tabdo wincmd = ",
+})
+-- TODO: Add spell checking
 
 -- Highlighth when yanking text (e.g. when yap is used)
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -8,35 +29,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.highlight.on_yank()
     end,
 })
-
--- TODO: translate these commands in lua
-vim.cmd([[
-  augroup _general_settings
-    autocmd!
-    autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR> 
-    autocmd BufWinEnter * :set formatoptions-=cro
-    autocmd FileType qf set nobuflisted
-  augroup end
-
-  augroup _git
-    autocmd!
-    autocmd FileType gitcommit setlocal wrap
-    autocmd FileType gitcommit setlocal spell
-  augroup end
-
-  augroup _markdown
-    autocmd!
-    autocmd FileType markdown setlocal wrap
-    autocmd FileType markdown setlocal spell
-  augroup end
-
-  augroup _auto_resize
-    autocmd!
-    autocmd VimResized * tabdo wincmd = 
-  augroup end
-
-  augroup _alpha
-    autocmd!
-    autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
-  augroup end
-]])

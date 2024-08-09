@@ -1,55 +1,71 @@
 -- General options. To see a full list use :help options
+local opt = vim.opt
 
-local o = vim.opt
-o.backup = false -- creates a backup file before overwriting it
-o.autoindent = true -- uses current indent if a new line is created
-o.breakindent = true -- every wrapped line continues visually indented
-o.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
-o.cmdheight = 1 -- number of lines that the command takes up
-o.completeopt = "menuone,noselect" -- how to show command completions (see documuntation for valid values)
-o.conceallevel = 0 -- so that `` is visible in markdown files
-o.cursorline = true -- highlight the current line
-o.emoji = true -- whether emoji characters should be consider to be full width
-o.expandtab = true -- convert tabs to spaces
-o.fileencoding = "utf-8" -- the encoding written to a file
-o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250"
+opt.autoindent = true     -- uses current indent if a new line is created
+opt.expandtab = true      -- convert tabs to spaces
+opt.tabstop = 4           -- number of spaces for each tab
+opt.shiftwidth = 4        -- number of spaces for each automatic indentation
+opt.list = true           -- show non printable characters
+opt.listchars = { tab = "» ", trail = ".", nbsp = "␣" }
+opt.smartindent = true    -- do smart indenting when startig a new line
+
+opt.number = true         -- set numbered lines
+opt.numberwidth = 2       -- minimal number of columns to use for the line number
+opt.relativenumber = true -- set relative numbered lines
+opt.signcolumn = "yes"    -- always show the sign column (column on the left where stuff e.g. git is shown)
+
+opt.cursorline = true     -- highlight the current line
+opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250"
 -- the configuration for the cursor in each mode
-o.guifont = "ubuntumono:h17" -- the font used in graphical neovim applications
-o.hlsearch = true -- highlight all matches on previous search pattern
-o.ignorecase = true -- ignore case in search patterns
-o.inccommand = "split"
-o.linebreak = true -- breaks the line at a charactre in 'breakat' rather than the last one
-o.list = true -- show non printable characters
-o.listchars = { tab = "» ", trail = ".", nbsp = "␣" }
-o.mouse = "a" -- allow the mouse to be used in neovim
-o.mousehide = true -- hides the mouse while typing
-o.number = true -- set numbered lines
-o.numberwidth = 2 -- minimal number of columns to use for the line number
-o.pumheight = 10 -- max number of items in the popup menu
-o.relativenumber = true -- set relative numbered lines
-o.scrolloff = 8 -- min number of lines to keep above and below the cursor
-o.shiftwidth = 2 -- the number of spaces inserted for each indentation
-o.showbreak = "> " -- the string to put at the start of the wrapped line
-o.showmode = false -- we don't need to see things like -- INSERT -- anymore
-o.showtabline = 2 -- whether the line with tab pages should be displayed (1 = only if more then one)
-o.sidescrolloff = 8
-o.signcolumn = "yes" -- always show the sign column, otherwise it would shift the text each time
-o.smartcase = true -- consider the case only if an upper case character is used
-o.smartindent = true -- do smart indenting when startig a new line
-o.splitbelow = true -- force all horizontal splits to go below current window
-o.splitright = true -- force all vertical splits to go to the right of current window
-o.statusline = "%<%f%h%m%r%=%l:%c%V    %P"
-o.swapfile = false -- creates a swapfile
-o.tabstop = 2 -- insert 2 spaces for a tab
-o.termguicolors = true -- set term gui colors (most terminals support this)
-o.timeoutlen = 600 -- time to wait for a mapped sequence to complete (in milliseconds)
-o.undofile = true -- enable persistent undo
-o.updatetime = 300 -- faster completion (4000ms default)
-o.wrap = true -- display lines as one long line
-o.writebackup = false -- if a file is being edited by another program it is not allowed to be edited
 
-o.shortmess:append("c")
+opt.backup = false      -- creates a backup file before overwriting it
+opt.swapfile = false    -- creates a swapfile
+opt.writebackup = false -- if a file is being edited by another program it is not allowed to be edited
+opt.undofile = true     -- enable persistent undo
 
-vim.cmd("set whichwrap+=<,>,[,],h,l")
-vim.cmd([[set iskeyword+=-]])
-vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
+opt.linebreak = true    -- breaks the line at a charactre in 'breakat' rather than the last one
+opt.showbreak = "> "    -- the string to put at the start of the wrapped line
+opt.breakindent = true  -- every wrapped line continues visually indented
+opt.wrap = true         -- display lines as one long line
+
+opt.statusline = "%<%f%h%m%r%=%l:%c%V    %P"
+opt.showmode = false                 -- we don't need to see things like -- INSERT -- anymore
+opt.cmdheight = 1                    -- number of lines that the command takes up
+
+opt.guifont = "ubuntumono:h17"       -- the font used in graphical neovim applications
+opt.conceallevel = 0                 -- so that `` is visible in markdown files
+opt.emoji = true                     -- whether emoji characters should be consider to be full width
+opt.fileencoding = "utf-8"           -- the encoding written to a file
+opt.termguicolors = true             -- set term gui colors (most terminals support this)
+
+opt.hlsearch = true                  -- highlight all matches on previous search pattern
+opt.ignorecase = true                -- ignore case in search patterns
+opt.smartcase = true                 -- consider the case only if an upper case character is used
+
+opt.completeopt = "menuone,noselect" -- how to show command completions (see documuntation for valid values)
+opt.pumheight = 10                   -- max number of items in the popup menu
+
+opt.mouse = "a"                      -- allow the mouse to be used in neovim
+opt.mousehide = true                 -- hides the mouse while typing
+
+opt.clipboard:append("unnamedplus")  -- allows neovim to access the system clipboard
+
+opt.inccommand = "split"
+opt.splitbelow = true -- force all horizontal splits to go below current window
+opt.splitright = true -- force all vertical splits to go to the right of current window
+
+opt.showtabline = 2   -- whether the line with tab pages should be displayed (1 = only if more then one)
+
+opt.scrolloff = 8     -- min number of lines to keep above and below the cursor
+opt.sidescrolloff = 8
+
+opt.timeout = false  -- whether current key combination should be discarded after a while
+-- NOTE: If true uncomment the option below
+-- opt.timeoutlen = 6000 -- time to wait for a mapped sequence to complete (in milliseconds)
+opt.updatetime = 300 -- faster completion (4000ms default)
+
+opt.shortmess:append("c")
+
+opt.whichwrap:append("<,>,[,],h,l")
+opt.iskeyword:append("-")
+vim.cmd("set formatoptions-=cro")
