@@ -33,7 +33,15 @@ yay -Sy cava breeze-hacked-cursor-theme sddm-swish hyprsome-git hyprpicker kicko
 echo "Installing tpm";
 $(git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm)
 
-echo "Coping config files";
+echo "Creating config file structure before symlinking"
+mkdir "~/.vim"
+mkdir -p "~/.vim/pack/themes/start"
+mkdir -p "~/.config/emacs"
+mkdir -p "~/.config/tmux"
+mkdir -p "~/.config/nvim"
+
+
+echo "Symlinking config files";
 stow .
 
 echo "Installing programming libraries"
