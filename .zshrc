@@ -68,9 +68,6 @@ alias tumx='tmux'
 # neovim shortcut
 alias vim='nvim'
 
-# git bare for config files
-alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
-
 # pacman and yay TODO: change to paru
 alias pacsyu='sudo pacman -Syu'                  # update only standard pkgs
 alias pacsyyu='sudo pacman -Syyu'                # Refresh pkglist & update standard pkgs

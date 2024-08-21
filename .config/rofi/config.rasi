@@ -5,6 +5,7 @@ configuration {
     show-icons: true;
     run-command: "{cmd}";
     run-list-command: "";
+    terminal: "/usr/bin/alacritty";
     run-shell-command: "{terminal} -e {cmd}";
     /* icon-theme: ; */
     drun-match-fields: "name,generic,exec,categories,keywords";
