@@ -37,9 +37,9 @@ echo "Creating config file structure before symlinking"
 mkdir "~/.vim"
 mkdir -p "~/.vim/pack/themes/start"
 mkdir -p "~/.config/emacs"
+touch "~/.config/emacs/custom.el"
 mkdir -p "~/.config/tmux"
 mkdir -p "~/.config/nvim"
-
 
 echo "Symlinking config files";
 stow .
