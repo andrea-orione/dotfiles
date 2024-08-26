@@ -33,6 +33,6 @@ lazy.setup({
         notify = true,
     },
     change_detection = {
-        notify = true,
+        notify = false,
     }
 })
