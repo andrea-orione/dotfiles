@@ -37,6 +37,10 @@ return {
         require("nvim-treesitter.install").prefer_git = true
         local config = require("nvim-treesitter.configs")
 
+        vim.filetype.add({
+            pattern = {[".*/hypr/.*%.conf"] = "hyprlang" },
+        })
+
         treesitter.setup()
         config.setup(opts)
     end,

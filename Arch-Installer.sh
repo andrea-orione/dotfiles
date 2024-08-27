@@ -8,12 +8,12 @@ sudo pacman -S git vim nano sudo base-devel bash-completion eza lazygit htop str
 
 echo "Installing desktop environment packages"
 sudo pacman -S pipewire pipewire-audio pipewire-pulse pavucontrol pamixer playerctl xterm tree-sitter-cli\
- alsa-firmware alsa-plugins alsa-utils brightnessctl starship cmatrix network-manager-applet\
- bluez bluez-utils blueman waybar dunst hyprland neofetch fastfetch neovim udiskie wpaperd luarocks\
+ alsa-firmware alsa-plugins alsa-utils brightnessctl starship cmatrix network-manager-applet wl-clipboard\
+ bluez bluez-utils blueman waybar dunst hyprland neofetch fastfetch neovim udiskie wpaperd luarocks cliphist\
  ttf-fira-code ttf-fira-mono ttf-firacode-nerd ttf-hack ttf-inconsolata ttf-inconsolata-nerd\
  tttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-liberation ttf-ubuntu-font-family ttf-ubuntu-mono-nerd ttf-ubuntu-nerd\
  sddm rofi-wayland nmp redshift grim slurp hyprlang sdbus-cpp xdg-desktop-portal-hyprland\
- xdg-desktop-portal-kde xdg-desktop-portal-wlr xorg-server-xephyr hypridle hyprlock --needed;
+ xdg-desktop-portal-kde xdg-desktop-portal-wlr xdg-desktop-portal-gtk xorg-server-xephyr hypridle hyprlock --needed;
 
 echo "Setting up sddm";
 systemctl enable sddm;
@@ -40,6 +40,7 @@ mkdir -p "~/.config/emacs"
 touch "~/.config/emacs/custom.el"
 mkdir -p "~/.config/tmux"
 mkdir -p "~/.config/nvim"
+mkdir -p "~/.icons"
 
 echo "Symlinking config files";
 stow .
