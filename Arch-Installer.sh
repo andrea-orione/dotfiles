@@ -13,7 +13,7 @@ sudo pacman -S pipewire pipewire-audio pipewire-pulse pavucontrol pamixer player
  ttf-fira-code ttf-fira-mono ttf-firacode-nerd ttf-hack ttf-inconsolata ttf-inconsolata-nerd\
  tttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-liberation ttf-ubuntu-font-family ttf-ubuntu-mono-nerd ttf-ubuntu-nerd\
  sddm rofi-wayland nmp redshift grim slurp hyprlang sdbus-cpp xdg-desktop-portal-hyprland\
- xdg-desktop-portal-kde xdg-desktop-portal-wlr xdg-desktop-portal-gtk xorg-server-xephyr hypridle hyprlock --needed;
+ xdg-desktop-portal-kde xdg-desktop-portal-wlr xdg-desktop-portal-gtk xorg-server-xephyr hypridle hyprlock zoxide --needed;
 
 echo "Setting up sddm";
 systemctl enable sddm;
@@ -41,6 +41,8 @@ touch "~/.config/emacs/custom.el"
 mkdir -p "~/.config/tmux"
 mkdir -p "~/.config/nvim"
 mkdir -p "~/.icons"
+mkdir -p "~/.themes"
+mkdir -p "~/.bin"
 
 echo "Symlinking config files";
 stow .
@@ -52,7 +54,7 @@ echo "Installing applications"
 sudo pacman -S vlc rhythmbox blender gimp musescore shotcut freecad system-config-printer\
   deja-dup libreoffice-fresh okular calibre arduino filelight nomacs prusa-slicer\
   emacs alacritty kitty konsole root code texstudio blanket kdeconnect thunderbird\
-  gnucash keepassxc geogebra firefox thunar qalculate-qt supertux android-file-transfer --needed;
+  gnucash keepassxc geogebra firefox thunar gvfs thunar-archive-plugin thunar-media-tags-plugin qalculate-qt supertux android-file-transfer --needed;
 
 echo "Installing yay applications"
 yay -S code-features duc update-notifier pipes.sh --needed;

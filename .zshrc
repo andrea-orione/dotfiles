@@ -24,6 +24,14 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+
+# Keybindings style
+bindkey -v
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+bindkey 'Up' history-search-backward
+bindkey 'Down' history-search-forward
 
 # Completion settings
 autoload -U compinit && compinit
@@ -43,6 +51,8 @@ setopt hist_find_no_dups
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # match case usensitive
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" # color completions
 zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 ### ALIASES
 # enable color support
@@ -59,20 +69,12 @@ fi
 alias ls='eza --color=auto'
 alias ll='eza -la --color=always --group-directories-first'
 alias lt='eza -la --color=always --group-directories-first --tree'
-alias l='ls -lav --ignore=.?*'   # show long listing but no hidden dotfiles except "."
-alias la='ls -CF'
 
 # common typos
 alias tumx='tmux'
 
 # neovim shortcut
 alias vim='nvim'
-
-# pacman and yay TODO: change to paru
-alias pacsyu='sudo pacman -Syu'                  # update only standard pkgs
-alias pacsyyu='sudo pacman -Syyu'                # Refresh pkglist & update standard pkgs
-alias yaysua='yay -Sua --noconfirm'             # update only AUR pkgs (paru)
-alias yaysyu='yay -Syu --noconfirm'             # update standard pkgs and AUR pkgs (paru)
 
 ### VARIABLES
 # manpager
@@ -88,20 +90,8 @@ if [ -d "$HOME/.local/bin" ] ;
   then PATH="$HOME/.local/bin:$PATH"
 fi
 
-if [ -d "$HOME/.emacs.d/bin" ] ;
-  then PATH="$HOME/.emacs.d/bin:$PATH"
-fi
-
-if [ -d "$HOME/Applications" ] ;
-  then PATH="$HOME/Applications:$PATH"
-fi
-
-if [ -d "/var/lib/flatpak/exports/bin/" ] ;
-  then PATH="/var/lib/flatpak/exports/bin/:$PATH"
-fi
-
-if [ -d "$HOME/.config/emacs/bin/" ] ;
-  then PATH="$HOME/.config/emacs/bin/:$PATH"
+if [ -d "$HOME/Programs" ] ;
+  then PATH="$HOME/Programs:$PATH"
 fi
 
 ### SETTING OTHER ENVIRONMENT VARIABLES
@@ -115,40 +105,15 @@ if [ -z "$XDG_CACHE_HOME" ] ; then
     export XDG_CACHE_HOME="$HOME/.cache"
 fi
 
-### ARCHIVE EXTRACTION
-# usage: extract <file>
-extract ()
-{
-  if [ -f "$1" ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1   ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *.deb)       ar x $1      ;;
-      *.tar.xz)    tar xf $1    ;;
-      *.tar.zst)   unzstd $1    ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
-}
 
 ### SHELL INTEGRATION
 [[ "$(whoami)" = "root" ]] && return
 . "$HOME/.cargo/env"
 
 eval "$(starship init zsh)"
+eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
 fastfetch
 
 
 
-bindkey -v

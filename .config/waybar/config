@@ -128,8 +128,9 @@
     },
 
     "clock": {
-        "interval": 20,
+        "interval": 10,
         "timezone": "Europe/Rome",
+        "locale": "it_IT.utf8",
         "tooltip-format": "<big>{:%d %B %Y}</big>\n<tt><small>{calendar}</small></tt>",
         "calendar":{
             "mode": "month",
