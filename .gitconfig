@@ -1,0 +1,33 @@
+[user]
+    email = andrea.orione02@gmail.com
+    name = Andrea Orione
+
+[init]
+    defaultBranch = main
+
+[filter "lfs"]
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+
+[core]
+    editor = nvim
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true   # use n and N to move between diff sections
+    side-by-side = true
+
+    # delta detects terminal colors automatically; set one of these to disable auto-detection
+    # dark = true
+    # light = true
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default

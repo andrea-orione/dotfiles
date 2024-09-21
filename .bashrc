@@ -61,6 +61,9 @@ alias ls='eza --color=auto'
 alias ll='eza -la --color=always --group-directories-first'
 alias lt='eza -la --color=always --group-directories-first --tree'
 
+# file displaying
+alias bat='cat'
+
 # common typos
 alias tumx='tmux'
 
@@ -80,13 +83,13 @@ bind "set completion-ignore-case on"
 
 # Sourcing useful stuff
 . "$HOME/.cargo/env"
-if [ ! -d "~/.bash_completion/" ]; then
-    mkdir -p "~/.bash_completion/"
+if [ ! -d "$HOME/.bash_completion/" ]; then
+    mkdir -p "$HOME/.bash_completion/"
 fi
-if [ ! -f "~/.bash_completion/alacritty" ]; then
-    touch "~/.bash_completion/alacritty"
+if [ ! -f "$HOME/.bash_completion/alacritty" ]; then
+    touch "$HOME/.bash_completion/alacritty"
 fi
-source ~/.bash_completion/alacritty
+source $HOME/.bash_completion/alacritty
 
 eval "$(starship init bash)"
 eval "$(fzf --bash)"

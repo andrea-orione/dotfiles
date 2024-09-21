@@ -26,12 +26,16 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
-# Keybindings style
-bindkey -v
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
-bindkey 'Up' history-search-backward
-bindkey 'Down' history-search-forward
+# Keybindings
+bindkey -v #Set vim mode
+bindkey -r ""
+bindkey -r ""
+bindkey -r ""
+bindkey -r "^J"
+bindkey '^P' history-search-backward
+bindkey '^N' history-search-forward
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
 
 # Completion settings
 autoload -U compinit && compinit
@@ -69,6 +73,9 @@ fi
 alias ls='eza --color=auto'
 alias ll='eza -la --color=always --group-directories-first'
 alias lt='eza -la --color=always --group-directories-first --tree'
+
+# file displaying
+alias cat='bat'
 
 # common typos
 alias tumx='tmux'

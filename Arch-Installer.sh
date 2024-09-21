@@ -12,7 +12,7 @@ sudo pacman -S pipewire pipewire-audio pipewire-pulse pavucontrol pamixer player
  bluez bluez-utils blueman waybar dunst hyprland neofetch fastfetch neovim udiskie wpaperd luarocks cliphist\
  ttf-fira-code ttf-fira-mono ttf-firacode-nerd ttf-hack ttf-inconsolata ttf-inconsolata-nerd\
  tttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-liberation ttf-ubuntu-font-family ttf-ubuntu-mono-nerd ttf-ubuntu-nerd\
- sddm rofi-wayland nmp redshift grim slurp hyprlang sdbus-cpp xdg-desktop-portal-hyprland\
+ sddm rofi-wayland nmp redshift grim slurp hyprlang sdbus-cpp xdg-desktop-portal-hyprland bat\
  xdg-desktop-portal-kde xdg-desktop-portal-wlr xdg-desktop-portal-gtk xorg-server-xephyr hypridle hyprlock zoxide --needed;
 
 echo "Setting up sddm";
@@ -48,12 +48,12 @@ echo "Symlinking config files";
 stow .
 
 echo "Installing programming libraries"
-sudo pacman -S cern-vdt ipython jupyter-notebook python-numba python-pandas --needed
+sudo pacman -S cern-vdt ipython jupyter-notebook python-numba python-pandas python-jupytext --needed
 
 echo "Installing applications"
 sudo pacman -S vlc rhythmbox blender gimp musescore shotcut freecad system-config-printer\
   deja-dup libreoffice-fresh okular calibre arduino filelight nomacs prusa-slicer\
-  emacs alacritty kitty konsole root code texstudio blanket kdeconnect thunderbird\
+  emacs alacritty konsole root code texstudio blanket kdeconnect thunderbird\
   gnucash keepassxc geogebra firefox thunar gvfs thunar-archive-plugin thunar-media-tags-plugin qalculate-qt supertux android-file-transfer --needed;
 
 echo "Installing yay applications"

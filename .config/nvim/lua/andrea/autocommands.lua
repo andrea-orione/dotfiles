@@ -1,5 +1,6 @@
 local general_group = vim.api.nvim_create_augroup("orion-general-settings", { clear = true })
 local yanking_group = vim.api.nvim_create_augroup("orion-highlight-yank", { clear = true })
+local tabs_group = vim.api.nvim_create_augroup("orion-space-tabs", { clear = true })
 
 -- General autocommands. They run each time a condition is met. See :help lua-guide-autocommands
 vim.api.nvim_create_autocmd("FileType", {
@@ -24,8 +25,18 @@ vim.api.nvim_create_autocmd("VimResized", {
 -- Highlighth when yanking text (e.g. when yap is used)
 vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight when yanking text",
-    group = vim.api.nvim_create_augroup("orion-highlight-yank", { clear = true }),
+    group = yanking_group,
     callback = function()
         vim.highlight.on_yank()
+    end,
+})
+
+-- Change tab to 2 spaces instead of 4 in cpp files
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "c", "cpp", "h", "hpp" },
+    group = tabs_group,
+    callback = function()
+        vim.opt_local.tabstop = 2
+        vim.opt_local.shiftwidth = 2
     end,
 })
