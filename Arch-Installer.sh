@@ -12,7 +12,7 @@ sudo pacman -S pipewire pipewire-audio pipewire-pulse pavucontrol pamixer player
  bluez bluez-utils blueman waybar dunst hyprland neofetch fastfetch neovim udiskie wpaperd luarocks cliphist\
  ttf-fira-code ttf-fira-mono ttf-firacode-nerd ttf-hack ttf-inconsolata ttf-inconsolata-nerd\
  tttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-liberation ttf-ubuntu-font-family ttf-ubuntu-mono-nerd ttf-ubuntu-nerd\
- sddm rofi-wayland nmp redshift grim slurp hyprlang sdbus-cpp xdg-desktop-portal-hyprland bat\
+ sddm rofi-wayland nmp redshift grim slurp hyprlang sdbus-cpp xdg-desktop-portal-hyprland bat git-delta\
  xdg-desktop-portal-kde xdg-desktop-portal-wlr xdg-desktop-portal-gtk xorg-server-xephyr hypridle hyprlock zoxide --needed;
 
 echo "Setting up sddm";
