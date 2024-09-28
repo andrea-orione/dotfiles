@@ -2,7 +2,7 @@
 return {
     {
         "folke/tokyonight.nvim",
-        lazy = true, -- NOTE: Set to false if you want so use this
+        lazy = false, -- NOTE: Set to false if you want so use this
         priority = 1000, -- to load before everything
     },
     {

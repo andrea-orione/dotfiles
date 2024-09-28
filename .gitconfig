@@ -1,7 +1,3 @@
-[user]
-    email = andrea.orione02@gmail.com
-    name = Andrea Orione
-
 [init]
     defaultBranch = main
 
@@ -25,6 +21,9 @@
     # delta detects terminal colors automatically; set one of these to disable auto-detection
     # dark = true
     # light = true
+
+[pull]
+    rebase = false
 
 [merge]
     conflictstyle = diff3

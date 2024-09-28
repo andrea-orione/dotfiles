@@ -46,6 +46,7 @@ mkdir -p "~/.bin"
 
 echo "Symlinking config files";
 stow .
+cp .gitconfig ~/
 
 echo "Installing programming libraries"
 sudo pacman -S cern-vdt ipython jupyter-notebook python-numba python-pandas python-jupytext --needed

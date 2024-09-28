@@ -53,8 +53,6 @@ show_user="#[fg=$thm_blue,bg=$thm_gray]$right_separator#[fg=$thm_bg,bg=$thm_blue
 
 show_host="#[fg=$thm_blue,bg=$thm_gray]$right_separator#[fg=$thm_bg,bg=$thm_blue]󰒋 #[fg=$thm_fg,bg=$thm_gray] #H "
 
-show_date_time="#[fg=$thm_blue,bg=$thm_gray]$right_separator#[fg=$thm_bg,bg=$thm_blue] #[fg=$thm_fg,bg=$thm_gray] $date_time "
-
 # Right column 1 by default shows the Window name.
 right_column1=$show_window
 
@@ -70,7 +68,6 @@ window_status_format=$show_window_in_window_status
 window_status_current_format=$show_window_in_window_status_current
 right_column2=$right_column2$show_user
 right_column2=$right_column2$show_host
-right_column2=$right_column2$show_date_time
 
 set -g status-left ""
 set -g status-right "${right_column1},${right_column2}"
