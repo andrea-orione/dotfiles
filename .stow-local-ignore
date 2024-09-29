@@ -22,6 +22,6 @@ _darcs
 ^/LICENSE.*
 ^/COPYING
 
-Arch-installer.sh
+Arch-Installer.sh
 needed_packages.md
 .gitconfig

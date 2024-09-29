@@ -10,9 +10,9 @@ echo "Installing desktop environment packages"
 sudo pacman -S pipewire pipewire-audio pipewire-pulse pavucontrol pamixer playerctl xterm tree-sitter-cli\
  alsa-firmware alsa-plugins alsa-utils brightnessctl starship cmatrix network-manager-applet wl-clipboard\
  bluez bluez-utils blueman waybar dunst hyprland neofetch fastfetch neovim udiskie wpaperd luarocks cliphist\
- ttf-fira-code ttf-fira-mono ttf-firacode-nerd ttf-hack ttf-inconsolata ttf-inconsolata-nerd\
+ ttf-fira-code ttf-fira-mono ttf-firacode-nerd ttf-hack\
  tttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-liberation ttf-ubuntu-font-family ttf-ubuntu-mono-nerd ttf-ubuntu-nerd\
- sddm rofi-wayland nmp redshift grim slurp hyprlang sdbus-cpp xdg-desktop-portal-hyprland bat git-delta\
+ sddm rofi-wayland nmp gammastep grim slurp hyprlang sdbus-cpp xdg-desktop-portal-hyprland bat git-delta\
  xdg-desktop-portal-kde xdg-desktop-portal-wlr xdg-desktop-portal-gtk xorg-server-xephyr hypridle hyprlock zoxide --needed;
 
 echo "Setting up sddm";
@@ -55,7 +55,7 @@ echo "Installing applications"
 sudo pacman -S vlc rhythmbox blender gimp musescore shotcut freecad system-config-printer\
   deja-dup libreoffice-fresh okular calibre arduino filelight nomacs prusa-slicer\
   emacs alacritty konsole root code texstudio blanket kdeconnect thunderbird\
-  gnucash keepassxc geogebra firefox thunar gvfs thunar-archive-plugin thunar-media-tags-plugin qalculate-qt supertux android-file-transfer --needed;
+  gnucash keepassxc geogebra firefox thunar gvfs thunar-archive-plugin thunar-media-tags-plugin tumbler qalculate-qt supertux android-file-transfer --needed;
 
 echo "Installing yay applications"
 yay -S code-features duc update-notifier pipes.sh --needed;

@@ -27,6 +27,7 @@ config.window_padding = {
     top = "0.5cell",
     bottom = 0,
 }
+config.window_close_confirmation = "NeverPrompt"
 
 -- COLOR AND APPEARENCE
 local orion_color_schemes = require("Orion-themes")
