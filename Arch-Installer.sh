@@ -13,7 +13,9 @@ sudo pacman -S pipewire pipewire-audio pipewire-pulse pavucontrol pamixer player
  ttf-fira-code ttf-fira-mono ttf-firacode-nerd ttf-hack\
  tttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-liberation ttf-ubuntu-font-family ttf-ubuntu-mono-nerd ttf-ubuntu-nerd\
  sddm rofi-wayland nmp gammastep grim slurp hyprlang sdbus-cpp xdg-desktop-portal-hyprland bat git-delta\
- xdg-desktop-portal-kde xdg-desktop-portal-wlr xdg-desktop-portal-gtk xorg-server-xephyr hypridle hyprlock zoxide --needed;
+ vpnc networkmanager-vpnc\
+ xdg-desktop-portal-kde xdg-desktop-portal-wlr xdg-desktop-portal-gtk xorg-server-xephyr hypridle hyprlock zoxide gnome-keyring --needed;
+
 
 echo "Setting up sddm";
 systemctl enable sddm;

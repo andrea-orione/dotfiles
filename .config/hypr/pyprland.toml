@@ -1,0 +1,16 @@
+[pyprland]
+plugins = [
+    "scratchpads"
+]
+
+[scratchpads.terminal]
+animation = "fromTop"
+command = "alacritty --class=alacritty-dropterm"
+lazy = true
+size = "75% 60%"
+
+[scratchpads.ipython]
+animation = "fromTop"
+command = "alacritty --command ipython"
+lazy = true
+size = "75% 60%"
