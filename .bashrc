@@ -56,6 +56,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+# remove safer
+alias rm='rm -I'
+
 # file listing
 alias ls='eza --color=auto'
 alias ll='eza -la --color=always --group-directories-first'
