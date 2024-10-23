@@ -14,6 +14,7 @@
 #  - `MonokayPro.toml`
 #  - `OrionBlue.toml`
 #  - `OrionDark.toml`
+[general]
 import = [
   "~/.config/alacritty/OrionDark.toml",
   "~/.config/alacritty/bindings.toml",
