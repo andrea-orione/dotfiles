@@ -1,47 +1,76 @@
 configuration {
-    modes: "window,drun,run,filebrowser";
-    font: "mono 12";
-    fixed-num-lines: true;
-    show-icons: true;
+    modes:              "drun,run,filebrowser,window";
+    font:               "UbuntuMono 12";
+    fixed-num-lines:    true;
+    show-icons:         true;
+    icon-theme: "MagnaDark";
+    application-fallback-icon: "application-x-addon";
+    terminal:           "/urs/bin/alacritty";
+
+    /* Run settings */
     run-command: "{cmd}";
     run-list-command: "";
-    terminal: "/usr/bin/alacritty";
     run-shell-command: "{terminal} -e {cmd}";
-    /* icon-theme: ; */
+
+    /* Window switcher settings */
+    window-command: "wmctrl -i -R {window}";
+    window-match-fields: "title,class,role,name,desktop";
+    window-format: "{w} - {c} - {t:0}";
+    window-thumbnail: false;
+
+    /* Drun settings */
     drun-match-fields: "name,generic,exec,categories,keywords";
+    drun-categories: "";
+    drun-show-actions: false;
     drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+    drun-url-launcher: "xdg-open";
+    drun-use-desktop-cache: false;
+    drun-reload-desktop-cache: false;
+    drun {
+        /** Parse user desktop files. */
+        parse-user:   true;
+        /** Parse system desktop files. */
+        parse-system: true;
+    }
+
+    /* History and Sorting */
     disable-history: false;
-    ignored-prefixes: "";
     sort: false;
+    sorting-method: "normal";
+    max-history-size: 25;
     case-sensitive: false;
     cycle: true;
+
+    /* Misc setting */
     sidebar-mode: false;
-    hover-select: false;
-    auto-select: false;
-    combi-modes: "window,drun,run";
-    matching: "normal";
-    scroll-method: 0;
-    window-format: "{w}    {c}   {t}";
+    hover-select: true;
+    auto-select: false; /* Auto launch when only 1 options */
+    threads: 0;
+    scroll-method: 1;
     click-to-exit: true;
     global-kb: false;
-    max-history-size: 25;
-    combi-hide-mode-prefix: false;
-    combi-display-format: "{mode} {text}";
-    normalize-match: false;
+    normalize-match: true;
     steal-focus: false;
-    refilter-timeout-limit: 300;
-    completer-mode: "recursivebrowser";
-  timeout {
-      action: "kb-cancel";
-      delay:  0;
-  }
-  filebrowser {
-      directories-first: true;
-      sorting-method:    "name";
-  }
+
+    /* Matching setting */
+    matching: "normal";
+    tokenize: true;
+    filter: "";
+
+    /* Nerd icons */
+    display-drun:               "";
+    display-run:                "";
+    display-filebrowser:        "";
+    display-window:             "";
+
+    /* File browser settings */
+    filebrowser {
+        directories-first: true;
+        sorting-method:    "name";
+    }
 }
 
-@import "keybindings"
-@theme "tokyonight"
+@import "keybindings.rasi"
+@import "style.rasi"
 
 /* vim:ft=css
