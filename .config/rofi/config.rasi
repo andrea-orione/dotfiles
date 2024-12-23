@@ -1,31 +1,43 @@
+/*
+*   _____     ____
+*  /  __  \ /  __  \
+* |  |__|  |  |  |  |  Andrea Orione
+* |   __   |  |  |  |  https://www.github.com/andrea-orione
+* |  |  |  |  |__|  |
+* |__|  |__|\ ____ /
+*
+* Customisation of Rofi
+*/
+
+/* GENERAL CONFIGURATION */
 configuration {
-    modes:              "drun,run,filebrowser,window";
+    modes:              "drun,run,window,filebrowser,recursivebrowser";
     font:               "UbuntuMono 12";
     fixed-num-lines:    true;
     show-icons:         true;
-    icon-theme: "MagnaDark";
+    icon-theme:         "MagnaDark";
     application-fallback-icon: "application-x-addon";
     terminal:           "/urs/bin/alacritty";
 
     /* Run settings */
-    run-command: "{cmd}";
-    run-list-command: "";
-    run-shell-command: "{terminal} -e {cmd}";
+    run-command:        "{cmd}";
+    run-list-command:   "";
+    run-shell-command:  "{terminal} -e {cmd}";
 
     /* Window switcher settings */
-    window-command: "wmctrl -i -R {window}";
-    window-match-fields: "title,class,role,name,desktop";
-    window-format: "{w} - {c} - {t:0}";
-    window-thumbnail: false;
+    window-command:         "wmctrl -i -R {window}";
+    window-match-fields:    "title,class,role,name,desktop";
+    window-format:          "{w} - {c} - {t:0}";
+    window-thumbnail:       false;
 
     /* Drun settings */
-    drun-match-fields: "name,generic,exec,categories,keywords";
-    drun-categories: "";
-    drun-show-actions: false;
-    drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
-    drun-url-launcher: "xdg-open";
-    drun-use-desktop-cache: false;
-    drun-reload-desktop-cache: false;
+    drun-match-fields:          "name,generic,exec,categories,keywords";
+    drun-categories:            "";
+    drun-show-actions:          false;
+    drun-display-format:        "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+    drun-url-launcher:          "xdg-open";
+    drun-use-desktop-cache:     false;
+    drun-reload-desktop-cache:  false;
     drun {
         /** Parse user desktop files. */
         parse-user:   true;
@@ -34,33 +46,34 @@ configuration {
     }
 
     /* History and Sorting */
-    disable-history: false;
-    sort: false;
-    sorting-method: "normal";
-    max-history-size: 25;
-    case-sensitive: false;
-    cycle: true;
+    disable-history:    false;
+    sort:               false;
+    sorting-method:     "normal";
+    max-history-size:   25;
+    case-sensitive:     false;
+    cycle:              true;
 
     /* Misc setting */
-    sidebar-mode: false;
-    hover-select: true;
-    auto-select: false; /* Auto launch when only 1 options */
-    threads: 0;
-    scroll-method: 1;
-    click-to-exit: true;
-    global-kb: false;
-    normalize-match: true;
-    steal-focus: false;
+    sidebar-mode:       false;
+    hover-select:       true;
+    auto-select:        false; /* Auto launch when only 1 options */
+    threads:            0;
+    scroll-method:      1;
+    click-to-exit:      true;
+    global-kb:          false;
+    normalize-match:    true;
+    steal-focus:        false;
 
     /* Matching setting */
-    matching: "normal";
-    tokenize: true;
-    filter: "";
+    matching:   "normal";
+    tokenize:   true;
+    filter:     "";
 
     /* Nerd icons */
     display-drun:               "";
     display-run:                "";
     display-filebrowser:        "";
+    display-recursivebrowser:   "";
     display-window:             "";
 
     /* File browser settings */

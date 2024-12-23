@@ -1,5 +1,6 @@
 @import "colors/onedark.rasi"
 
+/* General properties */
 * {
     border-colour:               var(selected);
     handle-colour:               var(selected);
@@ -60,7 +61,7 @@ mainbox {
     children:                    [ "inputbar", "message", "listview" ];
 }
 
-/*****----- Inputbar -----*****/
+/* Inputbar */
 inputbar {
     enabled:                     true;
     spacing:                     10px;
@@ -74,11 +75,6 @@ inputbar {
     children:                    [ "textbox-prompt-colon", "entry", "mode-switcher" ];
 }
 
-prompt {
-    enabled:                     true;
-    background-color:            inherit;
-    text-color:                  inherit;
-}
 textbox-prompt-colon {
     enabled:                     true;
     padding:                     5px 0px;
@@ -133,7 +129,7 @@ listview {
     reverse:                     false;
     fixed-height:                true;
     fixed-columns:               true;
-    
+
     spacing:                     5px;
     margin:                      0px;
     padding:                     0px;
@@ -220,7 +216,7 @@ mode-switcher{
     enabled:                     true;
     spacing:                     10px;
     margin:                      0px;
-    padding:                     0px;
+    padding:                     0px 0px 10px 0px;
     border:                      0px solid;
     border-radius:               0px;
     border-color:                @border-colour;
@@ -228,7 +224,7 @@ mode-switcher{
     text-color:                  @foreground-colour;
 }
 button {
-    padding:                     5px 10px;
+    padding:                     5px 15px 5px 10px;
     border:                      0px solid;
     border-radius:               10px;
     border-color:                @border-colour;
