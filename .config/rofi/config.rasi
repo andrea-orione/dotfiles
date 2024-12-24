@@ -27,7 +27,7 @@ configuration {
     /* Window switcher settings */
     window-command:         "wmctrl -i -R {window}";
     window-match-fields:    "title,class,role,name,desktop";
-    window-format:          "{w} - {c} - {t:0}";
+    window-format:          "{c}: {t:0}";
     window-thumbnail:       false;
 
     /* Drun settings */

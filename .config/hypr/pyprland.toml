@@ -3,14 +3,16 @@ plugins = [
     "scratchpads"
 ]
 
-[scratchpads.terminal]
+[scratchpads.term]
 animation = "fromTop"
 command = "alacritty --class=alacritty-dropterm"
+class = "alacritty-dropterm"
 lazy = true
 size = "75% 60%"
 
 [scratchpads.ipython]
 animation = "fromTop"
-command = "alacritty --command ipython"
+command = "alacritty --class=alacritty-ipython --command ipython"
+class = "alacritty-ipython"
 lazy = true
 size = "75% 60%"

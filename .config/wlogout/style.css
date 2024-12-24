@@ -13,7 +13,7 @@ window {
 button {
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 25%;
+    background-size: 18%;
     background-color: transparent;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s ease-in;
@@ -24,7 +24,7 @@ button {
 button:focus, button:active, button:hover {
     background-color: #3700B3;
     outline-style: none;
-    background-size: 20%;
+    background-size: 16%;
 }
 
 #lock {
