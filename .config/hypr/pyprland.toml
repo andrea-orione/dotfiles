@@ -14,5 +14,4 @@ size = "75% 60%"
 animation = "fromTop"
 command = "alacritty --class=alacritty-ipython --command ipython"
 class = "alacritty-ipython"
-lazy = true
 size = "75% 60%"
