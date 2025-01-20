@@ -55,7 +55,7 @@ return {
         }
     },
 
-    config = function(LazyPlugin, opts)
+    config = function(_, opts)
         local telescope = require("telescope")
         telescope.setup(opts)
         telescope.load_extension("projects")
@@ -78,7 +78,7 @@ return {
         keymap("n", "<leader>gc", builtin.git_commits, "[C]heckout commit")
         keymap("n", "<leader>gf", builtin.git_files, "Show tracked [F]iles")
 
-        keymap("n", "<leader>dl", function() 
+        keymap("n", "<leader>dl", function()
             builtin.diagnostics({ bufnr=0 })
         end, "Document Diagnostics [L]ist")
         keymap("n", "<leader>dw", builtin.diagnostics, "Diagnostics for [W]orkspace")

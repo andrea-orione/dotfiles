@@ -6,7 +6,7 @@ return {
         large_file_cutoff = 3000, -- Number of lines after which is disabled
         min_count_to_highlight = 1, -- Minimum number of matches to highlight
     },
-    config = function(LazyPackage, opts)
+    config = function(_, opts)
         local illuminate = require("illuminate")
         illuminate.configure(opts)
 

@@ -32,7 +32,7 @@ return {
         },
     },
 
-    config = function(LazyPlugin, opts)
+    config = function(_, opts)
         local treesitter = require("nvim-treesitter")
         require("nvim-treesitter.install").prefer_git = true
         local config = require("nvim-treesitter.configs")

@@ -87,6 +87,8 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol",
+        "on-scroll-up": "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -1%",
+         "on-scroll-down": "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +1%",
         "format-source": "{volume}",
         "tooltip-format": "{desc}\nOutput: {volume}%\nInput: {format_source}"
     },

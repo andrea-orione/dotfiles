@@ -46,7 +46,7 @@ return {
             },
         },
     },
-    config = function(LazyPlugin, opts)
+    config = function(_, opts)
         require("mason").setup(opts)
         require("mason-tool-installer").setup({ ensure_installed = ensure_installed_list })
 

@@ -1,5 +1,4 @@
 -- Status line
--- NOTE: Use this two options for easy editing
 local evil_icon = false
 local global_bar = false
 
@@ -8,7 +7,6 @@ local colors = {
     fg       = '#bbc2cf',
     yellow   = '#ECBE7B',
     cyan     = '#008080',
-    darkblue = '#081633',
     green    = '#98be65',
     orange   = '#FF8800',
     violet   = '#a9a1e1',
@@ -67,7 +65,7 @@ local mode_icon = {
 local section_a = {
     {
         function() return '▊' end,
-        color = { fg = colors.blue },
+        color = { fg = colors.cyan },
         padding = { left = 0, right = 1 },
     },
     {
@@ -106,6 +104,7 @@ local section_b = {
         },
     },
 }
+
 local section_b_inactive = {
     {
         'filename',
@@ -203,7 +202,7 @@ local section_z = {
         function()
             return '▊'
         end,
-        color = { fg = colors.blue },
+        color = { fg = colors.cyan },
         padding = { left = 1 },
     },
 }
@@ -242,7 +241,7 @@ local tab_z = {
 
         tabs_color = {
             active = { fg = colors.cyan, gui = "bold"},
-            inactive = { fg = colors.fg, bg = colors.darkblue },
+            inactive = { fg = colors.fg },
         },
 
         show_modified_status = false,
@@ -296,7 +295,7 @@ return {
             lualine_y = section_y,
             lualine_z = {},
         },
-        tabline = { -- TODO: Fix tabline
+        tabline = {
             lualine_a = tab_a,
             lualine_b = tab_void,
             lualine_c = tab_void,
@@ -306,4 +305,13 @@ return {
         },
         extensions = { "nvim-tree", },
     },
+
+    config = function(_, opts)
+        local original_theme = require("lualine.themes.auto")
+        opts.options.theme.normal.c.bg = original_theme.normal.c.bg
+        opts.options.theme.normal.a.bg = original_theme.normal.c.bg
+        opts.options.theme.normal.b.bg = original_theme.normal.c.bg
+        require("lualine").setup(opts)
+    end,
 }
+
