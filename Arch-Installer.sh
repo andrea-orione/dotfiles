@@ -11,7 +11,7 @@ sudo pacman -S pipewire pipewire-audio pipewire-pulse pavucontrol pamixer player
  alsa-firmware alsa-plugins alsa-utils brightnessctl starship cmatrix network-manager-applet wl-clipboard\
  bluez bluez-utils blueman waybar dunst hyprland neofetch fastfetch neovim udiskie wpaperd luarocks cliphist\
  ttf-ubuntu-font-family ttf-ubuntu-mono-nerd ttf-ubuntu-nerd ttf-cascadia-code\
- sddm rofi-wayland nmp hyprsunset grim slurp hyprlang sdbus-cpp xdg-desktop-portal-hyprland bat git-delta\
+ sddm rofi-wayland npm hyprsunset grim slurp hyprlang sdbus-cpp xdg-desktop-portal-hyprland bat git-delta\
  vpnc networkmanager-vpnc\
  xdg-desktop-portal-kde xdg-desktop-portal-wlr xdg-desktop-portal-gtk xorg-server-xephyr hypridle hyprlock zoxide gnome-keyring --needed;
 
