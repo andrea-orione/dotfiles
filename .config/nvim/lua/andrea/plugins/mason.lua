@@ -19,6 +19,7 @@ local servers = {
         settings = { ['rust_analyzer'] = { diagnostics = false, }, }
     },
     texlab = {},
+    zls = {},
 }
 
 local formatters = {}
