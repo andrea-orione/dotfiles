@@ -1,0 +1,11 @@
+/* My personal theme for the rofi app launcher */
+* {
+    background:     #101016FF;
+    background-alt: #363636FF;
+    foreground:     #F0F0F0FF;
+    selected:       #219FD5FF;
+    active:         #00B70AFF;
+    urgent:         #db3334FF;
+}
+
+/* vim:ft=css
