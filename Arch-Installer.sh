@@ -13,7 +13,7 @@ sudo pacman -S pipewire pipewire-audio pipewire-pulse pavucontrol pamixer player
  ttf-ubuntu-font-family ttf-ubuntu-mono-nerd ttf-ubuntu-nerd ttf-cascadia-code\
  sddm rofi-wayland npm hyprsunset grim slurp hyprlang sdbus-cpp xdg-desktop-portal-hyprland bat git-delta\
  vpnc networkmanager-vpnc\
- xdg-desktop-portal-kde xdg-desktop-portal-wlr xdg-desktop-portal-gtk xorg-server-xephyr hypridle hyprlock zoxide gnome-keyring --needed;
+ xdg-desktop-portal-kde xdg-desktop-portal-wlr xdg-desktop-portal-gtk xorg-server-xephyr hypridle hyprlock zoxide btop gnome-keyring --needed;
 
 
 echo "Setting up sddm";
@@ -55,7 +55,7 @@ sudo pacman -S cern-vdt ipython jupyter-notebook python-numba python-pandas pyth
 echo "Installing applications"
 sudo pacman -S vlc gimp freecad system-config-printer\
   deja-dup libreoffice-fresh okular calibre filelight photoqt prusa-slicer\
-  emacs alacritty ghostty konsole root code texstudio blanket kdeconnect thunderbird\
+  emacs alacritty ghostty root code texstudio blanket kdeconnect thunderbird\
   gnucash keepassxc geogebra firefox thunar gvfs thunar-archive-plugin thunar-media-tags-plugin tumbler qalculate-qt android-file-transfer --needed;
 
 echo "Installing yay applications"
