@@ -16,7 +16,7 @@
     enable_posix_regex = true
 
     width = 320               # (a, b) for dynamic width from a to b
-    height = (0, 500)         #(a, b) for dynamic width from a to b 
+    height = (0, 500)         # (a, b) for dynamic width from a to b 
 
     notification_limit = 10   # Others will appear when some are dismissed
 

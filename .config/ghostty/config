@@ -17,6 +17,7 @@ font-size = 11
 
 # APPEARENCE
 window-decoration = false
+resize-overlay = never
 theme = Abernathy
 background-opacity = 1
 

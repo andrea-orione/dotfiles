@@ -10,13 +10,14 @@
 
 # Choose the color theme here
 # Valid themes are:
+#  - `Abernathy.toml`
 #  - `Dracula.toml`
 #  - `MonokayPro.toml`
 #  - `OrionBlue.toml`
 #  - `OrionDark.toml`
 [general]
 import = [
-  "~/.config/alacritty/OrionDark.toml",
+  "~/.config/alacritty/Abernathy.toml",
   "~/.config/alacritty/bindings.toml",
   ]
 
