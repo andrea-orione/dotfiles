@@ -17,7 +17,7 @@ configuration {
     show-icons:         true;
     icon-theme:         "MagnaDark";
     application-fallback-icon: "application-x-addon";
-    terminal:           "/urs/bin/alacritty";
+    terminal:           "/usr/bin/ghostty";
 
     /* Run settings */
     run-command:        "{cmd}";
