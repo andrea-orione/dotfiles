@@ -50,7 +50,7 @@ stow .
 cp .gitconfig ~/
 
 echo "Installing programming libraries"
-sudo pacman -S cern-vdt ipython jupyter-notebook python-numba python-pandas python-jupytext root --needed
+sudo pacman -S cern-vdt ipython jupyter-notebook python-numba python-pandas python-jupytext root bear --needed
 
 echo "Installing applications"
 sudo pacman -S vlc gimp freecad system-config-printer\
