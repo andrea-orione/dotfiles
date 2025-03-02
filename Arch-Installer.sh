@@ -20,7 +20,7 @@ echo "Setting up sddm";
 systemctl enable sddm;
 
 echo "Installing yay";
-cd ~;
+cd $HOME;
 $(git clone https://aur.archlinux.org/yay-git.git);
 cd yay-git;
 $(makepkg -si);
@@ -29,7 +29,7 @@ sudo rm -r yay-git;
 cd $DOTFILES;
 
 echo "Installing aur packages";
-yay -Sy cava breeze-hacked-cursor-theme sddm-swish hyprsome-git hyprpicker kickoff wlogout python-pylatexenc --needed;
+yay -Sy cava breeze-hacked-cursor-theme-git sddm-swish hyprsome-git hyprpicker wlogout python-pylatexenc --needed;
 
 echo "Installing tpm";
 $(git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm)
