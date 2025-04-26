@@ -13,6 +13,7 @@
 
 add_newline = false # New line at the start of the prompt
 format = """
+$hostname\
 $os\
 $memory_usage\
 $directory\
@@ -23,7 +24,6 @@ $line_break\
 $jobs\
 $git_status\
 $battery\
-$status\
 $container\
 $character"""
 
@@ -35,31 +35,18 @@ $git_state\
 $git_metrics\
 $c\
 $cmake\
-$dotnet\
-$elixir\
-$elm\
-$gleam\
 $golang\
-$guix_shell\
 $haskell\
 $java\
 $julia\
-$kotlin\
 $lua\
-$nodejs\
-$ocaml\
-$perl\
 $php\
 $python\
 $quarto\
 $rlang\
-$ruby\
 $rust\
-$swift\
-$typst\
 $zig\
 $nix_shell\
-$conda\
 $meson\
 """
 
@@ -91,10 +78,10 @@ style = 'bold magenta'
 disabled = false
 
 [battery]
-charging_symbol = "⚡️ "
-discharging_symbol = "💀 "
-[[battery.display]]  # "bold red" style when capacity is between 0% and 20%
-threshold = 20 
+charging_symbol = "󰂄 "
+discharging_symbol = "󰂃 "
+[[battery.display]]  # When show battery
+threshold = 20
 style = "bold red"
 
 [status]
@@ -130,7 +117,7 @@ format = '[$symbol($version(-$name) )]($style)'
 symbol = ' '
 
 [python]
-format = '[$symbol($version(-$name) )]($style)'
+format = '[$symbol($version(-$name) )(\($virtualenv\))]($style)'
 symbol = ' '
 
 [rust]
