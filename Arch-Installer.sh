@@ -4,7 +4,7 @@ DOTFILES=$PWD;
 
 echo "Installing low level packages"
 sudo pacman -S git vim nano sudo base-devel bash-completion eza lazygit htop strongswan stow\
-  networkmanager networkmanager-l2tp tmux zsh --needed;
+  networkmanager networkmanager-l2tp tmux zsh man-db man-pages texinfo --needed;
 
 echo "Installing desktop environment packages"
 sudo pacman -S pipewire pipewire-audio pipewire-pulse pavucontrol pamixer playerctl xterm tree-sitter-cli\

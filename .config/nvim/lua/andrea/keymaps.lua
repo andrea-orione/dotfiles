@@ -43,7 +43,8 @@ keymap("n", "<leader>dq", vim.diagnostic.setloclist, "Open diagnostic [Q]quickfi
 
 -- Buffer and operations
 keymap("n", "<leader>w", "<cmd>w!<CR>", "Save")
-keymap("n", "<leader>c", "<cmd>bdelete!<CR>", "[C]lose Buffer")
+keymap("n", "<leader>c", ":bp<bar>sp<bar>bn<bar>bd<CR>", "[C]lose Buffer")
+keymap("n", "<leader>C", ":bp<bar>sp<bar>bn<bar>bd!<CR>", "Force [C]lose Buffer")
 -- keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", "No [H]ighlight")
 
 -- Commands
