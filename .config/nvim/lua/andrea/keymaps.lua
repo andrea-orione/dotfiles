@@ -36,8 +36,8 @@ keymap("n", "<A-j>", ":m .+1<CR>==", "Move line up")
 keymap("n", "<A-k>", ":m .-2<CR>==", "Move line down")
 
 -- Diagnostics
-keymap("n", "<leader>dp", vim.diagnostic.goto_prev, "Go to [P]revious diagnostic message")
-keymap("n", "<leader>dn", vim.diagnostic.goto_next, "Go to [N]ext diagnostic message")
+keymap("n", "<leader>dp", function() vim.diagnostic.jump({count=-1, float=true}) end, "Go to [P]revious diagnostic message")
+keymap("n", "<leader>dn", function() vim.diagnostic.jump({count=1, float=true}) end, "Go to [N]ext diagnostic message")
 keymap("n", "<leader>de", vim.diagnostic.open_float, "Show diagnostic [E]rror message")
 keymap("n", "<leader>dq", vim.diagnostic.setloclist, "Open diagnostic [Q]quickfix list")
 

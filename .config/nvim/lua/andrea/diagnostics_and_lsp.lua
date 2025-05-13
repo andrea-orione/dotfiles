@@ -27,14 +27,6 @@ vim.diagnostic.config({
     },
 })
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
-})
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
-})
-
 -- Lsp on attach set keybindings
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("orion-lsp-keymaps", { clear = true }),
