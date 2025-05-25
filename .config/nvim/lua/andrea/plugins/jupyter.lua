@@ -1,20 +1,20 @@
 return {
-    {
-        "GCBallesteros/jupytext.nvim",
-        event = "VeryLazy",
-        opts = {
-            style = "hydrogen",
-            output_extension = "auto",
-            force_ft = nil,
-            custom_language_formatting = {
-                -- python = {
-                --     extension = "qmd",
-                --     style = "quarto",
-                --     force_ft = "quarto", -- you can set whatever filetype you want here
-                -- },
-            },
-        }
-    },
+    -- {
+    --     "GCBallesteros/jupytext.nvim",
+    --     event = "VeryLazy",
+    --     opts = {
+    --         style = "hydrogen",
+    --         output_extension = "auto",
+    --         force_ft = nil,
+    --         custom_language_formatting = {
+    --             -- python = {
+    --             --     extension = "qmd",
+    --             --     style = "quarto",
+    --             --     force_ft = "quarto", -- you can set whatever filetype you want here
+    --             -- },
+    --         },
+    --     }
+    -- },
     --     {
     --         "benlubas/molten-nvim",
     --         event = "VeryLazy",

@@ -66,7 +66,7 @@ alias ll='eza -la --color=always --group-directories-first'
 alias lt='eza -la --color=always --group-directories-first --tree'
 
 # file displaying
-alias bat='cat'
+alias cat='bat'
 
 # common typos
 alias tumx='tmux'
