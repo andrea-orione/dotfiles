@@ -46,11 +46,11 @@ history = 10000
 multiplier = 4
 
 [font]
-normal = { family = "Ubuntu mono" }
-bold = { family = "Ubuntu mono", style = "Bold" }
-italic = { family = "Ubuntu mono", style = "Italic" }
-bold_italic = { family = "Ubuntu mono", style = "Bold Italic" }
-size = 12.0
+normal = { family = "Cascadia Code" }
+bold = { family = "Cascadia Code", style = "Bold" }
+italic = { family = "Cascadia code", style = "Italic" }
+bold_italic = { family = "Cascadia Code", style = "Bold Italic" }
+size = 11.0
 offset = { x = 0, y = 0 }
 glyph_offset = { x = 0, y = 0 }
 builtin_box_drawing = false

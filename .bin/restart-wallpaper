@@ -1,0 +1,5 @@
+!#/bin/bash
+
+killall wpaperd
+wpaperd &
+disown

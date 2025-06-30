@@ -82,13 +82,6 @@ window#waybar.hidden {
   padding: 0 5px;
 }
 
-#custom-launcher {
-  background-color: #011627;
-  color: #6a92d7;
-  border-radius: 7.5px;
-  padding: 0 3px;
-}
-
 #custom-weather.severe {
   color: #eb937d;
 }
