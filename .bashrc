@@ -68,11 +68,8 @@ alias lt='eza -la --color=always --group-directories-first --tree'
 # file displaying
 alias cat='bat'
 
-# common typos
-alias tumx='tmux'
-
 # neovim shortcut
-alias vim='nvim'
+# alias vim='nvim'
 
 [[ "$(whoami)" = "root" ]] && return
 
