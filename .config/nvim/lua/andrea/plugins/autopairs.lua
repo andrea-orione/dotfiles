@@ -22,7 +22,7 @@ return {
         }
     },
 
-    config = function(LazyPlugin, opts)
+    config = function(_, opts)
         require("nvim-autopairs").setup(opts)
         local cmp_autopairs = require "nvim-autopairs.completion.cmp"
         local cmp = require("cmp")

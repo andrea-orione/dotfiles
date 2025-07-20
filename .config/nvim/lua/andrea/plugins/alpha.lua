@@ -1,4 +1,3 @@
--- Startup screen
 local banners = {
     shaded_nvim = {
         [[███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗]],

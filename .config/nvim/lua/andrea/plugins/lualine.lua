@@ -1,4 +1,3 @@
--- Status line
 local evil_icon = false
 local global_bar = false
 

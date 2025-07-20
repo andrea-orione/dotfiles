@@ -1,5 +1,3 @@
--- TODO: Consider adding latex and presenter
--- TODO: Add completion
 return {
     "nvim-neorg/neorg",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -11,7 +9,7 @@ return {
             ["core.defaults"] = {},
             ["core.concealer"] = {
                 config = {
-                    folds = false,
+                    folds = true,
                 }
             },
             ["core.dirman"] = {
