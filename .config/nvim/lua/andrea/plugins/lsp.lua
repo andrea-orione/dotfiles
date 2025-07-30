@@ -8,6 +8,7 @@ local servers = {
     "pyright",
     "rust_analyzer",
     "texlab",
+    "tinymist",
     "zls"
 }
 local formatters = {}
