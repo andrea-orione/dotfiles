@@ -113,18 +113,21 @@
 
     "bluetooth": {
         "on-click": "bash ~/.config/waybar/scripts/rofi-bluetooth.sh",
-        "format": " {status}"
+        "format": " {status}",
+        "format-on": "󰂯",
+        "format-off": "󰂲",
+        "format-connected": "󰂱"
     },
 
     "network": {
         "interval": 30,
-        "format-wifi": "{icon}  {signalStrength}%",
-        "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
+        "format-wifi": "{icon}",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
         "format-ethernet": "",
         "format-disconnected": "󰤭",
         "tooltip-format": "{ifname} via {gwaddr}\n {bandwidthUpBytes}\n {bandwidthDownBytes}",
         "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}\n {bandwidthUpBytes}\n {bandwidthDownBytes}",
-        "tooltip-format-wifi": "{essid}\n {bandwidthUpBytes}\n {bandwidthDownBytes}\n{ifname} via {gwaddr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)\n {bandwidthUpBytes}\n {bandwidthDownBytes}\n{ifname} via {gwaddr}",
         "tooltip-format-disconnected": "Disconnected",
         "on-click": "nm-applet"
     },
