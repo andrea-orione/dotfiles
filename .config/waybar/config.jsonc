@@ -82,7 +82,7 @@
     },
 
     "tray":{
-      "spacing":10
+      "spacing":5
     },
 
     "hyprland/language": {

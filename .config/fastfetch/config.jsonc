@@ -7,9 +7,9 @@
       "2": "blue"
     }
   },
-  "general": {
-    "multithreading": true
-  },
+//  "general": {
+//    "multithreading": true
+//  },
   "display": {
     "stat": false,
     "pipe": false,

@@ -1,0 +1,30 @@
+#       ____     ____
+#     /  __  \ /  __  \
+#    |  |__|  |  |  |  |  Andrea Orione
+#    |   __   |  |  |  |  https://www.github.com/andrea-orione
+#    |  |  |  |  |__|  |
+#    |__|  |__|\ ____ /
+
+# Customization of i3
+
+set $OrionTerminal "ghostty --gtk-single-instance=true"
+set $OrionBrowser "librewolf"
+set $OrionFileManager "thunar"
+
+# Names of the workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+include ~/.config/i3/generalVariables.conf
+include ~/.config/i3/bindings.conf
+include ~/.config/i3/startup.conf
+include ~/.config/i3/bar.conf
+include ~/.config/i3/monitors.conf
