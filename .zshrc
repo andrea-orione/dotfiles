@@ -72,6 +72,7 @@ fi
 
 # safer remove
 alias rm='rm -I'
+alias rr='~/.bin/safe-remove-dir.sh'
 
 # file listing
 alias ls='eza --color=auto'
