@@ -7,7 +7,7 @@ return {
             "bash", "bibtex",
             "c", "cmake", "comment", "cpp", "css", "csv",
             "diff", "doxygen",
-            "gitcommit", "gitignore", "glsl",
+            "gitcommit", "gitignore", "glsl", "gnuplot",
             "html", "hyprlang",
             "javascript", "json", "jsonc",
             "latex", "lua", "luadoc",

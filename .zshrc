@@ -10,7 +10,7 @@
 ### ZINIT AND PLUGINS
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-export PLUTO_DIR="$HOME/Appunti/gPLUTO"
+export PLUTO_DIR="$HOME/Appunti/Tesi-magistrale/gPLUTO-dev"
 
 # Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
@@ -87,8 +87,9 @@ alias cat='bat'
 
 ### VARIABLES
 # manpager
-export MANPAGER="nvim +Man!"    #neovim
+# export MANPAGER="nvim +Man!"    #neovim
 # export MANPAGER="less"          #less
+export MANPAGER="bat -p"          #less
 
 # Path
 if [ -d "$HOME/.bin" ] ;

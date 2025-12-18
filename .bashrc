@@ -8,9 +8,10 @@
 ### Bash configuration
 
 # SET MANPAGER
-export MANPAGER="nvim +Man!"    #neovim
+# export MANPAGER="nvim +Man!"    #neovim
 # export MANPAGER="less"          #less
-export PLUTO_DIR="$HOME/Appunti/gPLUTO"
+export MANPAGER="bat -p"          #less
+export PLUTO_DIR="$HOME/Appunti/Tesi-magistrale/gPLUTO-dev"
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return

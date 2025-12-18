@@ -1,6 +1,13 @@
 return {
     "nvim-neorg/neorg",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-neorg/lua-utils.nvim",
+        "nvim-neotest/nvim-nio",
+        "MunifTanjim/nui.nvim",
+        "pysan3/pathlib.nvim"
+    },
+    lazy = false,
     version = "*",
     event = "VeryLazy",
     build = ":Neorg sync-parsers",
